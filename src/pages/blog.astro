@@ -1,0 +1,48 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import Parser from 'rss-parser';
+
+let posts: { title: string; excerpt: string; url: string; date: string }[] = [];
+
+try {
+  const parser = new Parser();
+  const feed = await parser.parseURL('https://zerofluff.substack.com/feed');
+  posts = feed.items.slice(0, 12).map(item => ({
+    title: item.title ?? 'Untitled',
+    excerpt: (item.contentSnippet ?? '').slice(0, 160) + '...',
+    url: item.link ?? '#',
+    date: item.pubDate ?? '',
+  }));
+} catch (e) {
+  console.warn('Failed to fetch Substack RSS feed:', e);
+}
+---
+
+<BaseLayout title="Blog">
+  <section class="section">
+    <div class="container stack">
+      <div class="narrow">
+        <h1>Blog</h1>
+        <p class="text-muted">Thoughts on AI implementation, automation, and making technology work for real businesses. Read the full posts on Substack.</p>
+      </div>
+
+      {posts.length > 0 ? (
+        <div class="grid-2 reveal">
+          {posts.map(post => (
+            <BlogCard
+              title={post.title}
+              excerpt={post.excerpt}
+              date={post.date}
+              url={post.url}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-muted">Posts coming soon. In the meantime, visit <a href="https://zerofluff.substack.com" target="_blank" rel="noopener noreferrer">the Substack</a>.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

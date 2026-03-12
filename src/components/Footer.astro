@@ -1,6 +1,9 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <p class="tagline">AI implementation that works.</p>
+    <nav class="footer-nav text-sm text-muted">
+      <a href="/blog">Blog</a>
+    </nav>
     <p class="text-sm text-muted contact-info">
       <a href="mailto:andy@zerofluff.co.uk">andy@zerofluff.co.uk</a> &middot; Totnes, Devon
     </p>
@@ -25,6 +28,20 @@
     font-size: var(--text-base);
     color: var(--color-text);
     margin-block-end: var(--space-xs);
+  }
+
+  .footer-nav {
+    margin-block-end: var(--space-xs);
+  }
+
+  .footer-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-nav a:hover {
+    color: var(--color-accent);
   }
 
   .copyright {
