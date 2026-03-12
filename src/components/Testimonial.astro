@@ -1,0 +1,44 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role?: string;
+  company?: string;
+}
+
+const { quote, name, role, company } = Astro.props;
+---
+
+<blockquote class="testimonial">
+  <p class="testimonial-quote">{quote}</p>
+  <footer class="testimonial-attribution">
+    <strong>{name}</strong>
+    {(role || company) && (
+      <span class="text-muted">
+        {role}{role && company && ', '}{company}
+      </span>
+    )}
+  </footer>
+</blockquote>
+
+<style>
+  .testimonial {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-md);
+  }
+
+  .testimonial-quote {
+    font-size: var(--text-lg);
+    font-style: italic;
+    line-height: 1.6;
+    margin-block-end: var(--space-sm);
+  }
+
+  .testimonial-attribution {
+    font-size: var(--text-sm);
+  }
+
+  .testimonial-attribution span {
+    margin-inline-start: var(--space-xs);
+  }
+</style>

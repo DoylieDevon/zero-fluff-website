@@ -1,0 +1,31 @@
+---
+interface Props {
+  heading?: string;
+  text?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const {
+  heading = "Ready to cut the fluff?",
+  text = "Get in touch for a straight conversation about what AI can do for your business.",
+  buttonText = "Get in Touch",
+  buttonHref = "/contact",
+} = Astro.props;
+---
+
+<section class="section reveal">
+  <div class="container narrow stack cta-section">
+    <h2>{heading}</h2>
+    <p class="text-lg">{text}</p>
+    <div>
+      <a href={buttonHref} class="btn">{buttonText}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    text-align: center;
+  }
+</style>

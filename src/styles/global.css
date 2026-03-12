@@ -120,7 +120,24 @@ a:hover {
 }
 
 /* ================================
-   6. ANIMATIONS
+   6. GRID & CARD UTILITIES
+   ================================ */
+.grid-2 { display: grid; gap: var(--space-lg); }
+@media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+
+.grid-3 { display: grid; gap: var(--space-lg); }
+@media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: white;
+}
+
+/* ================================
+   7. ANIMATIONS
    ================================ */
 
 /* Scroll reveal */
