@@ -45,11 +45,11 @@ Plans:
   3. The about page shows Andy's 30+ years of experience, names past companies (Filmily, SelectCommerce, Shiift), and displays client testimonials
   4. Submitting the contact form with valid data sends an email via Resend and shows a success message; submitting with invalid data shows inline validation errors
   5. All copy across every page is direct, jargon-free, and sounds like a real person talking -- not corporate marketing
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Homepage (hero, pain points, services summary, social proof, CTA)
-- [ ] 02-02: Services page, about page, and contact page with Resend form
+- [ ] 02-01-PLAN.md -- Homepage with hero, pain points, services summary, testimonials, CTA, plus shared components and nav updates
+- [ ] 02-02-PLAN.md -- Services page, about page, and contact page with Astro Actions + Resend form
 
 ### Phase 3: Content & Blog
 **Goal**: The site has real case studies that demonstrate results and a blog page pulling Andy's Substack posts -- visitors can evaluate Zero Fluff's track record through concrete examples
