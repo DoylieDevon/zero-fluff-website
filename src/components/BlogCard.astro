@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  url: string;
+}
+const { title, excerpt, date, url } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'short', year: 'numeric'
+});
+const truncatedExcerpt = excerpt.length > 160 ? excerpt.slice(0, 160) + '...' : excerpt;
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="card blog-card stack">
+  <time class="text-sm text-muted" datetime={new Date(date).toISOString()}>{formattedDate}</time>
+  <h3>{title}</h3>
+  <p class="text-muted">{truncatedExcerpt}</p>
+</a>
+
+<style>
+  .blog-card {
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .blog-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+</style>

@@ -13,7 +13,8 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/space-grotesk": "^5.2.10",
     "astro": "^6.0.4",
-    "resend": "^6.9.3"
+    "resend": "^6.9.3",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.7",
