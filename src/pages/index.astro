@@ -1,128 +1,101 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title="Zero Fluff - Design System Test" />
-  </head>
-  <body>
-    <!-- Hero Section -->
-    <section class="section">
-      <div class="container narrow stack">
-        <h1>AI Implementation That Actually Works</h1>
-        <p class="text-lg text-muted">
-          Straight-talking AI consultancy for small businesses.
-          No jargon, no fluff, just results that move your business forward.
-        </p>
-        <div>
-          <a href="#typography" style={`
-            display: inline-block;
-            padding: var(--space-sm) var(--space-lg);
-            background-color: var(--color-accent);
-            color: var(--color-bg);
-            text-decoration: none;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: var(--text-base);
-            border-radius: 0.25rem;
-            transition: background-color 0.2s ease;
-          `}>Get in Touch</a>
-        </div>
+<BaseLayout title="Zero Fluff - Design System Test">
+  <!-- Hero Section (no reveal - visible immediately) -->
+  <section class="section">
+    <div class="container narrow stack">
+      <h1>AI Implementation That Actually Works</h1>
+      <p class="text-lg text-muted">
+        Straight-talking AI consultancy for small businesses.
+        No jargon, no fluff, just results that move your business forward.
+      </p>
+      <div>
+        <a href="/about" class="btn">Get in Touch</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Typography Scale Section -->
-    <section id="typography" class="section" style="background-color: var(--color-border);">
-      <div class="container narrow stack-lg">
-        <div class="stack">
-          <h2>Typography Scale</h2>
-          <p class="text-muted">Every size uses fluid <code>clamp()</code> values that scale smoothly from 320px to 1440px+.</p>
-        </div>
-
-        <div class="stack">
-          <h1>Heading 1 -- The Big Statement</h1>
-          <h2>Heading 2 -- Section Title</h2>
-          <h3>Heading 3 -- Subsection</h3>
-          <h4>Heading 4 -- Detail Level</h4>
-        </div>
-
-        <div class="stack">
-          <p class="text-lg">Large text for emphasis and introductions. This size sits between headings and body, useful for lead paragraphs and callouts.</p>
-          <p>Base body text. This is the default reading size, optimised for comfortable reading across all screen sizes. It should feel natural on both a phone and a wide desktop monitor.</p>
-          <p class="text-sm text-muted">Small text for captions, metadata, and secondary information. Still readable, just quieter.</p>
-        </div>
+  <!-- Typography Scale Section -->
+  <section class="section reveal" style="background-color: var(--color-border);">
+    <div class="container narrow stack-lg">
+      <div class="stack">
+        <h2>Typography Scale</h2>
+        <p class="text-muted">Every size uses fluid <code>clamp()</code> values that scale smoothly from 320px to 1440px+.</p>
       </div>
-    </section>
 
-    <!-- Spacing and Layout Section -->
-    <section class="section">
-      <div class="container narrow stack-lg">
-        <div class="stack">
-          <h2>Spacing and Layout</h2>
-          <p>All spacing uses fluid custom properties. The <code>.container</code> class constrains width, <code>.narrow</code> tightens it further, and <code>.stack</code> / <code>.stack-lg</code> handle vertical rhythm.</p>
-        </div>
-
-        <div class="stack">
-          <h3>Why Zero Fluff?</h3>
-          <p>Most AI consultancies sell the dream and deliver a PDF. We build things that work -- automations, integrations, and workflows that save real time and real money.</p>
-          <p>With 30+ years of digital product experience, Andy Doyle has seen every technology hype cycle come and go. The ones that stick are the ones that solve real problems simply.</p>
-        </div>
+      <div class="stack">
+        <h1>Heading 1 -- The Big Statement</h1>
+        <h2>Heading 2 -- Section Title</h2>
+        <h3>Heading 3 -- Subsection</h3>
+        <h4>Heading 4 -- Detail Level</h4>
       </div>
-    </section>
 
-    <!-- Full Width Container Section -->
-    <section class="section" style="background-color: var(--color-border);">
-      <div class="container stack-lg">
-        <div class="stack">
-          <h2>Full-Width Container</h2>
-          <p>This section uses <code>.container</code> without <code>.narrow</code>, demonstrating the wider max-width. Good for grid layouts, card sections, and content that benefits from more horizontal space.</p>
-        </div>
-
-        <div class="narrow stack">
-          <h4>But content can still be narrowed</h4>
-          <p>Adding <code>.narrow</code> to any child brings text back to comfortable reading width. This is the pattern used throughout the site -- wide containers for structure, narrow for prose.</p>
-        </div>
+      <div class="stack">
+        <p class="text-lg">Large text for emphasis and introductions. This size sits between headings and body, useful for lead paragraphs and callouts.</p>
+        <p>Base body text. This is the default reading size, optimised for comfortable reading across all screen sizes. It should feel natural on both a phone and a wide desktop monitor.</p>
+        <p class="text-sm text-muted">Small text for captions, metadata, and secondary information. Still readable, just quieter.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Colors Section -->
-    <section class="section">
-      <div class="container narrow stack-lg">
-        <div class="stack">
-          <h2>Colour Palette</h2>
-          <p>A restrained palette that lets typography do the heavy lifting.</p>
-        </div>
-
-        <div class="stack">
-          <p><strong>Accent:</strong> <span style="color: var(--color-accent);">This text uses --color-accent (#2563EB)</span></p>
-          <p><strong>Muted:</strong> <span class="text-muted">This text uses --color-text-muted (#6B6B6B)</span></p>
-          <p><strong>Default:</strong> This text uses --color-text (#1A1A1A)</p>
-          <p><strong>Links:</strong> <a href="#">Styled anchor with hover transition</a></p>
-        </div>
+  <!-- Spacing and Layout Section -->
+  <section class="section reveal">
+    <div class="container narrow stack-lg">
+      <div class="stack">
+        <h2>Spacing and Layout</h2>
+        <p>All spacing uses fluid custom properties. The <code>.container</code> class constrains width, <code>.narrow</code> tightens it further, and <code>.stack</code> / <code>.stack-lg</code> handle vertical rhythm.</p>
       </div>
-    </section>
 
-    <!-- Final CTA Section -->
-    <section class="section">
-      <div class="container narrow stack">
-        <h2>Ready to cut the fluff?</h2>
-        <p class="text-lg">If your business is ready for AI that works, not AI that sounds impressive in a pitch deck, let's talk.</p>
-        <div>
-          <a href="#" style={`
-            display: inline-block;
-            padding: var(--space-sm) var(--space-lg);
-            background-color: var(--color-accent);
-            color: var(--color-bg);
-            text-decoration: none;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: var(--text-base);
-            border-radius: 0.25rem;
-            transition: background-color 0.2s ease;
-          `}>Get in Touch</a>
-        </div>
+      <div class="stack">
+        <h3>Why Zero Fluff?</h3>
+        <p>Most AI consultancies sell the dream and deliver a PDF. We build things that work -- automations, integrations, and workflows that save real time and real money.</p>
+        <p>With 30+ years of digital product experience, Andy Doyle has seen every technology hype cycle come and go. The ones that stick are the ones that solve real problems simply.</p>
       </div>
-    </section>
-  </body>
-</html>
+    </div>
+  </section>
+
+  <!-- Full Width Container Section -->
+  <section class="section reveal" style="background-color: var(--color-border);">
+    <div class="container stack-lg">
+      <div class="stack">
+        <h2>Full-Width Container</h2>
+        <p>This section uses <code>.container</code> without <code>.narrow</code>, demonstrating the wider max-width. Good for grid layouts, card sections, and content that benefits from more horizontal space.</p>
+      </div>
+
+      <div class="narrow stack">
+        <h4>But content can still be narrowed</h4>
+        <p>Adding <code>.narrow</code> to any child brings text back to comfortable reading width. This is the pattern used throughout the site -- wide containers for structure, narrow for prose.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colours Section -->
+  <section class="section reveal">
+    <div class="container narrow stack-lg">
+      <div class="stack">
+        <h2>Colour Palette</h2>
+        <p>A restrained palette that lets typography do the heavy lifting.</p>
+      </div>
+
+      <div class="stack">
+        <p><strong>Accent:</strong> <span style="color: var(--color-accent);">This text uses --color-accent (#2563EB)</span></p>
+        <p><strong>Muted:</strong> <span class="text-muted">This text uses --color-text-muted (#6B6B6B)</span></p>
+        <p><strong>Default:</strong> This text uses --color-text (#1A1A1A)</p>
+        <p><strong>Links:</strong> <a href="#">Styled anchor with hover transition</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="section reveal">
+    <div class="container narrow stack">
+      <h2>Ready to cut the fluff?</h2>
+      <p class="text-lg">If your business is ready for AI that works, not AI that sounds impressive in a pitch deck, let's talk.</p>
+      <div>
+        <a href="/about" class="btn">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
