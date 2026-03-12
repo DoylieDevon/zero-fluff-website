@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-03-12T20:24:06.726Z"
+last_activity: 2026-03-12 -- Completed 01-01 (Project Setup & Design Tokens)
+progress:
+  total_phases: 4
+  completed_phases: 1
+  total_plans: 2
+  completed_plans: 2
+  percent: 100
+---
+
 # Project State
 
 ## Project Reference
@@ -9,29 +25,29 @@ See: .planning/PROJECT.md (updated 2026-03-12)
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation & Design System)
-Plan: 1 of 2 in current phase
-Status: Executing
-Last activity: 2026-03-12 -- Completed 01-01 (Project Setup & Design Tokens)
+Phase: 1 of 4 (Foundation & Design System) -- COMPLETE
+Plan: 2 of 2 in current phase
+Status: Phase Complete
+Last activity: 2026-03-12 -- Completed 01-02 (Layout & Animations)
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 5min
-- Total execution time: 0.08 hours
+- Total plans completed: 2
+- Average duration: 4min
+- Total execution time: 0.12 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation-design-system | 1 | 5min | 5min |
+| 01-foundation-design-system | 2 | 7min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (5min)
-- Trend: Starting
+- Last 5 plans: 01-01 (5min), 01-02 (2min)
+- Trend: Accelerating
 
 *Updated after each plan completion*
 
@@ -48,6 +64,9 @@ Recent decisions affecting current work:
 - 01-01: Astro 6.0.4 installed (latest) instead of 5.x -- backwards compatible, all patterns work identically
 - 01-01: Manual project scaffolding used (create-astro CLI interactive prompts blocked execution)
 - 01-01: Font preload uses Astro ?url import for build-time WOFF2 path resolution
+- 01-02: ClientRouter from astro:transitions for smooth page fades (built-in, no extra library)
+- 01-02: IntersectionObserver with is:inline and data-astro-rerun for scroll-reveal persistence
+- 01-02: GitHub repo created as public at DoylieDevon/zero-fluff-website
 
 ### Pending Todos
 
@@ -62,5 +81,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-12
-Stopped at: Completed 01-01-PLAN.md
+Stopped at: Completed 01-02-PLAN.md (Phase 1 complete)
 Resume file: None

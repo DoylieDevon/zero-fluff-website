@@ -10,15 +10,15 @@
 - [x] **FOUN-01**: Site uses a fluid typography scale with `clamp()` that works from 320px to 1440px+
 - [x] **FOUN-02**: Fonts are self-hosted variable WOFF2 files with preload hints (no Google Fonts CDN)
 - [x] **FOUN-03**: CSS custom properties define all design tokens (colors, spacing, type scale, max-widths)
-- [ ] **FOUN-04**: Layout is mobile-first responsive with breakpoints at 768px and 1024px minimum
-- [ ] **FOUN-05**: Design is whitespace-heavy with typography doing the visual heavy lifting
+- [x] **FOUN-04**: Layout is mobile-first responsive with breakpoints at 768px and 1024px minimum
+- [x] **FOUN-05**: Design is whitespace-heavy with typography doing the visual heavy lifting
 
 ### Animations
 
-- [ ] **ANIM-01**: Pages have smooth entrance transitions when navigating between them
-- [ ] **ANIM-02**: Content sections fade/slide in on scroll with subtle reveal animations
-- [ ] **ANIM-03**: Interactive elements (buttons, links, cards) have hover/focus state transitions
-- [ ] **ANIM-04**: Animations respect `prefers-reduced-motion` and degrade gracefully
+- [x] **ANIM-01**: Pages have smooth entrance transitions when navigating between them
+- [x] **ANIM-02**: Content sections fade/slide in on scroll with subtle reveal animations
+- [x] **ANIM-03**: Interactive elements (buttons, links, cards) have hover/focus state transitions
+- [x] **ANIM-04**: Animations respect `prefers-reduced-motion` and degrade gracefully
 
 ### Homepage
 
@@ -72,7 +72,7 @@
 
 ### Deployment
 
-- [ ] **DEPL-01**: Site deployed to Vercel with git-based deploys
+- [x] **DEPL-01**: Site deployed to Vercel with git-based deploys
 - [ ] **DEPL-02**: zerofluff.co.uk domain configured and serving the site
 - [ ] **DEPL-03**: HTTPS enforced on all pages
 
@@ -105,12 +105,12 @@
 | FOUN-01 | Phase 1 | Complete |
 | FOUN-02 | Phase 1 | Complete |
 | FOUN-03 | Phase 1 | Complete |
-| FOUN-04 | Phase 1 | Pending |
-| FOUN-05 | Phase 1 | Pending |
-| ANIM-01 | Phase 1 | Pending |
-| ANIM-02 | Phase 1 | Pending |
-| ANIM-03 | Phase 1 | Pending |
-| ANIM-04 | Phase 1 | Pending |
+| FOUN-04 | Phase 1 | Complete |
+| FOUN-05 | Phase 1 | Complete |
+| ANIM-01 | Phase 1 | Complete |
+| ANIM-02 | Phase 1 | Complete |
+| ANIM-03 | Phase 1 | Complete |
+| ANIM-04 | Phase 1 | Complete |
 | HOME-01 | Phase 2 | Pending |
 | HOME-02 | Phase 2 | Pending |
 | HOME-03 | Phase 2 | Pending |
@@ -140,7 +140,7 @@
 | SEO-03 | Phase 4 | Pending |
 | SEO-04 | Phase 4 | Pending |
 | SEO-05 | Phase 4 | Pending |
-| DEPL-01 | Phase 1 | Pending |
+| DEPL-01 | Phase 1 | Complete |
 | DEPL-02 | Phase 4 | Pending |
 | DEPL-03 | Phase 4 | Pending |
 

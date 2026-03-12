@@ -12,7 +12,7 @@ Transform zerofluff.co.uk from a generic template into a typography-led, trust-b
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Design System** - Astro project, typography scale, design tokens, animations, responsive layout, initial deploy
+- [x] **Phase 1: Foundation & Design System** - Astro project, typography scale, design tokens, animations, responsive layout, initial deploy (completed 2026-03-12)
 - [ ] **Phase 2: Core Pages** - Homepage, services, about, and contact with working enquiry form
 - [ ] **Phase 3: Content & Blog** - Case studies and Substack blog integration
 - [ ] **Phase 4: Launch Readiness** - SEO, structured data, legal pages, domain config, go-live
@@ -86,7 +86,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Design System | 0/2 | Not started | - |
+| 1. Foundation & Design System | 2/2 | Complete   | 2026-03-12 |
 | 2. Core Pages | 0/2 | Not started | - |
 | 3. Content & Blog | 0/2 | Not started | - |
 | 4. Launch Readiness | 0/1 | Not started | - |
