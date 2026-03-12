@@ -7,9 +7,9 @@
 
 ### Foundation
 
-- [ ] **FOUN-01**: Site uses a fluid typography scale with `clamp()` that works from 320px to 1440px+
-- [ ] **FOUN-02**: Fonts are self-hosted variable WOFF2 files with preload hints (no Google Fonts CDN)
-- [ ] **FOUN-03**: CSS custom properties define all design tokens (colors, spacing, type scale, max-widths)
+- [x] **FOUN-01**: Site uses a fluid typography scale with `clamp()` that works from 320px to 1440px+
+- [x] **FOUN-02**: Fonts are self-hosted variable WOFF2 files with preload hints (no Google Fonts CDN)
+- [x] **FOUN-03**: CSS custom properties define all design tokens (colors, spacing, type scale, max-widths)
 - [ ] **FOUN-04**: Layout is mobile-first responsive with breakpoints at 768px and 1024px minimum
 - [ ] **FOUN-05**: Design is whitespace-heavy with typography doing the visual heavy lifting
 
@@ -102,9 +102,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUN-01 | Phase 1 | Pending |
-| FOUN-02 | Phase 1 | Pending |
-| FOUN-03 | Phase 1 | Pending |
+| FOUN-01 | Phase 1 | Complete |
+| FOUN-02 | Phase 1 | Complete |
+| FOUN-03 | Phase 1 | Complete |
 | FOUN-04 | Phase 1 | Pending |
 | FOUN-05 | Phase 1 | Pending |
 | ANIM-01 | Phase 1 | Pending |
