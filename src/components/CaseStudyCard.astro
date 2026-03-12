@@ -1,0 +1,31 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  client: string;
+  result: string;
+}
+const { id, title, client, result } = Astro.props;
+---
+
+<a href={`/case-studies/${id}`} class="card case-study-card stack">
+  <h3>{client}</h3>
+  <p class="text-muted">{title}</p>
+  <p class="case-study-result"><strong>{result}</strong></p>
+</a>
+
+<style>
+  .case-study-card {
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .case-study-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .case-study-result {
+    color: var(--color-accent);
+    font-size: var(--text-lg);
+  }
+</style>

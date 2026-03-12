@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import { getCollection } from 'astro:content';
+
+const studies = await getCollection('case-studies');
+studies.sort((a, b) => {
+  const orderA = a.data.order ?? 999;
+  const orderB = b.data.order ?? 999;
+  return orderA - orderB;
+});
+---
+
+<BaseLayout title="Our Work | Zero Fluff" description="Real results for real businesses. See how Zero Fluff has helped companies save time and make better decisions with practical AI solutions.">
+  <section class="section reveal">
+    <div class="container stack">
+      <h1>Our Work</h1>
+      <p class="text-lg text-muted">Real results for real businesses. No buzzwords, no inflated claims -- just practical AI solutions that made a measurable difference.</p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <div class="grid-2">
+        {studies.map((study) => (
+          <CaseStudyCard
+            id={study.id}
+            title={study.data.title}
+            client={study.data.client}
+            result={study.data.result}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

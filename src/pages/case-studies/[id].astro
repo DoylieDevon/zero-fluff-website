@@ -1,0 +1,50 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('case-studies');
+  return studies.map((study) => ({
+    params: { id: study.id },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+---
+
+<BaseLayout title={`${study.data.client}: ${study.data.title} | Zero Fluff`} description={`${study.data.client} -- ${study.data.result}. See how Zero Fluff delivered real results.`}>
+  <section class="section reveal">
+    <div class="container narrow stack">
+      <h1>{study.data.client}</h1>
+      <p class="result-metric">{study.data.result}</p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container narrow stack case-study-content">
+      <Content />
+    </div>
+  </section>
+
+  <CTA
+    heading="Want results like these?"
+    text="Let's talk about what AI can do for your business."
+    buttonText="Get in Touch"
+  />
+</BaseLayout>
+
+<style>
+  .result-metric {
+    font-size: var(--text-xl, 1.5rem);
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  .case-study-content :global(h2) {
+    margin-block-start: var(--space-lg);
+  }
+</style>
