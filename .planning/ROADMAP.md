@@ -29,11 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Enabling "prefers-reduced-motion" in browser settings disables all animations
   4. The site renders correctly on mobile (375px), tablet (768px), and desktop (1440px) with generous whitespace throughout
   5. Pushing to the git repo triggers an automatic Vercel deploy
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Astro project setup, font loading, CSS design tokens, fluid type scale
-- [ ] 01-02: Base layout components, responsive system, animations, Vercel deploy
+- [ ] 01-01-PLAN.md -- Astro project setup, font loading, CSS design tokens, fluid type scale
+- [ ] 01-02-PLAN.md -- Base layout components, responsive system, animations, Vercel deploy
 
 ### Phase 2: Core Pages
 **Goal**: Visitors can browse all main pages -- understand what Zero Fluff does, learn about Andy's track record, read testimonials, and submit an enquiry -- in a cohesive, straight-talking design
