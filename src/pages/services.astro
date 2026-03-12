@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<BaseLayout
+  title="Services - Zero Fluff"
+  description="AI implementation services for small businesses. No jargon, just practical solutions that work."
+>
+  <!-- Section 1: Hero -->
+  <section class="section">
+    <div class="container narrow stack">
+      <h1>What I Do</h1>
+      <p class="text-lg text-muted">
+        I take real business processes and make them faster, cheaper, and less painful
+        with AI. Not as a concept. As a working thing you can use tomorrow.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2: Core Offering -->
+  <section class="section reveal" style="background-color: var(--color-border);">
+    <div class="container narrow stack">
+      <h2>Practical AI Implementation</h2>
+      <p>
+        Most AI consultants sell you a strategy. I build you a system. The difference
+        matters: you end up with something that actually runs, not a document that
+        sits in a drawer.
+      </p>
+      <p>
+        I work with small businesses to find the tasks that eat up time -- the repetitive
+        stuff, the manual data shuffling, the processes that make your team groan -- and
+        I automate them. Using tools like N8N for workflow automation, custom AI integrations,
+        and whatever else fits the job.
+      </p>
+      <p>
+        This isn't about replacing people. It's about freeing them up to do the work
+        that actually needs a human brain. I also make sure your team knows how to use
+        what I've built, so it doesn't become another piece of abandoned software.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3: How I Work -->
+  <section class="section reveal">
+    <div class="container stack-lg">
+      <div class="narrow stack">
+        <h2>How It Works</h2>
+        <p class="text-lg">
+          Three steps. No twelve-month roadmaps, no discovery phases that cost
+          more than the actual work.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card stack">
+          <h3>1. We Talk</h3>
+          <p>
+            I learn how your business works. Where time gets wasted, what
+            frustrates your team, and where AI can make a genuine difference.
+            This is a conversation, not a questionnaire.
+          </p>
+        </div>
+
+        <div class="card stack">
+          <h3>2. I Build</h3>
+          <p>
+            I create a working automation or AI tool tailored to your specific
+            problem. You see real progress quickly -- not a strategy deck, but
+            software that runs.
+          </p>
+        </div>
+
+        <div class="card stack">
+          <h3>3. You Use It</h3>
+          <p>
+            I hand it over with proper training so your team can actually use it.
+            No mysterious black box. You understand what it does, how it works,
+            and how to get the most out of it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: CTA -->
+  <CTA />
+</BaseLayout>

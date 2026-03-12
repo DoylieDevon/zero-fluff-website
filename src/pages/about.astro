@@ -1,60 +1,120 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Testimonial from '../components/Testimonial.astro';
+import CTA from '../components/CTA.astro';
 ---
 
-<BaseLayout title="About - Zero Fluff" description="Learn about Zero Fluff and Andy Doyle's approach to AI implementation for small businesses.">
-  <!-- Hero Section (no reveal - visible immediately) -->
+<BaseLayout
+  title="About - Zero Fluff"
+  description="Meet Andy Doyle. 30+ years of digital product experience, now focused on practical AI implementation."
+>
+  <!-- Section 1: Hero -->
   <section class="section">
     <div class="container narrow stack">
       <h1>About Zero Fluff</h1>
       <p class="text-lg text-muted">
-        30+ years of digital product experience, distilled into AI that actually delivers.
+        I'm Andy Doyle. I live in Totnes, Devon, and I've spent 30+ years
+        building digital products. Now I help small businesses make AI work
+        for them -- properly.
       </p>
     </div>
   </section>
 
-  <!-- Approach Section -->
+  <!-- Section 2: The Story -->
   <section class="section reveal" style="background-color: var(--color-border);">
     <div class="container narrow stack">
-      <h2>The Approach</h2>
+      <h2>The Short Version</h2>
       <p>
-        Every AI consultancy talks about transformation. We talk about what's actually going to happen
-        on Monday morning. What process gets faster, what manual step disappears, what report writes itself.
+        I've been building digital products since the early days of the web. Over three
+        decades, I've founded companies, shipped software, and learned -- mostly the hard
+        way -- what works and what's just noise.
       </p>
       <p>
-        Zero Fluff exists because most businesses don't need a grand AI strategy.
-        They need someone who understands their problem and builds a solution that works.
+        I created Filmily, a video sharing platform. I built SelectCommerce, an e-commerce
+        system. I founded Shiift, a file transfer service. Each one taught me something
+        about building things that people actually use, not things that just look good in
+        a pitch deck.
+      </p>
+      <p>
+        A couple of years ago, I noticed something. Businesses everywhere were being
+        told that AI would change everything. And it can -- but not the way most consultants
+        sell it. The gap between "AI is amazing" and "here's how it helps your specific
+        business" was enormous. And nobody seemed to be filling it.
+      </p>
+      <p>
+        That's why I started Zero Fluff. I take my experience building real products and
+        apply it to AI implementation. No hype, no buzzwords, no fifty-slide presentations.
+        Just working tools that make your business better.
       </p>
     </div>
   </section>
 
-  <!-- Experience Section -->
+  <!-- Section 3: Track Record -->
   <section class="section reveal">
     <div class="container narrow stack">
-      <h2>Why It Works</h2>
+      <h2>What I've Built</h2>
       <p>
-        Andy Doyle has spent three decades building digital products -- from startups to enterprise,
-        from first lines of code to scaling teams. He's seen every technology hype cycle come and go.
+        Over 30 years, I've built products across video, e-commerce, and file transfer.
+        The thread connecting all of it: making technology useful for real people.
       </p>
+      <ul class="track-record stack">
+        <li>
+          <strong>Filmily</strong> -- A video sharing platform built when video on the web
+          was still a headache. Taught me how to ship products that handle real-world scale.
+        </li>
+        <li>
+          <strong>SelectCommerce</strong> -- An e-commerce system for businesses that needed
+          more than a template. Built to be flexible without being complicated.
+        </li>
+        <li>
+          <strong>Shiift</strong> -- A file transfer service designed to make sending large
+          files painless. Still running, still useful.
+        </li>
+      </ul>
       <p>
-        The pattern is always the same: the tools that stick are the ones that solve real problems simply.
-        AI is no different. The best implementations are the boring ones -- they just work,
-        quietly saving time and money every day.
+        The common theme? Building things that work, not things that just sound impressive.
+        That same principle drives everything I do with AI implementation today.
       </p>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section reveal">
-    <div class="container narrow stack">
-      <h2>Let's Talk</h2>
-      <p class="text-lg">
-        If you've got a process that needs fixing or an idea that needs building,
-        get in touch for a straight conversation about what AI can do for you.
-      </p>
-      <div>
-        <a href="/" class="btn">Back to Home</a>
+  <!-- Section 4: Testimonials -->
+  <!-- Placeholder testimonials -- replace with real ones -->
+  <section class="section reveal" style="background-color: var(--color-border);">
+    <div class="container stack-lg">
+      <div class="narrow stack">
+        <h2>What Clients Say</h2>
+      </div>
+
+      <div class="grid-2">
+        <Testimonial
+          quote="Andy automated our weekly reporting and saved us about 8 hours a week. No fuss, no jargon -- he just got on with it and it worked from day one."
+          name="Sarah Mitchell"
+          role="Operations Director"
+          company="Apex Logistics"
+        />
+        <Testimonial
+          quote="I'd wasted months trying to figure out AI on my own. Andy sat down with me, understood my business in an hour, and built exactly what I needed. I finally get what AI can actually do for us."
+          name="James Cooper"
+          role="Founder"
+          company="Bright Path Digital"
+        />
       </div>
     </div>
   </section>
+
+  <!-- Section 5: CTA -->
+  <CTA />
 </BaseLayout>
+
+<style>
+  .track-record {
+    list-style: none;
+    padding: 0;
+  }
+
+  .track-record li {
+    padding-left: var(--space-md);
+    border-left: 3px solid var(--color-accent);
+  }
+</style>
