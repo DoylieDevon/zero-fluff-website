@@ -1,0 +1,175 @@
+<form id="contact-form" class="contact-form stack" novalidate>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required autocomplete="name" />
+    <span class="field-error" id="name-error" aria-live="polite"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
+    <span class="field-error" id="email-error" aria-live="polite"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+    <span class="field-error" id="message-error" aria-live="polite"></span>
+  </div>
+
+  <!-- Honeypot -->
+  <div class="visually-hidden" aria-hidden="true">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div>
+    <button type="submit" class="btn">Send Message</button>
+  </div>
+
+  <div id="form-status" aria-live="polite"></div>
+</form>
+
+<style>
+  .contact-form {
+    width: 100%;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: var(--text-base);
+    background: white;
+    color: var(--color-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+
+  .field-error {
+    font-size: var(--text-sm);
+    color: #dc2626;
+    min-height: 1.25em;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  #form-status {
+    font-size: var(--text-base);
+    padding: var(--space-sm);
+    border-radius: 0.25rem;
+  }
+
+  #form-status:empty {
+    display: none;
+  }
+
+  #form-status.success {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+
+  #form-status.error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+  }
+</style>
+
+<script>
+  import { actions, isInputError } from 'astro:actions';
+
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    // Prevent double-binding
+    if (form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    const statusEl = document.getElementById('form-status')!;
+    const fields = ['name', 'email', 'message'] as const;
+
+    function clearErrors() {
+      fields.forEach((field) => {
+        const errorEl = document.getElementById(`${field}-error`);
+        if (errorEl) errorEl.textContent = '';
+      });
+      statusEl.textContent = '';
+      statusEl.className = '';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors();
+
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const formData = new FormData(form);
+      const { data, error } = await actions.contact(formData);
+
+      if (error) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+
+        if (isInputError(error)) {
+          // Show field-level validation errors
+          for (const field of fields) {
+            const fieldErrors = error.fields[field];
+            if (fieldErrors && fieldErrors.length > 0) {
+              const errorEl = document.getElementById(`${field}-error`);
+              if (errorEl) errorEl.textContent = fieldErrors[0];
+            }
+          }
+        } else {
+          statusEl.textContent = 'Something went wrong. Please try again or email me directly.';
+          statusEl.className = 'error';
+        }
+        return;
+      }
+
+      // Success
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      statusEl.textContent = "Thanks! Your message has been sent. I'll be in touch soon.";
+      statusEl.className = 'success';
+    });
+  }
+
+  // Support both initial load and ClientRouter navigations
+  document.addEventListener('DOMContentLoaded', initContactForm);
+  document.addEventListener('astro:page-load', initContactForm);
+</script>

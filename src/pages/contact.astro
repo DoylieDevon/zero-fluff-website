@@ -1,0 +1,73 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Contact - Zero Fluff"
+  description="Get in touch about AI implementation for your business. No sales pitch, just a straight conversation."
+>
+  <!-- Section 1: Hero -->
+  <section class="section">
+    <div class="container narrow stack">
+      <h1>Get in Touch</h1>
+      <p class="text-lg text-muted">
+        Got a question? Want to talk about how AI could help your business?
+        Drop me a message.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2: Form + Details -->
+  <section class="section reveal">
+    <div class="container contact-layout">
+      <div class="contact-form-wrapper">
+        <ContactForm />
+      </div>
+
+      <div class="contact-details">
+        <div class="card stack">
+          <h3>Other Ways to Reach Me</h3>
+          <div class="detail-item">
+            <strong>Email</strong>
+            <p><a href="mailto:andy@zerofluff.co.uk">andy@zerofluff.co.uk</a></p>
+          </div>
+          <div class="detail-item">
+            <strong>Location</strong>
+            <p>Totnes, Devon, UK</p>
+          </div>
+          <div class="detail-item">
+            <strong>Response time</strong>
+            <p>I typically reply within 24 hours</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-layout {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .contact-layout {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+
+  .detail-item strong {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .detail-item p {
+    margin-top: var(--space-xs);
+  }
+</style>
