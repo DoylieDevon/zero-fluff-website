@@ -31,10 +31,10 @@
 
 ### Services
 
-- [ ] **SERV-01**: Dedicated services page explaining what Zero Fluff offers
-- [ ] **SERV-02**: Simplified service offering focused on AI implementation (not 4 separate packages)
-- [ ] **SERV-03**: Clear explanation of how the engagement works (process/steps)
-- [ ] **SERV-04**: Call-to-action linking to contact page
+- [x] **SERV-01**: Dedicated services page explaining what Zero Fluff offers
+- [x] **SERV-02**: Simplified service offering focused on AI implementation (not 4 separate packages)
+- [x] **SERV-03**: Clear explanation of how the engagement works (process/steps)
+- [x] **SERV-04**: Call-to-action linking to contact page
 
 ### Case Studies
 
@@ -45,16 +45,16 @@
 
 ### About
 
-- [ ] **ABOU-01**: Dedicated about page for Andy and Zero Fluff
-- [ ] **ABOU-02**: Track record section (30 years experience, Filmily, SelectCommerce, Shiift)
-- [ ] **ABOU-03**: Testimonials from previous clients displayed prominently
+- [x] **ABOU-01**: Dedicated about page for Andy and Zero Fluff
+- [x] **ABOU-02**: Track record section (30 years experience, Filmily, SelectCommerce, Shiift)
+- [x] **ABOU-03**: Testimonials from previous clients displayed prominently
 
 ### Contact
 
-- [ ] **CONT-01**: Dedicated contact page with enquiry form
-- [ ] **CONT-02**: Form submissions delivered via email (Resend or equivalent serverless function)
-- [ ] **CONT-03**: Form has client-side validation and clear success/error states
-- [ ] **CONT-04**: Contact details visible (email, location)
+- [x] **CONT-01**: Dedicated contact page with enquiry form
+- [x] **CONT-02**: Form submissions delivered via email (Resend or equivalent serverless function)
+- [x] **CONT-03**: Form has client-side validation and clear success/error states
+- [x] **CONT-04**: Contact details visible (email, location)
 
 ### Blog
 
@@ -117,17 +117,17 @@
 | HOME-04 | Phase 2 | Complete |
 | HOME-05 | Phase 2 | Complete |
 | HOME-06 | Phase 2 | Complete |
-| SERV-01 | Phase 2 | Pending |
-| SERV-02 | Phase 2 | Pending |
-| SERV-03 | Phase 2 | Pending |
-| SERV-04 | Phase 2 | Pending |
-| ABOU-01 | Phase 2 | Pending |
-| ABOU-02 | Phase 2 | Pending |
-| ABOU-03 | Phase 2 | Pending |
-| CONT-01 | Phase 2 | Pending |
-| CONT-02 | Phase 2 | Pending |
-| CONT-03 | Phase 2 | Pending |
-| CONT-04 | Phase 2 | Pending |
+| SERV-01 | Phase 2 | Complete |
+| SERV-02 | Phase 2 | Complete |
+| SERV-03 | Phase 2 | Complete |
+| SERV-04 | Phase 2 | Complete |
+| ABOU-01 | Phase 2 | Complete |
+| ABOU-02 | Phase 2 | Complete |
+| ABOU-03 | Phase 2 | Complete |
+| CONT-01 | Phase 2 | Complete |
+| CONT-02 | Phase 2 | Complete |
+| CONT-03 | Phase 2 | Complete |
+| CONT-04 | Phase 2 | Complete |
 | CASE-01 | Phase 3 | Pending |
 | CASE-02 | Phase 3 | Pending |
 | CASE-03 | Phase 3 | Pending |
