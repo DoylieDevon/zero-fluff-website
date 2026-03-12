@@ -59,11 +59,11 @@ Plans:
   1. A case studies listing page shows at least 2 project cards that link to individual case study pages
   2. Each case study page follows a problem/approach/outcome structure with quantified results where available
   3. The blog page displays post cards pulled from Substack RSS at build time, rendered in the site's own design (not iframes), each linking to the full post on Substack
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Case study listing and individual pages with real content
-- [ ] 03-02: Blog listing page with Substack RSS integration
+- [ ] 03-01-PLAN.md -- Case study content collection, listing page, individual pages, and nav update
+- [ ] 03-02-PLAN.md -- Blog listing page with Substack RSS integration and BlogCard component
 
 ### Phase 4: Launch Readiness
 **Goal**: The site is discoverable by search engines, legally compliant, and live on zerofluff.co.uk with HTTPS -- ready for real visitors
