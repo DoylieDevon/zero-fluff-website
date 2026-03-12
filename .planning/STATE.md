@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-12T21:50:30.899Z"
-last_activity: 2026-03-12 -- Completed 02-02 (Services, About & Contact Pages)
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-12T23:58:27.280Z"
+last_activity: 2026-03-12 -- Completed 03-01 (Case Studies)
 progress:
   total_phases: 4
-  completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 3
+  total_plans: 6
+  completed_plans: 6
   percent: 100
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-12)
 
 **Core value:** Visitors immediately understand what Zero Fluff does and trust Andy enough to get in touch
-**Current focus:** Phase 2: Core Pages (Complete)
+**Current focus:** Phase 3: Content & Blog
 
 ## Current Position
 
-Phase: 2 of 4 (Core Pages) -- Complete
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-03-12 -- Completed 02-02 (Services, About & Contact Pages)
+Phase: 3 of 4 (Content & Blog)
+Plan: 1 of 2 in current phase
+Status: Plan 03-01 Complete
+Last activity: 2026-03-12 -- Completed 03-01 (Case Studies)
 
 Progress: [██████████] 100%
 
@@ -45,9 +45,10 @@ Progress: [██████████] 100%
 |-------|-------|-------|----------|
 | 01-foundation-design-system | 2 | 7min | 4min |
 | 02-core-pages | 2 | 10min | 5min |
+| 03-content-blog | 1 | 27min | 27min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (5min), 01-02 (2min), 02-01 (2min), 02-02 (8min)
+- Last 5 plans: 01-02 (2min), 02-01 (2min), 02-02 (8min), 03-01 (27min)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -74,6 +75,11 @@ Recent decisions affecting current work:
 - 02-02: Vercel adapter with hybrid output mode -- static pages prerendered, contact page server-rendered
 - 02-02: Honeypot field for spam prevention instead of reCAPTCHA
 - 02-02: onboarding@resend.dev as from address until domain verification in Phase 4
+- 03-01: Content config at src/content.config.ts (Astro 6 standard, not src/content/content.config.ts)
+- 03-01: Case studies use glob loader with markdown files for easy content authoring
+- 03-01: Work nav link uses startsWith for active state on listing and individual pages
+- [Phase 03]: Blog link in footer only (not header) to avoid nav crowding
+- [Phase 03]: RSS fetch capped at 12 posts with graceful fallback on failure
 
 ### Pending Todos
 
@@ -87,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T21:50:30.890Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-content-blog/03-CONTEXT.md
+Last session: 2026-03-12T23:58:27.266Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: None

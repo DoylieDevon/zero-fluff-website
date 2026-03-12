@@ -38,10 +38,10 @@
 
 ### Case Studies
 
-- [ ] **CASE-01**: Case study listing page showing all available projects
-- [ ] **CASE-02**: Individual case study pages with problem/approach/outcome structure
-- [ ] **CASE-03**: Quantified results where possible (hours saved, efficiency gains)
-- [ ] **CASE-04**: At least 2 case studies ready at launch
+- [x] **CASE-01**: Case study listing page showing all available projects
+- [x] **CASE-02**: Individual case study pages with problem/approach/outcome structure
+- [x] **CASE-03**: Quantified results where possible (hours saved, efficiency gains)
+- [x] **CASE-04**: At least 2 case studies ready at launch
 
 ### About
 
@@ -58,9 +58,9 @@
 
 ### Blog
 
-- [ ] **BLOG-01**: Blog listing page pulling posts from Substack RSS at build time
-- [ ] **BLOG-02**: Blog post cards rendered in the site's own design system (not iframe embeds)
-- [ ] **BLOG-03**: Each card links out to the full post on Substack
+- [x] **BLOG-01**: Blog listing page pulling posts from Substack RSS at build time
+- [x] **BLOG-02**: Blog post cards rendered in the site's own design system (not iframe embeds)
+- [x] **BLOG-03**: Each card links out to the full post on Substack
 
 ### SEO & Legal
 
@@ -128,13 +128,13 @@
 | CONT-02 | Phase 2 | Complete |
 | CONT-03 | Phase 2 | Complete |
 | CONT-04 | Phase 2 | Complete |
-| CASE-01 | Phase 3 | Pending |
-| CASE-02 | Phase 3 | Pending |
-| CASE-03 | Phase 3 | Pending |
-| CASE-04 | Phase 3 | Pending |
-| BLOG-01 | Phase 3 | Pending |
-| BLOG-02 | Phase 3 | Pending |
-| BLOG-03 | Phase 3 | Pending |
+| CASE-01 | Phase 3 | Complete |
+| CASE-02 | Phase 3 | Complete |
+| CASE-03 | Phase 3 | Complete |
+| CASE-04 | Phase 3 | Complete |
+| BLOG-01 | Phase 3 | Complete |
+| BLOG-02 | Phase 3 | Complete |
+| BLOG-03 | Phase 3 | Complete |
 | SEO-01 | Phase 4 | Pending |
 | SEO-02 | Phase 4 | Pending |
 | SEO-03 | Phase 4 | Pending |
