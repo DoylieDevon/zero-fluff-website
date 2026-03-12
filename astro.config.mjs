@@ -3,6 +3,7 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://zerofluff.co.uk',
+  output: 'server',
   adapter: vercel(),
   env: {
     schema: {
