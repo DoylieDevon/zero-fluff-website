@@ -1,4 +1,6 @@
 ---
+const buildDate = new Date();
+const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).padStart(2, '0')}.${String(buildDate.getDate()).padStart(2, '0')}.${String(buildDate.getHours()).padStart(2, '0')}${String(buildDate.getMinutes()).padStart(2, '0')}`;
 ---
 <footer class="site-footer">
   <div class="footer-top">
@@ -35,6 +37,7 @@
   <div class="footer-divider"></div>
   <div class="footer-bottom">
     <span>&copy; 2026 Zero Fluff. All rights reserved.</span>
+    <span class="build-version">{version}</span>
     <div class="footer-legal">
       <a href="/privacy">Privacy Policy</a>
       <a href="/privacy">Terms of Service</a>
@@ -124,6 +127,11 @@
     text-decoration: none;
   }
   .footer-legal a:hover { color: #fff; }
+  .build-version {
+    font-size: 11px;
+    color: #333;
+    font-family: monospace;
+  }
 
   @media (max-width: 768px) {
     .site-footer { padding: 48px 24px 32px; }
