@@ -1,160 +1,187 @@
 ---
-export const prerender = true;
-
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTA from '../components/CTA.astro';
-import Testimonial from '../components/Testimonial.astro';
 ---
 
 <BaseLayout
-  title="Zero Fluff - AI Implementation That Works"
-  description="Straight-talking AI consultancy helping small businesses implement AI that actually works. No jargon, no fluff, just results."
+  title="Zero Fluff — AI Implementation That Works"
+  description="Straight-talking AI consultancy for small businesses. No jargon, no fluff, just results."
 >
-  <!-- Section 1: Hero (no .reveal -- visible immediately) -->
-  <section class="section">
-    <div class="container narrow stack">
-      <h1>AI Implementation That Actually Works</h1>
-      <p class="text-lg text-muted">
-        I help small businesses use AI to save time, cut costs, and get more done.
-        No jargon, no fifty-page strategy decks. Just practical tools and automations
-        that fit into the way you already work.
-      </p>
-      <div>
-        <a href="/contact" class="btn">Let's Talk</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Get AI working in your business — without the jargon</h1>
+      <p class="hero-sub">We help small businesses save time and money with AI and automation. No tech overwhelm. No fluff. Just results.</p>
+      <div class="hero-ctas">
+        <a href="/contact" class="btn-primary">Book a free AI chat →</a>
+        <a href="/services" class="btn-outline">See our services</a>
       </div>
+      <p class="trust-text">30+ years experience  •  Based in Totnes, Devon</p>
     </div>
   </section>
 
-  <!-- Section 2: Pain Points -->
-  <section class="section reveal" style="background-color: var(--color-border);">
-    <div class="container stack-lg">
-      <div class="narrow stack">
-        <h2>Sound familiar?</h2>
-        <p class="text-muted">Most small businesses hit the same walls when it comes to AI. You're not alone.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card stack">
-          <h3>You've seen the hype but don't know where to start</h3>
-          <p>
-            Every other LinkedIn post promises AI will change everything. But when you sit down
-            to figure out what it actually means for your business, it's overwhelming. You don't
-            need a revolution -- you need a clear first step.
-          </p>
+  <!-- PAIN POINTS -->
+  <section class="pain-points">
+    <div class="section-inner">
+      <p class="section-label">01 — THE PROBLEM</p>
+      <h2>Sound familiar?</h2>
+      <div class="cards-row">
+        <div class="pain-card" style="background-image: url('https://images.unsplash.com/photo-1708519428320-2966405aa6d3?w=800&q=80')">
+          <div class="card-overlay">
+            <h3>Drowning in admin?</h3>
+            <p>Repetitive tasks eating your day? Emails, invoices, scheduling — it never ends.</p>
+          </div>
         </div>
-
-        <div class="card stack">
-          <h3>You tried ChatGPT but it didn't stick</h3>
-          <p>
-            You played around with it, maybe got some decent results, but it never became
-            part of how you work. The gap between a clever chatbot and a real business tool
-            is bigger than anyone tells you.
-          </p>
+        <div class="pain-card" style="background-image: url('https://images.unsplash.com/photo-1713880304260-c6e13a9a8a05?w=800&q=80')">
+          <div class="card-overlay">
+            <h3>No time to figure it out?</h3>
+            <p>You know AI could help, but who has time to learn another tool?</p>
+          </div>
         </div>
-
-        <div class="card stack">
-          <h3>You're worried about wasting money</h3>
-          <p>
-            You've heard the horror stories -- expensive consultants, flashy demos, then nothing
-            that actually works. You want to invest, but not blindly. Fair enough. That's exactly
-            the right instinct.
-          </p>
+        <div class="pain-card" style="background-image: url('https://images.unsplash.com/photo-1621558272312-0877bf5241d7?w=800&q=80')">
+          <div class="card-overlay">
+            <h3>Confused by AI hype?</h3>
+            <p>Every day there is a new AI tool. Hard to know what actually works for YOUR business.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Section 3: Services Summary -->
-  <section class="section reveal">
-    <div class="container stack-lg">
-      <div class="narrow stack">
-        <h2>What I Do</h2>
-        <p class="text-lg">
-          I build AI-powered tools and automations that solve specific problems in your business.
-          Not theory. Not advice. Working systems you can use from day one.
-        </p>
-      </div>
-
-      <div class="grid-2">
-        <div class="card stack">
-          <h3>AI Workflow Automation</h3>
-          <p>
-            Those repetitive tasks eating up your team's time? I automate them. Data entry,
-            report generation, email sorting, invoice processing -- if a human is doing it
-            on autopilot, a machine should be doing it instead.
-          </p>
-        </div>
-
-        <div class="card stack">
-          <h3>Hands-On Implementation</h3>
-          <p>
-            I don't hand you a strategy document and wish you luck. I build the thing,
-            test it, deploy it, and make sure it works. You get a working system,
-            not a PowerPoint.
-          </p>
-        </div>
-
-        <div class="card stack">
-          <h3>Ongoing Support</h3>
-          <p>
-            AI tools need looking after. Models change, your business evolves, things break.
-            I stick around to keep everything running smoothly and adapt it as you grow.
-          </p>
-        </div>
-      </div>
-
-      <div class="narrow">
-        <p><a href="/services">See everything I offer &rarr;</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 4: Testimonials -->
-  <!-- Placeholder testimonials -- replace with real ones -->
-  <section class="section reveal" style="background-color: var(--color-border);">
-    <div class="container stack-lg">
-      <div class="narrow stack">
-        <h2>What People Say</h2>
-      </div>
-
-      <div class="grid-2">
-        <Testimonial
-          quote="Andy automated our weekly reporting and saved us about 8 hours a week. No fuss, no jargon -- he just got on with it and it worked from day one."
-          name="Sarah Mitchell"
-          role="Operations Director"
-          company="Apex Logistics"
-        />
-        <Testimonial
-          quote="I'd wasted months trying to figure out AI on my own. Andy sat down with me, understood my business in an hour, and built exactly what I needed. I finally get what AI can actually do for us."
-          name="James Cooper"
-          role="Founder"
-          company="Bright Path Digital"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 5: CTA -->
-  <CTA />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Zero Fluff",
-    "description": "Straight-talking AI consultancy for small businesses",
-    "url": "https://zerofluff.co.uk",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Totnes",
-      "addressRegion": "Devon",
-      "addressCountry": "GB"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Andy Doyle"
-    },
-    "areaServed": "GB",
-    "serviceType": ["AI Implementation", "AI Consultancy", "Business Automation"]
-  })} />
 </BaseLayout>
+
+<style>
+  /* HERO */
+  .hero {
+    min-height: 700px;
+    background-image: url('https://images.unsplash.com/photo-1760278041809-b157c39c30d3?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 900px;
+  }
+  .hero-content h1 {
+    font-size: 72px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    max-width: 800px;
+  }
+  .hero-sub {
+    font-size: 20px;
+    color: #ccc;
+    line-height: 1.5;
+    max-width: 680px;
+  }
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .trust-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #A1A1AA;
+  }
+
+  /* SHARED BUTTON STYLES */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.85; color: #fff; }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    border: 2px solid #fff;
+    transition: opacity 0.15s;
+  }
+  .btn-outline:hover { opacity: 0.8; color: #fff; }
+
+  /* PAIN POINTS */
+  .pain-points { background: #fff; padding: 80px 60px; }
+  .section-inner { display: flex; flex-direction: column; gap: 48px; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .pain-points h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -1px;
+    line-height: 1.05;
+  }
+  .cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .pain-card {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .card-overlay {
+    padding: 24px 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card-overlay h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .card-overlay p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content { padding: 0 24px; }
+    .hero-content h1 { font-size: 40px; }
+    .pain-points { padding: 60px 24px; }
+    .cards-row { grid-template-columns: 1fr; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+  }
+</style>
