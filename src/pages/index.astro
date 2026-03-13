@@ -6,7 +6,10 @@ import CTA from '../components/CTA.astro';
 import Testimonial from '../components/Testimonial.astro';
 ---
 
-<BaseLayout title="Zero Fluff - AI Implementation That Works">
+<BaseLayout
+  title="Zero Fluff - AI Implementation That Works"
+  description="Straight-talking AI consultancy helping small businesses implement AI that actually works. No jargon, no fluff, just results."
+>
   <!-- Section 1: Hero (no .reveal -- visible immediately) -->
   <section class="section">
     <div class="container narrow stack">
@@ -133,4 +136,25 @@ import Testimonial from '../components/Testimonial.astro';
 
   <!-- Section 5: CTA -->
   <CTA />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Zero Fluff",
+    "description": "Straight-talking AI consultancy for small businesses",
+    "url": "https://zerofluff.co.uk",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Totnes",
+      "addressRegion": "Devon",
+      "addressCountry": "GB"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Andy Doyle"
+    },
+    "areaServed": "GB",
+    "serviceType": ["AI Implementation", "AI Consultancy", "Business Automation"]
+  })} />
 </BaseLayout>
