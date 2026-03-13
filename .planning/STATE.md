@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-03-13T08:36:11.270Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-13T08:38:35.493Z"
 last_activity: 2026-03-13 -- Completed 04-02 (Privacy Policy)
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 9
-  completed_plans: 7
+  completed_plans: 8
   percent: 78
 ---
 
@@ -53,6 +53,7 @@ Progress: [████████░░] 78%
 
 *Updated after each plan completion*
 | Phase 04 P02 | 1min | 1 tasks | 2 files |
+| Phase 04 P01 | 3min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,9 @@ Recent decisions affecting current work:
 - 04-02: Plain English privacy policy with Zero Fluff voice -- no legalese
 - 04-02: Data subject rights as bulleted list for scannability
 - [Phase 04]: Plain English privacy policy with Zero Fluff voice -- no legalese
+- [Phase 04]: Sitemap uses customPages for SSR /contact route
+- [Phase 04]: JSON-LD placed in page body -- Google parses from anywhere
+- [Phase 04]: Placeholder OG image and favicon -- user to replace with branded assets
 
 ### Pending Todos
 
@@ -97,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T08:36:11.268Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-03-13T08:38:34.664Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
