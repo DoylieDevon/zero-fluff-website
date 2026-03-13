@@ -1,23 +1,56 @@
 ---
-export const prerender = true;
-
 import BaseLayout from '../layouts/BaseLayout.astro';
+export const prerender = true;
 ---
 
-<BaseLayout
-  title="Page Not Found - Zero Fluff"
-  description="The page you're looking for doesn't exist."
->
-  <section class="section">
-    <div class="container narrow stack" style="text-align: center; min-height: 40vh; display: flex; flex-direction: column; justify-content: center;">
-      <h1>Well, this is awkward.</h1>
-      <p class="text-lg text-muted">
-        The page you're looking for doesn't exist. It might have been moved,
-        or maybe the URL has a typo. Either way, let's get you back on track.
-      </p>
-      <div>
-        <a href="/" class="btn">Back to Homepage</a>
-      </div>
-    </div>
+<BaseLayout title="Page Not Found — Zero Fluff" description="This page doesn't exist.">
+  <section class="not-found">
+    <span class="error-code">404</span>
+    <h1>This page doesn't exist.</h1>
+    <p>The page you're looking for has moved or never existed.</p>
+    <a href="/" class="btn-home">Back to homepage →</a>
   </section>
 </BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+    padding: 80px 24px;
+    background: #FAFAFA;
+  }
+  .error-code {
+    font-size: 120px;
+    font-weight: 900;
+    color: #FF3B30;
+    letter-spacing: -4px;
+    line-height: 1;
+  }
+  .not-found h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+  }
+  .not-found p {
+    font-size: 18px;
+    color: #666;
+  }
+  .btn-home {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+    margin-top: 8px;
+  }
+  .btn-home:hover { opacity: 0.85; color: #fff; }
+</style>

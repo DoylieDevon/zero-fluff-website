@@ -8,90 +8,62 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Privacy Policy - Zero Fluff"
   description="How Zero Fluff handles your data. Plain English, no legalese."
 >
-  <section class="section">
-    <div class="container narrow stack">
-      <h1>Privacy Policy</h1>
-      <p class="text-lg text-muted">
+  <section class="privacy-hero">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: March 2026</p>
+  </section>
+
+  <section class="privacy-content">
+    <div class="privacy-inner">
+      <p>
         Here's how we handle your data. No legalese, no small print tricks --
         just a straight answer to what we collect and why.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>Who we are</h2>
       <p>
         Zero Fluff is a sole trader consultancy run by Andy Doyle, based in
         Totnes, Devon. If you need to get in touch about anything on this page,
         email <a href="mailto:andy@zerofluff.co.uk">andy@zerofluff.co.uk</a>.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>What data we collect</h2>
       <p>
         Your name, email address, and whatever you write in the message field.
         That's it. Nothing else.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>How we collect it</h2>
       <p>
         Directly from you, when you submit the contact form on this website. We
         don't collect data any other way -- no cookies, no tracking scripts, no
         analytics.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>Why we use it</h2>
       <p>
         To read your message and reply to your enquiry. That's it.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>Lawful basis</h2>
       <p>
         Legitimate interests. You contacted us with a business enquiry, and we
         need your details to respond. We're not going to use your data for
         anything else.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>Who we share it with</h2>
       <p>
         <a href="https://resend.com" target="_blank" rel="noopener noreferrer">Resend</a>
         is our email delivery service. When you submit the contact form, Resend
         processes the submission to deliver it to us. No one else sees your data.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>How long we keep it</h2>
       <p>
         12 months after our last communication, then we delete it.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>Your rights</h2>
       <p>
         You have the right to:
@@ -108,11 +80,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Email <a href="mailto:andy@zerofluff.co.uk">andy@zerofluff.co.uk</a> and
         we'll sort it out.
       </p>
-    </div>
-  </section>
 
-  <section class="section reveal">
-    <div class="container narrow stack">
       <h2>How to complain</h2>
       <p>
         Contact us first at
@@ -127,10 +95,54 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
-
-  <section class="section reveal">
-    <div class="container narrow stack">
-      <p class="text-sm text-muted">Last updated: March 2026</p>
-    </div>
-  </section>
 </BaseLayout>
+
+<style>
+  .privacy-hero {
+    background: #0D0D0D;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .privacy-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .privacy-hero p {
+    font-size: 16px;
+    color: #666;
+  }
+  .privacy-content { background: #fff; padding: 60px 24px; }
+  .privacy-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .privacy-inner h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    margin: 40px 0 16px;
+  }
+  .privacy-inner h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin: 24px 0 12px;
+  }
+  .privacy-inner p, .privacy-inner li {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .privacy-inner ul {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+  @media (max-width: 768px) {
+    .privacy-hero { padding: 60px 24px; }
+    .privacy-hero h1 { font-size: 36px; }
+  }
+</style>
