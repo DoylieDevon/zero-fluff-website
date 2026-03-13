@@ -16,11 +16,13 @@ const FALLBACK_IMAGES = [
 ];
 
 function extractImage(item: any): string {
-  // 1. enclosure (standard RSS image attachment)
-  if (item.enclosure?.url) return item.enclosure.url;
+  // 1. itunes:image (used by Substack video/podcast posts)
+  if (item.itunes?.image) return item.itunes.image;
   // 2. media:content (Yahoo Media RSS)
   if (item['media:content']?.['$']?.url) return item['media:content']['$'].url;
-  // 3. First <img> in content:encoded (Substack puts cover image here)
+  // 3. enclosure — skip video files, only use image enclosures
+  if (item.enclosure?.url && item.enclosure.type?.startsWith('image/')) return item.enclosure.url;
+  // 4. First <img> in content:encoded (Substack text posts put cover image here)
   const content: string = item['content:encoded'] ?? item.content ?? '';
   const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
   if (match) return match[1];
