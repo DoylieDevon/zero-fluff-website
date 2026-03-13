@@ -1,90 +1,254 @@
 ---
-export const prerender = true;
-
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTA from '../components/CTA.astro';
+export const prerender = true;
 ---
 
-<BaseLayout
-  title="Services - Zero Fluff"
-  description="AI implementation services for small businesses. No jargon, just practical solutions that work."
->
-  <!-- Section 1: Hero -->
-  <section class="section">
-    <div class="container narrow stack">
-      <h1>What I Do</h1>
-      <p class="text-lg text-muted">
-        I take real business processes and make them faster, cheaper, and less painful
-        with AI. Not as a concept. As a working thing you can use tomorrow.
-      </p>
+<BaseLayout title="Services — Zero Fluff" description="Practical AI implementation services for small businesses. No jargon, no fluff.">
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80')">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Practical AI solutions,<br>not buzzwords</h1>
+      <p>Real implementations that save you time and money, not slide decks about the future of AI.</p>
     </div>
   </section>
 
-  <!-- Section 2: Core Offering -->
-  <section class="section reveal" style="background-color: var(--color-border);">
-    <div class="container narrow stack">
-      <h2>Practical AI Implementation</h2>
-      <p>
-        Most AI consultants sell you a strategy. I build you a system. The difference
-        matters: you end up with something that actually runs, not a document that
-        sits in a drawer.
-      </p>
-      <p>
-        I work with small businesses to find the tasks that eat up time -- the repetitive
-        stuff, the manual data shuffling, the processes that make your team groan -- and
-        I automate them. Using tools like N8N for workflow automation, custom AI integrations,
-        and whatever else fits the job.
-      </p>
-      <p>
-        This isn't about replacing people. It's about freeing them up to do the work
-        that actually needs a human brain. I also make sure your team knows how to use
-        what I've built, so it doesn't become another piece of abandoned software.
-      </p>
-    </div>
-  </section>
-
-  <!-- Section 3: How I Work -->
-  <section class="section reveal">
-    <div class="container stack-lg">
-      <div class="narrow stack">
-        <h2>How It Works</h2>
-        <p class="text-lg">
-          Three steps. No twelve-month roadmaps, no discovery phases that cost
-          more than the actual work.
-        </p>
+  <!-- SERVICES DETAIL -->
+  <section class="services-detail">
+    <article class="service-row">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1717307908098-cec3253b45a6?w=800&q=80')"></div>
+      <div class="service-text">
+        <span class="service-tag-label">2 HOURS</span>
+        <h2>AI Quick Start</h2>
+        <p>Not sure where AI can help your business? Start here. We spend 2 hours reviewing your operations, identifying the highest-value automation opportunities, and giving you a clear, prioritised action plan.</p>
+        <ul>
+          <li>Full business operations review</li>
+          <li>3-5 specific automation recommendations</li>
+          <li>Prioritised action plan with time estimates</li>
+          <li>No obligation to continue</li>
+        </ul>
+        <a href="/contact" class="btn-red">Book a Quick Start →</a>
       </div>
+    </article>
 
-      <div class="grid-3">
-        <div class="card stack">
-          <h3>1. We Talk</h3>
-          <p>
-            I learn how your business works. Where time gets wasted, what
-            frustrates your team, and where AI can make a genuine difference.
-            This is a conversation, not a questionnaire.
-          </p>
-        </div>
-
-        <div class="card stack">
-          <h3>2. I Build</h3>
-          <p>
-            I create a working automation or AI tool tailored to your specific
-            problem. You see real progress quickly -- not a strategy deck, but
-            software that runs.
-          </p>
-        </div>
-
-        <div class="card stack">
-          <h3>3. You Use It</h3>
-          <p>
-            I hand it over with proper training so your team can actually use it.
-            No mysterious black box. You understand what it does, how it works,
-            and how to get the most out of it.
-          </p>
-        </div>
+    <article class="service-row service-row-reverse">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1703835916583-4be209949d72?w=800&q=80')"></div>
+      <div class="service-text">
+        <span class="service-tag-label">HANDS-ON</span>
+        <h2>Automation Setup</h2>
+        <p>We build the automations for you using N8N, Zapier, ChatGPT, Claude and more. You describe the problem, we build the solution. Most automations are live within a week.</p>
+        <ul>
+          <li>Custom workflow design and build</li>
+          <li>Integration with your existing tools</li>
+          <li>Testing and handover documentation</li>
+          <li>30-day support included</li>
+        </ul>
+        <a href="/contact" class="btn-red">Get a Quote →</a>
       </div>
+    </article>
+
+    <article class="service-row">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1632923945657-ccd98efe59e3?w=800&q=80')"></div>
+      <div class="service-text">
+        <span class="service-tag-label">MONTHLY</span>
+        <h2>Ongoing AI Support</h2>
+        <p>AI is moving fast. This monthly retainer keeps you ahead — fixing what breaks, adding new automations as opportunities arise, and advising on what's worth trying.</p>
+        <ul>
+          <li>Monthly strategy call</li>
+          <li>Unlimited small automation fixes</li>
+          <li>New tool evaluations and recommendations</li>
+          <li>Priority response to issues</li>
+        </ul>
+        <a href="/contact" class="btn-red">Learn More →</a>
+      </div>
+    </article>
+
+    <article class="service-row service-row-reverse">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1729551610680-c6ea05b08937?w=800&q=80')"></div>
+      <div class="service-text">
+        <span class="service-tag-label">STRATEGIC</span>
+        <h2>Bigger Projects</h2>
+        <p>Building an AI-powered product, or need a fractional CTO to guide your technical strategy? 30 years of building digital products, from startup to scale.</p>
+        <ul>
+          <li>Product strategy and technical architecture</li>
+          <li>AI/ML integration into existing products</li>
+          <li>Team guidance and hiring support</li>
+          <li>Flexible engagement terms</li>
+        </ul>
+        <a href="/contact" class="btn-red">Let's Talk →</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- CTA -->
+  <section class="services-cta">
+    <div class="services-cta-content">
+      <h2>Ready to get started?</h2>
+      <p>Book a free 20-minute AI chat. No sales pitch.</p>
+      <a href="/contact" class="btn-red cta-btn-lg">Book a free AI chat →</a>
     </div>
   </section>
 
-  <!-- Section 4: CTA -->
-  <CTA />
 </BaseLayout>
+
+<style>
+  /* PAGE HERO */
+  .page-hero {
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+  .page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 80px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .page-hero-content h1 {
+    font-size: 56px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+  .page-hero-content p {
+    font-size: 20px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  /* SERVICES DETAIL */
+  .services-detail {
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #E4E4E7;
+    padding: 60px 0;
+  }
+  .service-row:first-child { padding-top: 60px; }
+  .service-row-reverse .service-img { order: 2; }
+  .service-row-reverse .service-text { order: 1; }
+  .service-img {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+  .service-text {
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+  .service-tag-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FF3B30;
+    text-transform: uppercase;
+  }
+  .service-text h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+  }
+  .service-text > p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .service-text ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+  }
+  .service-text li {
+    font-size: 16px;
+    color: #444;
+    padding-left: 20px;
+    position: relative;
+  }
+  .service-text li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #FF3B30;
+    font-weight: 600;
+  }
+  .btn-red {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: opacity 0.15s;
+  }
+  .btn-red:hover { opacity: 0.85; color: #fff; }
+
+  /* CTA */
+  .services-cta {
+    min-height: 300px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .services-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 60px 80px;
+  }
+  .services-cta-content h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .services-cta-content p {
+    font-size: 18px;
+    color: #ccc;
+  }
+  .cta-btn-lg {
+    font-size: 18px;
+    padding: 20px 48px;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero-content { padding: 0 24px; }
+    .page-hero-content h1 { font-size: 40px; }
+    .services-detail { padding: 0 24px; }
+    .service-row { grid-template-columns: 1fr; padding: 40px 0; }
+    .service-row-reverse .service-img { order: 0; }
+    .service-row-reverse .service-text { order: 0; }
+    .service-text { padding: 32px 0 0; }
+    .services-cta-content { padding: 40px 24px; }
+    .services-cta-content h2 { font-size: 36px; }
+  }
+</style>
