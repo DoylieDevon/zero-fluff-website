@@ -2,7 +2,6 @@
 export const prerender = true;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BlogCard from '../components/BlogCard.astro';
 import Parser from 'rss-parser';
 
 let posts: { title: string; excerpt: string; url: string; date: string }[] = [];
@@ -21,31 +20,272 @@ try {
 }
 ---
 
-<BaseLayout
-  title="Blog - Zero Fluff"
-  description="Thoughts on AI implementation, automation, and making technology work for small businesses."
->
-  <section class="section">
-    <div class="container stack">
-      <div class="narrow">
-        <h1>Blog</h1>
-        <p class="text-muted">Thoughts on AI implementation, automation, and making technology work for real businesses. Read the full posts on Substack.</p>
-      </div>
+<BaseLayout title="Blog — Zero Fluff" description="AI insights for small businesses. No hype, just practical advice.">
 
-      {posts.length > 0 ? (
-        <div class="grid-2 reveal">
-          {posts.map(post => (
-            <BlogCard
-              title={post.title}
-              excerpt={post.excerpt}
-              date={post.date}
-              url={post.url}
-            />
-          ))}
-        </div>
-      ) : (
-        <p class="text-muted">Posts coming soon. In the meantime, visit <a href="https://zerofluff.substack.com" target="_blank" rel="noopener noreferrer">the Substack</a>.</p>
-      )}
+  <!-- HERO -->
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80')">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>AI insights for<br>small businesses</h1>
+      <p>No hype, no jargon. Just practical ideas you can use this week.</p>
     </div>
   </section>
+
+  <!-- FEATURED POST -->
+  {posts.length > 0 && (
+    <section class="featured-section">
+      <div class="featured-inner">
+        <p class="section-label">FEATURED</p>
+        <a href={posts[0].url} target="_blank" rel="noopener" class="featured-card">
+          <div class="featured-card-img" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80')"></div>
+          <div class="featured-card-body">
+            <span class="featured-tag">FEATURED</span>
+            <h2>{posts[0].title}</h2>
+            <p class="featured-desc">{posts[0].excerpt}</p>
+            <span class="read-more">Read article →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- POST GRID -->
+  {posts.length > 1 && (
+    <section class="posts-section">
+      <div class="posts-inner">
+        <p class="section-label">LATEST POSTS</p>
+        <div class="posts-grid">
+          {posts.slice(1).map((post) => (
+            <a href={post.url} target="_blank" rel="noopener" class="post-card">
+              <div class="post-card-img" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80')"></div>
+              <div class="post-card-body">
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span class="post-link">Read more →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <p class="section-label">STAY IN THE LOOP</p>
+      <h2>Get practical AI tips<br>delivered to your inbox</h2>
+      <p class="newsletter-sub">No spam. No hype. Just useful ideas for small business owners.</p>
+      <a href="https://zerofluff.substack.com" target="_blank" rel="noopener" class="btn-red newsletter-btn">Subscribe on Substack →</a>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  /* PAGE HERO */
+  .page-hero {
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+  .page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 80px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .page-hero-content h1 {
+    font-size: 56px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+  .page-hero-content p {
+    font-size: 20px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* FEATURED */
+  .featured-section { padding: 80px; }
+  .featured-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-decoration: none;
+    border: 1px solid #E4E4E7;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .featured-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+  .featured-card-img {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+  .featured-card-body {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+  }
+  .featured-tag {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 12px;
+    align-self: flex-start;
+  }
+  .featured-card-body h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+  }
+  .featured-desc {
+    font-size: 17px;
+    color: #666;
+    line-height: 1.6;
+  }
+  .read-more {
+    font-size: 15px;
+    font-weight: 600;
+    color: #FF3B30;
+  }
+
+  /* POSTS GRID */
+  .posts-section { padding: 0 80px 80px; }
+  .posts-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border: 1px solid #E4E4E7;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .post-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .post-card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-color: #F0F0F0;
+  }
+  .post-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .post-card-body h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.3;
+  }
+  .post-card-body p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .post-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FF3B30;
+    margin-top: auto;
+  }
+
+  /* NEWSLETTER */
+  .newsletter-section {
+    background: #0D0D0D;
+    padding: 80px;
+  }
+  .newsletter-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .newsletter-inner h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1.05;
+  }
+  .newsletter-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .btn-red {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-red:hover { opacity: 0.85; color: #fff; }
+  .newsletter-btn { font-size: 18px; padding: 20px 48px; }
+
+  @media (max-width: 768px) {
+    .page-hero-content { padding: 0 24px; }
+    .page-hero-content h1 { font-size: 40px; }
+    .featured-section { padding: 40px 24px; }
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-card-img { height: 240px; }
+    .featured-card-body { padding: 24px; }
+    .posts-section { padding: 0 24px 60px; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .newsletter-section { padding: 60px 24px; }
+  }
+</style>
