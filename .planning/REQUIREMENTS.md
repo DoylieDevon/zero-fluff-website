@@ -67,7 +67,7 @@
 - [ ] **SEO-01**: Every page has unique title, description, and OpenGraph meta tags
 - [ ] **SEO-02**: Structured data (LocalBusiness schema) for search visibility
 - [ ] **SEO-03**: Auto-generated sitemap.xml
-- [ ] **SEO-04**: Privacy policy page compliant with UK ICO requirements
+- [x] **SEO-04**: Privacy policy page compliant with UK ICO requirements
 - [ ] **SEO-05**: Cookie notice if analytics are used
 
 ### Deployment
@@ -138,7 +138,7 @@
 | SEO-01 | Phase 4 | Pending |
 | SEO-02 | Phase 4 | Pending |
 | SEO-03 | Phase 4 | Pending |
-| SEO-04 | Phase 4 | Pending |
+| SEO-04 | Phase 4 | Complete |
 | SEO-05 | Phase 4 | Pending |
 | DEPL-01 | Phase 1 | Complete |
 | DEPL-02 | Phase 4 | Pending |
