@@ -128,6 +128,58 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-left">
+        <p class="section-label">04 — COMMON QUESTIONS</p>
+        <h2 class="section-heading">Got questions?<br>We have answers.</h2>
+        <div class="faq-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80')"></div>
+      </div>
+      <div class="faq-right">
+        <div class="faq-divider"></div>
+        <details class="faq-item">
+          <summary>How much time can AI really save me?</summary>
+          <p>Most of our clients save 5-15 hours per week once their automations are running.</p>
+        </details>
+        <div class="faq-divider"></div>
+        <details class="faq-item">
+          <summary>How quickly will I see results?</summary>
+          <p>Most clients see meaningful results within 1-2 weeks of their first automation going live.</p>
+        </details>
+        <div class="faq-divider"></div>
+        <details class="faq-item">
+          <summary>Do I need technical experience?</summary>
+          <p>None. We handle all the technical setup. You just tell us what takes up your time.</p>
+        </details>
+        <div class="faq-divider"></div>
+        <details class="faq-item">
+          <summary>What types of businesses do you work with?</summary>
+          <p>Small businesses across all sectors — from solo consultants to teams of 20. If you have repetitive tasks, we can help.</p>
+        </details>
+        <div class="faq-divider"></div>
+        <details class="faq-item">
+          <summary>What tools do you use?</summary>
+          <p>N8N, Zapier, Claude, ChatGPT, Perplexity — whatever fits your workflow best.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="cta-content">
+      <p class="section-label" style="color: #FF3B30;">05 — READY?</p>
+      <h2 class="cta-heading">Ready to get AI working<br>for your business?</h2>
+      <p class="cta-sub">Book a free 20-minute AI chat. No sales pitch.<br>No jargon. Just an honest conversation about how AI can help.</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn-primary cta-btn">Book a free AI chat →</a>
+        <a href="mailto:andy@zerofluff.co.uk" class="btn-outline cta-btn">andy@zerofluff.co.uk</a>
+      </div>
+      <p class="trust-text">Free · No obligation · 20 minutes · Plain English</p>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -422,5 +474,129 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .about-section { padding: 60px 24px; }
     .about-split { flex-direction: column; }
     .about-right { width: 100%; }
+  }
+
+  /* FAQ */
+  .faq-section { padding: 80px 72px; background: #fff; }
+  .faq-inner {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  .faq-left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .faq-left .section-heading {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.05;
+  }
+  .faq-img {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  .faq-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .faq-divider {
+    height: 1px;
+    background: #E5E5E5;
+    width: 100%;
+  }
+  .faq-item {
+    padding: 20px 0 20px 16px;
+    border-left: 2px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .faq-item[open] {
+    border-left-color: #000;
+  }
+  .faq-item summary {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 22px; font-weight: 300; color: #A1A1AA; }
+  .faq-item[open] summary::after { content: '−'; color: #000; }
+  .faq-item p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    min-height: 600px;
+    background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+  }
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+    padding: 0 120px;
+  }
+  .cta-heading {
+    font-size: 64px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    max-width: 800px;
+  }
+  .cta-sub {
+    font-size: 20px;
+    color: #ccc;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .cta-btn {
+    font-size: 18px;
+    padding: 20px 48px;
+  }
+
+  @media (max-width: 768px) {
+    .faq-section { padding: 60px 24px; }
+    .faq-inner { flex-direction: column; }
+    .faq-left { width: 100%; }
+    .cta-content { padding: 0 24px; }
+    .cta-heading { font-size: 40px; }
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .cta-btn { width: 100%; justify-content: center; }
   }
 </style>
