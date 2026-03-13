@@ -1,122 +1,407 @@
 ---
-export const prerender = true;
-
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Testimonial from '../components/Testimonial.astro';
-import CTA from '../components/CTA.astro';
+export const prerender = true;
 ---
 
-<BaseLayout
-  title="About - Zero Fluff"
-  description="Meet Andy Doyle. 30+ years of digital product experience, now focused on practical AI implementation."
->
-  <!-- Section 1: Hero -->
-  <section class="section">
-    <div class="container narrow stack">
-      <h1>About Zero Fluff</h1>
-      <p class="text-lg text-muted">
-        I'm Andy Doyle. I live in Totnes, Devon, and I've spent 30+ years
-        building digital products. Now I help small businesses make AI work
-        for them -- properly.
-      </p>
+<BaseLayout title="About — Zero Fluff" description="The person behind Zero Fluff. 30+ years of digital product experience.">
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1521791055366-0d553872952f?w=1920&q=80')">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>The person behind<br>Zero Fluff</h1>
+      <p>30 years of building digital products. Now helping small businesses get AI working for them.</p>
     </div>
   </section>
 
-  <!-- Section 2: The Story -->
-  <section class="section reveal" style="background-color: var(--color-border);">
-    <div class="container narrow stack">
-      <h2>The Short Version</h2>
-      <p>
-        I've been building digital products since the early days of the web. Over three
-        decades, I've founded companies, shipped software, and learned -- mostly the hard
-        way -- what works and what's just noise.
-      </p>
-      <p>
-        I created Filmily, a video sharing platform. I built SelectCommerce, an e-commerce
-        system. I founded Shiift, a file transfer service. Each one taught me something
-        about building things that people actually use, not things that just look good in
-        a pitch deck.
-      </p>
-      <p>
-        A couple of years ago, I noticed something. Businesses everywhere were being
-        told that AI would change everything. And it can -- but not the way most consultants
-        sell it. The gap between "AI is amazing" and "here's how it helps your specific
-        business" was enormous. And nobody seemed to be filling it.
-      </p>
-      <p>
-        That's why I started Zero Fluff. I take my experience building real products and
-        apply it to AI implementation. No hype, no buzzwords, no fifty-slide presentations.
-        Just working tools that make your business better.
-      </p>
-    </div>
-  </section>
-
-  <!-- Section 3: Track Record -->
-  <section class="section reveal">
-    <div class="container narrow stack">
-      <h2>What I've Built</h2>
-      <p>
-        Over 30 years, I've built products across video, e-commerce, and file transfer.
-        The thread connecting all of it: making technology useful for real people.
-      </p>
-      <ul class="track-record stack">
-        <li>
-          <strong>Filmily</strong> -- A video sharing platform built when video on the web
-          was still a headache. Taught me how to ship products that handle real-world scale.
-        </li>
-        <li>
-          <strong>SelectCommerce</strong> -- An e-commerce system for businesses that needed
-          more than a template. Built to be flexible without being complicated.
-        </li>
-        <li>
-          <strong>Shiift</strong> -- A file transfer service designed to make sending large
-          files painless. Still running, still useful.
-        </li>
-      </ul>
-      <p>
-        The common theme? Building things that work, not things that just sound impressive.
-        That same principle drives everything I do with AI implementation today.
-      </p>
-    </div>
-  </section>
-
-  <!-- Section 4: Testimonials -->
-  <!-- Placeholder testimonials -- replace with real ones -->
-  <section class="section reveal" style="background-color: var(--color-border);">
-    <div class="container stack-lg">
-      <div class="narrow stack">
-        <h2>What Clients Say</h2>
+  <!-- STORY SPLIT -->
+  <section class="story-section">
+    <div class="story-inner">
+      <div class="story-text">
+        <p class="section-label">01 — THE STORY</p>
+        <h2>From code to consultancy</h2>
+        <p>I've been building digital products since the early 90s. From startup MVPs to enterprise platforms, I've seen every trend come and go. AI is different — it's genuinely transformative for small businesses, but only if you implement it practically.</p>
+        <p>Zero Fluff started because I kept seeing two things: business owners drowning in admin that AI could handle in minutes, and consultants selling expensive strategies that never got implemented. I wanted to bridge that gap.</p>
+        <p>My approach is hands-on. I work with you directly, understand your actual workflows, and build solutions that stick — not slide decks that gather dust.</p>
+        <div class="story-values">
+          <div class="value-item">
+            <span class="value-title">No jargon</span>
+            <span class="value-desc">Plain English explanations, always</span>
+          </div>
+          <div class="value-item">
+            <span class="value-title">Hands-on</span>
+            <span class="value-desc">I build it with you, not for you</span>
+          </div>
+          <div class="value-item">
+            <span class="value-title">Results first</span>
+            <span class="value-desc">Measurable time savings, not theory</span>
+          </div>
+        </div>
       </div>
-
-      <div class="grid-2">
-        <Testimonial
-          quote="Andy automated our weekly reporting and saved us about 8 hours a week. No fuss, no jargon -- he just got on with it and it worked from day one."
-          name="Sarah Mitchell"
-          role="Operations Director"
-          company="Apex Logistics"
-        />
-        <Testimonial
-          quote="I'd wasted months trying to figure out AI on my own. Andy sat down with me, understood my business in an hour, and built exactly what I needed. I finally get what AI can actually do for us."
-          name="James Cooper"
-          role="Founder"
-          company="Bright Path Digital"
-        />
+      <div class="story-portrait" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=80')">
+        <div class="portrait-overlay"></div>
       </div>
     </div>
   </section>
 
-  <!-- Section 5: CTA -->
-  <CTA />
+  <!-- PHOTO STRIP -->
+  <section class="photo-strip">
+    <div class="strip-card" style="background-image: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80')">
+      <div class="strip-overlay">
+        <h3>No Fluff</h3>
+        <p>Direct, honest advice about what AI can and can't do for your business</p>
+      </div>
+    </div>
+    <div class="strip-card" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80')">
+      <div class="strip-overlay">
+        <h3>Precision</h3>
+        <p>Targeted solutions that solve specific problems, not generic AI advice</p>
+      </div>
+    </div>
+    <div class="strip-card" style="background-image: url('https://images.unsplash.com/photo-1553484771-047a44eee27b?w=600&q=80')">
+      <div class="strip-overlay">
+        <h3>Results</h3>
+        <p>Measurable outcomes — hours saved, costs reduced, capacity freed up</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-big">30+</span>
+        <span class="stat-caption">YEARS EXPERIENCE</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-big">100+</span>
+        <span class="stat-caption">PROJECTS DELIVERED</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-big">5-15</span>
+        <span class="stat-caption">HOURS SAVED WEEKLY</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-big">1-2</span>
+        <span class="stat-caption">WEEKS TO RESULTS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS + PREVIOUS WORK -->
+  <section class="tools-section">
+    <div class="tools-inner">
+      <div class="tools-col">
+        <span class="tools-heading">TOOLS I USE</span>
+        <div class="tools-pills">
+          <span class="tool-pill">N8N</span>
+          <span class="tool-pill">Zapier</span>
+          <span class="tool-pill">Claude</span>
+          <span class="tool-pill">ChatGPT</span>
+          <span class="tool-pill">Perplexity</span>
+          <span class="tool-pill">Gemini</span>
+          <span class="tool-pill">Make</span>
+          <span class="tool-pill">Airtable</span>
+        </div>
+      </div>
+      <div class="work-col">
+        <span class="tools-heading">PREVIOUS WORK</span>
+        <div class="clients-grid">
+          <span>Filmily</span>
+          <span>SelectCommerce</span>
+          <span>Shiift</span>
+          <span>NiceGroup</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <div class="about-cta-content">
+      <h2>Ready to have a conversation?</h2>
+      <p>Book a free 20-minute chat. No obligation, no sales pitch.</p>
+      <a href="/contact" class="btn-red cta-btn-lg">Book a free AI chat →</a>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  .track-record {
-    list-style: none;
-    padding: 0;
+  /* PAGE HERO */
+  .page-hero {
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+  .page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+  }
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 80px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .page-hero-content h1 {
+    font-size: 56px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+  .page-hero-content p {
+    font-size: 20px;
+    color: #ccc;
+    line-height: 1.5;
   }
 
-  .track-record li {
-    padding-left: var(--space-md);
-    border-left: 3px solid var(--color-accent);
+  /* STORY */
+  .story-section { padding: 80px 80px; }
+  .story-inner {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+  .story-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .story-text h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -1px;
+    line-height: 1.05;
+  }
+  .story-text > p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .story-values {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .value-item {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .value-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    min-width: 100px;
+  }
+  .value-desc {
+    font-size: 16px;
+    color: #666;
+  }
+  .story-portrait {
+    width: 480px;
+    height: 580px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .portrait-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.1);
+  }
+
+  /* PHOTO STRIP */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .strip-card {
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .strip-overlay {
+    padding: 24px 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .strip-overlay h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .strip-overlay p {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.4;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: #0D0D0D;
+    padding: 60px 80px;
+  }
+  .stats-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+  .stat-big {
+    font-size: 72px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -3px;
+    line-height: 1;
+  }
+  .stat-caption {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 80px;
+    background: #333;
+  }
+
+  /* TOOLS */
+  .tools-section { padding: 80px 80px; }
+  .tools-inner {
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+  }
+  .tools-col, .work-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .tools-heading {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .tools-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 500px;
+  }
+  .tool-pill {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    padding: 8px 16px;
+    border: 2px solid #000;
+    border-radius: 20px;
+  }
+  .clients-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .clients-grid span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  /* CTA */
+  .about-cta {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 80px;
+  }
+  .about-cta-content h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .about-cta-content p {
+    font-size: 18px;
+    color: #ccc;
+  }
+  .btn-red {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-red:hover { opacity: 0.85; color: #fff; }
+  .cta-btn-lg {
+    font-size: 18px;
+    padding: 20px 48px;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero-content { padding: 0 24px; }
+    .page-hero-content h1 { font-size: 40px; }
+    .story-section { padding: 60px 24px; }
+    .story-inner { flex-direction: column; }
+    .story-portrait { width: 100%; height: 360px; }
+    .photo-strip { grid-template-columns: 1fr; }
+    .stats-bar { padding: 48px 24px; }
+    .stats-inner { flex-wrap: wrap; gap: 32px; }
+    .stat-divider { display: none; }
+    .tools-section { padding: 60px 24px; }
+    .tools-inner { flex-direction: column; gap: 40px; }
+    .about-cta-content { padding: 60px 24px; }
+    .about-cta-content h2 { font-size: 36px; }
   }
 </style>
