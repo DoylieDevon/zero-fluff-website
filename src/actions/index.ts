@@ -29,8 +29,7 @@ export const server = {
 
       try {
         await getResend().emails.send({
-          // TODO Phase 4: Change to hello@zerofluff.co.uk after domain verification
-          from: 'Zero Fluff <onboarding@resend.dev>',
+          from: 'Zero Fluff <andy@zerofluff.co.uk>',
           to: 'andy@zerofluff.co.uk',
           replyTo: input.email,
           subject: `New enquiry from ${input.name}`,
