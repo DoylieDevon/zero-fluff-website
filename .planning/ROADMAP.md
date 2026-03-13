@@ -74,10 +74,12 @@ Plans:
   2. Viewing page source reveals LocalBusiness structured data and a sitemap.xml exists at the root
   3. A privacy policy page exists and a cookie notice appears if analytics are active
   4. Visiting zerofluff.co.uk loads the site over HTTPS with no certificate warnings
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: SEO metadata, structured data, sitemap, legal pages, domain config, HTTPS
+- [ ] 04-01-PLAN.md -- SEO metadata, sitemap, structured data, favicon, OG image, robots.txt, 404 page
+- [ ] 04-02-PLAN.md -- Privacy policy page and footer link
+- [ ] 04-03-PLAN.md -- Domain configuration, HTTPS, and Resend domain verification
 
 ## Progress
 
@@ -89,4 +91,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Foundation & Design System | 2/2 | Complete   | 2026-03-12 |
 | 2. Core Pages | 2/2 | Complete    | 2026-03-12 |
 | 3. Content & Blog | 0/2 | Not started | - |
-| 4. Launch Readiness | 0/1 | Not started | - |
+| 4. Launch Readiness | 0/3 | Not started | - |
