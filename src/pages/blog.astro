@@ -28,7 +28,7 @@ try {
     },
   });
   const feed = await parser.parseURL('https://zerofluff.substack.com/feed');
-  posts = feed.items.slice(0, 12).map(item => ({
+  posts = feed.items.slice(0, 13).map(item => ({
     title: item.title ?? 'Untitled',
     excerpt: (item.contentSnippet ?? '').slice(0, 160) + '...',
     url: item.link ?? '#',
@@ -57,7 +57,7 @@ try {
       <div class="featured-inner">
         <p class="section-label">FEATURED</p>
         <a href={posts[0].url} target="_blank" rel="noopener" class="featured-card">
-          <div class="featured-card-img" style={`background-image: url('${posts[0].image || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80'}')`}></div>
+          <div class="featured-card-img" style={posts[0].image ? `background-image: url(${JSON.stringify(posts[0].image)})` : ''}></div>
           <div class="featured-card-body">
             <span class="featured-tag">FEATURED</span>
             <h2>{posts[0].title}</h2>
@@ -77,7 +77,7 @@ try {
         <div class="posts-grid">
           {posts.slice(1).map((post) => (
             <a href={post.url} target="_blank" rel="noopener" class="post-card">
-              <div class="post-card-img" style={`background-image: url('${post.image || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80'}')`}></div>
+              <div class="post-card-img" style={post.image ? `background-image: url(${JSON.stringify(post.image)})` : ''}></div>
               <div class="post-card-body">
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
@@ -85,6 +85,9 @@ try {
               </div>
             </a>
           ))}
+        </div>
+        <div class="view-all">
+          <a href="https://zerofluff.substack.com" target="_blank" rel="noopener" class="view-all-link">View all posts on Substack →</a>
         </div>
       </div>
     </section>
@@ -169,6 +172,7 @@ try {
     height: 400px;
     background-size: cover;
     background-position: center;
+    background-color: #1a1a1a;
   }
   .featured-card-body {
     padding: 48px;
@@ -230,7 +234,7 @@ try {
     height: 200px;
     background-size: cover;
     background-position: center;
-    background-color: #F0F0F0;
+    background-color: #1a1a1a;
   }
   .post-card-body {
     padding: 24px;
@@ -257,6 +261,21 @@ try {
     color: #FF3B30;
     margin-top: auto;
   }
+  .view-all {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+  }
+  .view-all-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    border-bottom: 2px solid #FF3B30;
+    padding-bottom: 2px;
+    transition: color 0.15s;
+  }
+  .view-all-link:hover { color: #FF3B30; }
 
   /* NEWSLETTER */
   .newsletter-section {
