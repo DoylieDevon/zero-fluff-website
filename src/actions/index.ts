@@ -19,6 +19,7 @@ export const server = {
       name: z.string().min(1, 'Name is required'),
       email: z.string().email('Please enter a valid email'),
       message: z.string().min(10, 'Message must be at least 10 characters'),
+      businessName: z.string().optional().default(''),
       website: z.string().max(0, 'Bot detected').optional().default(''),
     }),
     handler: async (input) => {
@@ -37,6 +38,7 @@ export const server = {
             <h2>New Contact Form Enquiry</h2>
             <p><strong>Name:</strong> ${input.name}</p>
             <p><strong>Email:</strong> ${input.email}</p>
+            ${input.businessName ? `<p><strong>Business:</strong> ${input.businessName}</p>` : ''}
             <h3>Message:</h3>
             <p>${input.message.replace(/\n/g, '<br>')}</p>
           `,

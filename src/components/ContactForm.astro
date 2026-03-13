@@ -1,19 +1,35 @@
-<form id="contact-form" class="contact-form stack" novalidate>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required autocomplete="name" />
-    <span class="field-error" id="name-error" aria-live="polite"></span>
+<form id="contact-form" class="contact-form" novalidate>
+  <!-- Hidden name field populated from firstName + lastName by JS -->
+  <input type="hidden" id="name" name="name" />
+
+  <!-- First + Last name row -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" required autocomplete="given-name" placeholder="Jane" />
+      <span class="field-error" id="firstName-error" aria-live="polite"></span>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" autocomplete="family-name" placeholder="Smith" />
+      <span class="field-error" id="lastName-error" aria-live="polite"></span>
+    </div>
   </div>
 
   <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required autocomplete="email" />
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@yourbusiness.com" />
     <span class="field-error" id="email-error" aria-live="polite"></span>
   </div>
 
   <div class="form-group">
+    <label for="businessName">Business Name</label>
+    <input type="text" id="businessName" name="businessName" autocomplete="organization" placeholder="Your Business Ltd" />
+  </div>
+
+  <div class="form-group">
     <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+    <textarea id="message" name="message" rows="6" required placeholder="Tell me about your business and what you're hoping to achieve..."></textarea>
     <span class="field-error" id="message-error" aria-live="polite"></span>
   </div>
 
@@ -24,7 +40,7 @@
   </div>
 
   <div>
-    <button type="submit" class="btn">Send Message</button>
+    <button type="submit" class="btn-submit">Send Message →</button>
   </div>
 
   <div id="form-status" aria-live="polite"></div>
@@ -33,39 +49,62 @@
 <style>
   .contact-form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: 8px;
   }
 
   .form-group label {
-    font-weight: 600;
-    font-size: var(--text-sm);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 
   .form-group input,
   .form-group textarea {
-    padding: var(--space-sm);
-    border: 1px solid var(--color-border);
-    border-radius: 0.25rem;
-    font-size: var(--text-base);
+    padding: 14px 16px;
+    border: 1.5px solid #E4E4E7;
+    border-radius: 0;
+    font-size: 16px;
     background: white;
-    color: var(--color-text);
+    color: #000;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #A1A1AA;
   }
 
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: #FF3B30;
+    box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 140px;
   }
 
   .field-error {
-    font-size: var(--text-sm);
+    font-size: 13px;
     color: #dc2626;
     min-height: 1.25em;
   }
@@ -82,10 +121,32 @@
     border: 0;
   }
 
+  .btn-submit {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s ease;
+  }
+
+  .btn-submit:hover {
+    opacity: 0.85;
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   #form-status {
-    font-size: var(--text-base);
-    padding: var(--space-sm);
-    border-radius: 0.25rem;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 0;
   }
 
   #form-status:empty {
@@ -102,6 +163,12 @@
     background: #fef2f2;
     color: #991b1b;
     border: 1px solid #fecaca;
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -124,6 +191,8 @@
         const errorEl = document.getElementById(`${field}-error`);
         if (errorEl) errorEl.textContent = '';
       });
+      const firstNameError = document.getElementById('firstName-error');
+      if (firstNameError) firstNameError.textContent = '';
       statusEl.textContent = '';
       statusEl.className = '';
     }
@@ -131,6 +200,22 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearErrors();
+
+      // Combine first + last name into the hidden name field
+      const firstNameEl = form.querySelector('#firstName') as HTMLInputElement;
+      const lastNameEl = form.querySelector('#lastName') as HTMLInputElement;
+      const nameEl = form.querySelector('#name') as HTMLInputElement;
+      const firstName = firstNameEl?.value?.trim() || '';
+      const lastName = lastNameEl?.value?.trim() || '';
+
+      if (!firstName) {
+        const errorEl = document.getElementById('firstName-error');
+        if (errorEl) errorEl.textContent = 'First name is required';
+        firstNameEl?.focus();
+        return;
+      }
+
+      nameEl.value = lastName ? `${firstName} ${lastName}` : firstName;
 
       const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
       const originalText = submitBtn.textContent;
@@ -162,6 +247,7 @@
 
       // Success
       form.reset();
+      nameEl.value = '';
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
       statusEl.textContent = "Thanks! Your message has been sent. I'll be in touch soon.";
