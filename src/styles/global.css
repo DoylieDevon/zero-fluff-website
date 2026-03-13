@@ -4,7 +4,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -moz-text-size-adjust: none; text-size-adjust: none; }
-body { line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { line-height: 1.6; }
 img, picture, video, canvas, svg { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
@@ -13,9 +13,22 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
    2. DESIGN TOKENS
    ================================ */
 :root {
-  /* Font families */
-  --font-heading: 'Space Grotesk Variable', system-ui, sans-serif;
-  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font: 'Inter Variable', system-ui, sans-serif;
+
+  /* Colors */
+  --color-bg: #FAFAFA;
+  --color-text: #000000;
+  --color-text-secondary: #666666;
+  --color-text-muted: #A1A1AA;
+  --color-text-on-dark: #CCCCCC;
+  --color-accent: #FF3B30;
+  --color-accent-hover: #CC2F25;
+  --color-dark-bg: #0D0D0D;
+  --color-border: #E4E4E7;
+
+  /* Layout */
+  --max-width: 1440px;
+  --page-padding: 0 120px;
 
   /* Fluid type scale (1.25 ratio, rem + vw respects user preferences) */
   --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
@@ -33,16 +46,7 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
   --space-xl: clamp(3rem, 2rem + 5vw, 6rem);
   --space-2xl: clamp(4rem, 2.5rem + 7.5vw, 8rem);
 
-  /* Colors */
-  --color-bg: #FAFAFA;
-  --color-text: #1A1A1A;
-  --color-text-muted: #6B6B6B;
-  --color-accent: #2563EB;
-  --color-accent-hover: #1D4FD8;
-  --color-border: #E5E5E5;
-
-  /* Layout */
-  --max-width: 72rem;
+  /* Layout (legacy) */
   --content-width: 42rem;
 }
 
@@ -50,14 +54,15 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
    3. BASE TYPOGRAPHY
    ================================ */
 body {
-  font-family: var(--font-body);
+  font-family: var(--font);
   font-size: var(--text-base);
   color: var(--color-text);
   background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -163,7 +168,7 @@ a, button {
   background-color: var(--color-accent);
   color: white;
   text-decoration: none;
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-weight: 600;
   border-radius: 0.25rem;
   border: none;
