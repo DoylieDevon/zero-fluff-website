@@ -1,0 +1,123 @@
+---
+---
+
+<!-- Progress bar -->
+<div class="scroll-bar" aria-hidden="true"></div>
+
+<!-- Section dot nav (right side) -->
+<nav class="section-nav" aria-label="Section navigation">
+  <button class="section-dot active" data-section="hero" aria-label="Hero section"></button>
+  <button class="section-dot" data-section="pain" aria-label="Pain points"></button>
+  <button class="section-dot" data-section="services" aria-label="Services"></button>
+  <button class="section-dot" data-section="about" aria-label="About"></button>
+  <button class="section-dot" data-section="faq" aria-label="FAQ"></button>
+  <button class="section-dot" data-section="cta" aria-label="Contact"></button>
+</nav>
+
+<style>
+  .scroll-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #FF3B30;
+    z-index: 101;
+    transform-origin: left;
+    transform: scaleX(0);
+    width: 100%;
+    pointer-events: none;
+  }
+
+  .section-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+  }
+
+  .section-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717A;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .section-dot:hover {
+    background: #A1A1AA;
+  }
+
+  .section-dot.active {
+    width: 12px;
+    height: 12px;
+    background: #FF3B30;
+  }
+
+  @media (max-width: 768px) {
+    .section-nav { display: none; }
+  }
+</style>
+
+<script is:inline data-astro-rerun>
+(function initScrollProgress() {
+  const bar = document.querySelector('.scroll-bar');
+  const dots = document.querySelectorAll('.section-dot');
+
+  if (!bar) return;
+
+  // Only show dot nav on homepage
+  const nav = document.querySelector('.section-nav');
+  if (nav && window.location.pathname !== '/') {
+    nav.style.display = 'none';
+  }
+
+  // Scroll progress bar
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+        bar.style.transform = `scaleX(${progress})`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Section observer for dot nav
+  const sections = document.querySelectorAll('[data-section]');
+  if (sections.length > 0 && dots.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('data-section');
+          dots.forEach(d => d.classList.remove('active'));
+          const activeDot = document.querySelector(`.section-dot[data-section="${id}"]`);
+          if (activeDot) activeDot.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(s => observer.observe(s));
+  }
+
+  // Click dot to scroll to section
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const target = document.querySelector(`[data-section="${dot.dataset.section}"]`);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  document.addEventListener('astro:page-load', initScrollProgress);
+})();
+</script>
