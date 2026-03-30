@@ -37,13 +37,29 @@ const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).
   <div class="footer-divider"></div>
   <div class="footer-bottom">
     <span>&copy; 2026 Zero Fluff. All rights reserved.</span>
+    <span class="ai-badge">Built entirely by AI</span>
     <span class="build-version">{version}</span>
     <div class="footer-legal">
       <a href="/privacy">Privacy Policy</a>
       <a href="/privacy">Terms of Service</a>
     </div>
   </div>
+  <p class="footer-secret">You scrolled all the way down. You're our kind of person.</p>
 </footer>
+
+<script data-astro-rerun>
+  const secret = document.querySelector('.footer-secret');
+  if (secret) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(secret);
+  }
+</script>
 
 <style>
   .site-footer {
@@ -103,9 +119,22 @@ const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).
     font-size: 14px;
     color: #666;
     text-decoration: none;
-    transition: color 0.15s;
+  }
+  .footer-col a {
+    position: relative;
+  }
+  .footer-col a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.3s ease;
   }
   .footer-col a:hover { color: #fff; }
+  .footer-col a:hover::after { width: 100%; }
   .footer-divider {
     width: 100%;
     height: 1px;
@@ -131,6 +160,31 @@ const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).
     font-size: 11px;
     color: #333;
     font-family: monospace;
+  }
+  .ai-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: transparent;
+    background: linear-gradient(90deg, #A1A1AA 0%, #fff 50%, #A1A1AA 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+  .footer-secret {
+    text-align: center;
+    font-size: 11px;
+    color: #333;
+    padding-top: 40px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .footer-secret.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (max-width: 768px) {
