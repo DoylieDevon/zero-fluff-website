@@ -13,24 +13,22 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
    2. DESIGN TOKENS
    ================================ */
 :root {
-  --font: 'Inter Variable', system-ui, sans-serif;
-  --font-heading: var(--font);
-  --font-body: var(--font);
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk Variable', 'Inter Variable', system-ui, sans-serif;
 
-  /* Colors */
-  --color-bg: #FAFAFA;
-  --color-text: #000000;
-  --color-text-secondary: #666666;
-  --color-text-muted: #A1A1AA;
-  --color-text-on-dark: #CCCCCC;
+  /* Colors – dark theme */
+  --color-bg: #050505;
+  --color-surface: #0D0D0D;
+  --color-surface-elevated: #1A1A1A;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
   --color-accent: #FF3B30;
-  --color-accent-hover: #CC2F25;
-  --color-dark-bg: #0D0D0D;
-  --color-border: #E4E4E7;
-
-  /* Layout */
-  --max-width: 1440px;
-  --page-padding: 0 120px;
+  --color-accent-hover: #FF5147;
+  --color-accent-glow: rgba(255, 59, 48, 0.3);
+  --color-cyan: #00F0FF;
+  --color-cyan-glow: rgba(0, 240, 255, 0.2);
+  --color-border: #1A1A1A;
 
   /* Fluid type scale (1.25 ratio, rem + vw respects user preferences) */
   --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
@@ -48,7 +46,8 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
   --space-xl: clamp(3rem, 2rem + 5vw, 6rem);
   --space-2xl: clamp(4rem, 2.5rem + 7.5vw, 8rem);
 
-  /* Layout (legacy) */
+  /* Layout */
+  --max-width: 1440px;
   --content-width: 42rem;
 }
 
@@ -56,15 +55,16 @@ p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
    3. BASE TYPOGRAPHY
    ================================ */
 body {
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: var(--text-base);
   color: var(--color-text);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -139,7 +139,7 @@ a:hover {
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
-  background: white;
+  background: var(--color-surface);
 }
 
 /* ================================
@@ -169,7 +169,7 @@ a, button {
   background-color: var(--color-accent);
   color: white;
   text-decoration: none;
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-weight: 600;
   border-radius: 0.25rem;
   border: none;
@@ -184,6 +184,42 @@ a, button {
   outline-offset: 2px;
 }
 
+/* Ambient animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(20px) rotate(-3deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -193,4 +229,5 @@ a, button {
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .cursor-dot, .cursor-ring { display: none !important; }
 }

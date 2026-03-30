@@ -1,8 +1,10 @@
 ---
 import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
 import '../styles/global.css';
 
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import spaceGrotesk from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -21,6 +23,7 @@ const imageURL = new URL(image, Astro.site);
 ---
 
 <link rel="preload" href={interWoff2} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={spaceGrotesk} as="font" type="font/woff2" crossorigin />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
