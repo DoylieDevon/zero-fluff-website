@@ -216,7 +216,9 @@ export const prerender = true;
     width: 480px;
     height: 580px;
     flex-shrink: 0;
-    background: var(--color-surface-elevated);
+    background-image: url('/images/about-portrait.png');
+    background-size: cover;
+    background-position: center top;
     position: relative;
   }
 
@@ -231,16 +233,37 @@ export const prerender = true;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    position: relative;
   }
-  .strip-card-1 { background: linear-gradient(135deg, #1a0a0a, #2d1408); }
-  .strip-card-2 { background: linear-gradient(135deg, #0a1628, #1a0533); }
-  .strip-card-3 { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
+  .strip-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+  }
+  .strip-card-1 {
+    background-image: url('/images/about-nofluff.png');
+  }
+  .strip-card-1::before { background: linear-gradient(135deg, #1a0a0a, #2d1408); }
+  .strip-card-2 {
+    background-image: url('/images/about-precision.png');
+  }
+  .strip-card-2::before { background: linear-gradient(135deg, #0a1628, #1a0533); }
+  .strip-card-3 {
+    background-image: url('/images/about-results.png');
+  }
+  .strip-card-3::before { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
   .strip-overlay {
     padding: 24px 28px;
     background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
+    z-index: 1;
   }
   .strip-overlay h3 {
     font-size: 28px;
