@@ -15,7 +15,7 @@ interface Props {
 const {
   title = 'Zero Fluff - AI Implementation That Works',
   description = 'Straight-talking AI consultancy helping small businesses save time and money with AI and automation. No jargon, no fluff, just results.',
-  image = '/og-image.png',
+  image = '/og-image.jpg',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -44,7 +44,7 @@ const imageURL = new URL(image, Astro.site);
 <meta property="og:image" content={imageURL} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:type" content="image/png" />
+<meta property="og:image:type" content="image/jpeg" />
 <meta property="og:site_name" content="Zero Fluff" />
 <meta property="og:locale" content="en_GB" />
 
