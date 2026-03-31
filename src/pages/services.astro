@@ -141,11 +141,33 @@ export const prerender = true;
   .service-row-reverse .service-text { order: 1; }
   .service-img {
     height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
   }
-  .service-img-1 { background: linear-gradient(135deg, #1a0533, #0a1628); }
-  .service-img-2 { background: linear-gradient(135deg, #2d1408, #1a0a0a); }
-  .service-img-3 { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
-  .service-img-4 { background: linear-gradient(135deg, #0a1628, #1a0533); }
+  .service-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.6;
+  }
+  .service-img-1 {
+    background-image: url('/images/service-quickstart.png');
+  }
+  .service-img-1::after { background: linear-gradient(135deg, #1a0533, #0a1628); }
+  .service-img-2 {
+    background-image: url('/images/service-automation.png');
+  }
+  .service-img-2::after { background: linear-gradient(135deg, #2d1408, #1a0a0a); }
+  .service-img-3 {
+    background-image: url('/images/service-support.png');
+  }
+  .service-img-3::after { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
+  .service-img-4 {
+    background-image: url('/images/service-projects.png');
+  }
+  .service-img-4::after { background: linear-gradient(135deg, #0a1628, #1a0533); }
   .service-text {
     padding: 0 60px;
     display: flex;
