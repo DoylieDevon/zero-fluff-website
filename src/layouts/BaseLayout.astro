@@ -29,6 +29,12 @@ const { title, description, image } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <script>
+      import { initEasterEggs } from '../scripts/easter-eggs.js';
+
+      document.addEventListener('astro:page-load', () => initEasterEggs());
+      initEasterEggs();
+    </script>
     <script is:inline data-astro-rerun>
       function initRevealAnimations() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
