@@ -1,44 +1,48 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FloatingShapes from '../components/FloatingShapes.astro';
 ---
 
 <BaseLayout
   title="Zero Fluff — AI Implementation That Works"
   description="Straight-talking AI consultancy for small businesses. No jargon, no fluff, just results."
 >
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO — The Decoder -->
+  <section class="hero" data-section="hero">
+    <FloatingShapes />
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-content">
-      <h1>Get AI working in your business — without the jargon</h1>
+      <h1 data-scramble>Get AI working in your business — without the jargon</h1>
       <p class="hero-sub">We help small businesses save time and money with AI and automation. No tech overwhelm. No fluff. Just results.</p>
       <div class="hero-ctas">
-        <a href="/contact" class="btn-primary">Book a free AI chat →</a>
+        <a href="/contact" class="btn-primary" data-magnetic>Book a free AI chat &rarr;</a>
         <a href="/services" class="btn-outline">See our services</a>
       </div>
-      <p class="trust-text">30+ years experience  •  Based in Totnes, Devon</p>
+      <p class="trust-text">30+ years experience&nbsp;&nbsp;&bull;&nbsp;&nbsp;Based in Totnes, Devon</p>
     </div>
   </section>
 
-  <!-- PAIN POINTS -->
-  <section class="pain-points">
+  <!-- PAIN POINTS — The Domino Drop -->
+  <section class="pain-section" data-section="pain">
     <div class="section-inner">
       <p class="section-label">01 — THE PROBLEM</p>
       <h2>Sound familiar?</h2>
       <div class="cards-row">
-        <div class="pain-card" style="background-image: url('https://images.unsplash.com/photo-1708519428320-2966405aa6d3?w=800&q=80')">
-          <div class="card-overlay">
+        <div class="pain-card" data-tilt>
+          <div class="card-inner">
             <h3>Drowning in admin?</h3>
             <p>Repetitive tasks eating your day? Emails, invoices, scheduling — it never ends.</p>
           </div>
         </div>
-        <div class="pain-card" style="background-image: url('https://images.unsplash.com/photo-1713880304260-c6e13a9a8a05?w=800&q=80')">
-          <div class="card-overlay">
+        <div class="pain-card" data-tilt>
+          <div class="card-inner">
             <h3>No time to figure it out?</h3>
             <p>You know AI could help, but who has time to learn another tool?</p>
           </div>
         </div>
-        <div class="pain-card" style="background-image: url('https://images.unsplash.com/photo-1621558272312-0877bf5241d7?w=800&q=80')">
-          <div class="card-overlay">
+        <div class="pain-card" data-tilt>
+          <div class="card-inner">
             <h3>Confused by AI hype?</h3>
             <p>Every day there is a new AI tool. Hard to know what actually works for YOUR business.</p>
           </div>
@@ -47,515 +51,1213 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services-section">
-    <div class="section-inner">
-      <p class="section-label">02 — WHAT WE DO</p>
-      <h2 class="section-heading">Practical AI solutions, not buzzwords</h2>
-      <div class="services-grid">
-        <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1717307908098-cec3253b45a6?w=800&q=80')">
-          <div class="service-overlay">
+  <!-- SERVICES — The Horizontal Cinema -->
+  <section class="services-section" data-section="services">
+    <div class="services-track">
+      <div class="services-header">
+        <p class="section-label">02 — WHAT WE DO</p>
+        <h2>Practical AI solutions, not buzzwords</h2>
+      </div>
+      <div class="services-panels">
+        <div class="service-panel">
+          <span class="panel-number" aria-hidden="true">01</span>
+          <div class="panel-content">
             <span class="service-tag">2 HOURS</span>
             <h3>AI Quick Start</h3>
             <p>We review your business, identify where AI saves time, and give you a clear action plan.</p>
-            <a href="/services" class="service-link">Learn more →</a>
+            <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
         </div>
-        <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1703835916583-4be209949d72?w=800&q=80')">
-          <div class="service-overlay">
+        <div class="service-panel">
+          <span class="panel-number" aria-hidden="true">02</span>
+          <div class="panel-content">
             <span class="service-tag">HANDS-ON</span>
             <h3>Automation Setup</h3>
             <p>We build automated workflows using N8N, ChatGPT, Gemini and more to handle your repetitive tasks.</p>
-            <a href="/services" class="service-link">Learn more →</a>
+            <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
         </div>
-        <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1632923945657-ccd98efe59e3?w=800&q=80')">
-          <div class="service-overlay">
+        <div class="service-panel">
+          <span class="panel-number" aria-hidden="true">03</span>
+          <div class="panel-content">
             <span class="service-tag">MONTHLY</span>
             <h3>Ongoing AI Support</h3>
             <p>Monthly support for businesses who want help staying on top of AI developments.</p>
-            <a href="/services" class="service-link">Learn more →</a>
+            <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
         </div>
-        <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1729551610680-c6ea05b08937?w=800&q=80')">
-          <div class="service-overlay">
+        <div class="service-panel">
+          <span class="panel-number" aria-hidden="true">04</span>
+          <div class="panel-content">
             <span class="service-tag">STRATEGIC</span>
             <h3>Bigger Projects</h3>
             <p>Building a product or need strategic tech leadership? We do that too.</p>
-            <a href="/services" class="service-link">Learn more →</a>
+            <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
+        </div>
+      </div>
+      <div class="services-progress" aria-hidden="true">
+        <div class="services-progress-bar"></div>
+      </div>
+    </div>
+    <!-- Mobile fallback -->
+    <div class="services-mobile">
+      <div class="services-header">
+        <p class="section-label">02 — WHAT WE DO</p>
+        <h2>Practical AI solutions, not buzzwords</h2>
+      </div>
+      <div class="services-stack">
+        <div class="service-card-mobile">
+          <span class="service-tag">2 HOURS</span>
+          <h3>AI Quick Start</h3>
+          <p>We review your business, identify where AI saves time, and give you a clear action plan.</p>
+          <a href="/services" class="service-link">Learn more &rarr;</a>
+        </div>
+        <div class="service-card-mobile">
+          <span class="service-tag">HANDS-ON</span>
+          <h3>Automation Setup</h3>
+          <p>We build automated workflows using N8N, ChatGPT, Gemini and more to handle your repetitive tasks.</p>
+          <a href="/services" class="service-link">Learn more &rarr;</a>
+        </div>
+        <div class="service-card-mobile">
+          <span class="service-tag">MONTHLY</span>
+          <h3>Ongoing AI Support</h3>
+          <p>Monthly support for businesses who want help staying on top of AI developments.</p>
+          <a href="/services" class="service-link">Learn more &rarr;</a>
+        </div>
+        <div class="service-card-mobile">
+          <span class="service-tag">STRATEGIC</span>
+          <h3>Bigger Projects</h3>
+          <p>Building a product or need strategic tech leadership? We do that too.</p>
+          <a href="/services" class="service-link">Learn more &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT SPLIT -->
-  <section class="about-section">
-    <div class="section-inner">
+  <!-- ABOUT — The Slot Machine Stats -->
+  <section class="about-section" data-section="about">
+    <div class="about-grid-bg" aria-hidden="true"></div>
+    <div class="section-inner about-inner">
       <p class="section-label">03 — WHY ZERO FLUFF</p>
-      <h2 class="section-heading">30 years of building<br>digital products</h2>
       <div class="about-split">
-        <div class="about-left" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=80')">
-          <div class="about-img-overlay"></div>
-          <div class="stats-wrap">
-            <div class="stat"><span class="stat-num">30+</span><span class="stat-label">YEARS EXPERIENCE</span></div>
-            <div class="stat"><span class="stat-num">5-15</span><span class="stat-label">HOURS SAVED WEEKLY</span></div>
-            <div class="stat"><span class="stat-num">1-2</span><span class="stat-label">WEEKS TO RESULTS</span></div>
-          </div>
-        </div>
-        <div class="about-right">
+        <div class="about-left">
+          <h2>30 years of building digital products</h2>
           <p class="about-desc">Zero Fluff is a hands-on AI and automation consultancy for small businesses. Over 30 years of digital product experience. We deliver practical solutions without buzzwords.</p>
           <div class="about-tools">
             <span class="tools-label">TOOLS WE USE</span>
             <div class="tools-row">
-              <span class="tool-pill">N8N</span>
-              <span class="tool-pill">Zapier</span>
-              <span class="tool-pill">Claude</span>
-              <span class="tool-pill">ChatGPT</span>
-              <span class="tool-pill">Perplexity</span>
+              <span class="tool-pill" data-tool-pill>N8N</span>
+              <span class="tool-pill" data-tool-pill>Zapier</span>
+              <span class="tool-pill" data-tool-pill>Claude</span>
+              <span class="tool-pill" data-tool-pill>ChatGPT</span>
+              <span class="tool-pill" data-tool-pill>Perplexity</span>
             </div>
           </div>
           <div class="about-prev">
             <span class="tools-label">PREVIOUS WORK</span>
             <div class="clients-list">
-              <span>Filmily</span>
-              <span>SelectCommerce</span>
-              <span>Shiift</span>
-              <span>NiceGroup</span>
+              <span data-client>Filmily</span>
+              <span data-client>SelectCommerce</span>
+              <span data-client>Shiift</span>
+              <span data-client>NiceGroup</span>
             </div>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="stat" data-stat="30" data-stat-suffix="+">
+            <span class="stat-num">30+</span>
+            <span class="stat-label">YEARS EXPERIENCE</span>
+          </div>
+          <div class="stat" data-stat-range="5-15">
+            <span class="stat-num">5-15</span>
+            <span class="stat-label">HOURS SAVED WEEKLY</span>
+          </div>
+          <div class="stat" data-stat-range="1-2">
+            <span class="stat-num">1-2</span>
+            <span class="stat-label">WEEKS TO RESULTS</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq-section">
+  <!-- FAQ — The AI Typewriter -->
+  <section class="faq-section" data-section="faq">
     <div class="faq-inner">
       <div class="faq-left">
         <p class="section-label">04 — COMMON QUESTIONS</p>
-        <h2 class="section-heading">Got questions?<br>We have answers.</h2>
-        <div class="faq-img" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80')"></div>
+        <h2 class="faq-heading" data-faq-heading>Got questions? We have answers.</h2>
       </div>
       <div class="faq-right">
-        <div class="faq-divider"></div>
         <details class="faq-item">
           <summary>How much time can AI really save me?</summary>
-          <p>Most of our clients save 5-15 hours per week once their automations are running.</p>
+          <p data-answer="Most of our clients save 5-15 hours per week once their automations are running."></p>
         </details>
-        <div class="faq-divider"></div>
         <details class="faq-item">
           <summary>How quickly will I see results?</summary>
-          <p>Most clients see meaningful results within 1-2 weeks of their first automation going live.</p>
+          <p data-answer="Most clients see meaningful results within 1-2 weeks of their first automation going live."></p>
         </details>
-        <div class="faq-divider"></div>
         <details class="faq-item">
           <summary>Do I need technical experience?</summary>
-          <p>None. We handle all the technical setup. You just tell us what takes up your time.</p>
+          <p data-answer="None. We handle all the technical setup. You just tell us what takes up your time."></p>
         </details>
-        <div class="faq-divider"></div>
         <details class="faq-item">
           <summary>What types of businesses do you work with?</summary>
-          <p>Small businesses across all sectors — from solo consultants to teams of 20. If you have repetitive tasks, we can help.</p>
+          <p data-answer="Small businesses across all sectors — from solo consultants to teams of 20. If you have repetitive tasks, we can help."></p>
         </details>
-        <div class="faq-divider"></div>
         <details class="faq-item">
           <summary>What tools do you use?</summary>
-          <p>N8N, Zapier, Claude, ChatGPT, Perplexity — whatever fits your workflow best.</p>
+          <p data-answer="N8N, Zapier, Claude, ChatGPT, Perplexity — whatever fits your workflow best."></p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="final-cta">
+  <!-- FINAL CTA — The Gravity Well -->
+  <section class="cta-section" data-section="cta">
+    <div class="cta-bg" aria-hidden="true"></div>
     <div class="cta-content">
-      <p class="section-label" style="color: #FF3B30;">05 — READY?</p>
-      <h2 class="cta-heading">Ready to get AI working<br>for your business?</h2>
-      <p class="cta-sub">Book a free 20-minute AI chat. No sales pitch.<br>No jargon. Just an honest conversation about how AI can help.</p>
+      <h2 class="cta-heading" data-cta-heading>Ready to get AI working for your business?</h2>
+      <p class="cta-sub">Book a free 20-minute AI chat. No sales pitch. No jargon. Just an honest conversation about how AI can help.</p>
       <div class="cta-buttons">
-        <a href="/contact" class="btn-primary cta-btn">Book a free AI chat →</a>
+        <a href="/contact" class="btn-primary cta-btn cta-glow" data-magnetic data-magnetic-strength="0.5">Book a free AI chat &rarr;</a>
         <a href="mailto:andy@zerofluff.co.uk" class="btn-outline cta-btn">andy@zerofluff.co.uk</a>
       </div>
-      <p class="trust-text">Free · No obligation · 20 minutes · Plain English</p>
+      <p class="trust-text">Free &middot; No obligation &middot; 20 minutes &middot; Plain English</p>
     </div>
   </section>
 </BaseLayout>
 
+<!-- Particle canvas — needs re-init on view transitions -->
+<script is:inline data-astro-rerun>
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if ('ontouchstart' in window && window.innerWidth < 769) return;
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let mouseX = -1000, mouseY = -1000;
+  let animId;
+  const PARTICLE_COUNT = 60;
+  const REPEL_RADIUS = 100;
+
+  function resize() {
+    const hero = canvas.closest('.hero');
+    if (!hero) return;
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 2 + 1,
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of particles) {
+      // Repel from cursor
+      const dx = p.x - mouseX;
+      const dy = p.y - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < REPEL_RADIUS && dist > 0) {
+        const force = (REPEL_RADIUS - dist) / REPEL_RADIUS * 0.8;
+        p.vx += (dx / dist) * force;
+        p.vy += (dy / dist) * force;
+      }
+      // Damping
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+      // Drift
+      p.x += p.vx;
+      p.y += p.vy;
+      // Wrap
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      // Draw
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.fill();
+    }
+    animId = requestAnimationFrame(animate);
+  }
+
+  const hero = canvas.closest('.hero');
+  if (hero) {
+    hero.addEventListener('mousemove', function(e) {
+      const rect = hero.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+    hero.addEventListener('mouseleave', function() {
+      mouseX = -1000;
+      mouseY = -1000;
+    });
+  }
+
+  resize();
+  createParticles();
+  animate();
+  window.addEventListener('resize', function() {
+    resize();
+    createParticles();
+  });
+
+  // Cleanup on navigation
+  document.addEventListener('astro:before-swap', function() {
+    cancelAnimationFrame(animId);
+  });
+})();
+</script>
+
+<!-- Main animation script -->
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { scrambleText } from '../scripts/text-scramble.js';
+  import { initMagneticButtons } from '../scripts/magnetic-button.js';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth < 769;
+
+  // --- HERO ---
+  // Text scramble
+  const scrambleEl = document.querySelector('[data-scramble]') as HTMLElement;
+  if (scrambleEl && !prefersReducedMotion) {
+    scrambleText(scrambleEl, { duration: 2000, delay: 300 }).then(() => {
+      const sub = document.querySelector('.hero-sub') as HTMLElement;
+      if (sub) sub.classList.add('visible');
+    });
+  } else {
+    const sub = document.querySelector('.hero-sub') as HTMLElement;
+    if (sub) sub.classList.add('visible');
+  }
+
+  // Cursor glow
+  if (!isMobile && !prefersReducedMotion) {
+    const hero = document.querySelector('.hero') as HTMLElement;
+    if (hero) {
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        hero.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        hero.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    }
+  }
+
+  // Magnetic buttons
+  initMagneticButtons();
+
+  // --- PAIN POINTS — Domino Drop ---
+  if (!prefersReducedMotion) {
+    const painCards = gsap.utils.toArray('.pain-card') as HTMLElement[];
+    painCards.forEach((card, i) => {
+      const rotation = (Math.random() - 0.5) * 10; // -5 to 5
+      gsap.set(card, { y: 100, opacity: 0, rotation });
+      gsap.to(card, {
+        y: 0,
+        opacity: 1,
+        rotation: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+        },
+        delay: i * 0.15,
+      });
+    });
+
+    // 3D tilt on hover
+    if (!isMobile) {
+      document.querySelectorAll('[data-tilt]').forEach((card) => {
+        const el = card as HTMLElement;
+        el.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = el.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rotateX = (y - 0.5) * -20; // max ±10
+          const rotateY = (x - 0.5) * 20;
+          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transition = 'transform 0.5s ease';
+          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+          setTimeout(() => { el.style.transition = ''; }, 500);
+        });
+      });
+    }
+  }
+
+  // --- SERVICES — Horizontal Cinema ---
+  if (!prefersReducedMotion && !isMobile) {
+    const track = document.querySelector('.services-track') as HTMLElement;
+    const panels = document.querySelector('.services-panels') as HTMLElement;
+    const progressBar = document.querySelector('.services-progress-bar') as HTMLElement;
+
+    if (track && panels) {
+      const totalWidth = panels.scrollWidth - window.innerWidth;
+
+      gsap.to(panels, {
+        x: -totalWidth,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: track,
+          pin: true,
+          scrub: 1,
+          end: () => `+=${totalWidth}`,
+          onUpdate: (self) => {
+            if (progressBar) {
+              progressBar.style.width = `${self.progress * 100}%`;
+            }
+          },
+        },
+      });
+    }
+  }
+
+  // Mobile services stagger
+  if (!prefersReducedMotion && isMobile) {
+    gsap.utils.toArray('.service-card-mobile').forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        y: 60,
+        opacity: 0,
+        duration: 0.6,
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: card as HTMLElement,
+          start: 'top 85%',
+        },
+      });
+    });
+  }
+
+  // --- ABOUT — Slot Machine Stats ---
+  if (!prefersReducedMotion) {
+    // Stat counter: "30+"
+    const stat30 = document.querySelector('[data-stat="30"]');
+    if (stat30) {
+      const numEl = stat30.querySelector('.stat-num') as HTMLElement;
+      if (numEl) {
+        const counter = { val: 0 };
+        gsap.to(counter, {
+          val: 35,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: stat30 as HTMLElement, start: 'top 80%' },
+          onUpdate: () => {
+            numEl.textContent = Math.round(counter.val) + '+';
+          },
+          onComplete: () => {
+            gsap.to(counter, {
+              val: 30,
+              duration: 0.8,
+              ease: 'elastic.out(1, 0.5)',
+              onUpdate: () => {
+                numEl.textContent = Math.round(counter.val) + '+';
+              },
+            });
+          },
+        });
+      }
+    }
+
+    // Stat counters: range stats "5-15" and "1-2"
+    document.querySelectorAll('[data-stat-range]').forEach((stat) => {
+      const range = (stat as HTMLElement).dataset.statRange!;
+      const [startVal, endVal] = range.split('-').map(Number);
+      const numEl = stat.querySelector('.stat-num') as HTMLElement;
+      if (!numEl) return;
+
+      const counter = { a: 0, b: 0 };
+      const overshootA = startVal + Math.ceil(startVal * 0.3);
+      const overshootB = endVal + Math.ceil(endVal * 0.2);
+
+      gsap.to(counter, {
+        a: overshootA,
+        b: overshootB,
+        duration: 1.5,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: stat as HTMLElement, start: 'top 80%' },
+        onUpdate: () => {
+          numEl.textContent = `${Math.round(counter.a)}-${Math.round(counter.b)}`;
+        },
+        onComplete: () => {
+          gsap.to(counter, {
+            a: startVal,
+            b: endVal,
+            duration: 0.8,
+            ease: 'elastic.out(1, 0.5)',
+            onUpdate: () => {
+              numEl.textContent = `${Math.round(counter.a)}-${Math.round(counter.b)}`;
+            },
+          });
+        },
+      });
+    });
+
+    // Tool pills — stagger from random Y
+    gsap.utils.toArray('[data-tool-pill]').forEach((pill, i) => {
+      gsap.from(pill as HTMLElement, {
+        y: 20 + Math.random() * 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'elastic.out(1, 0.5)',
+        delay: i * 0.1,
+        scrollTrigger: { trigger: '.about-tools', start: 'top 85%' },
+      });
+    });
+
+    // Client names — blur reveal
+    gsap.utils.toArray('[data-client]').forEach((client, i) => {
+      gsap.from(client as HTMLElement, {
+        filter: 'blur(10px)',
+        opacity: 0,
+        duration: 0.6,
+        delay: i * 0.12,
+        scrollTrigger: { trigger: '.about-prev', start: 'top 85%' },
+      });
+    });
+  }
+
+  // --- FAQ — AI Typewriter ---
+  document.querySelectorAll('.faq-item').forEach((details) => {
+    const p = details.querySelector('p[data-answer]') as HTMLElement;
+    if (!p) return;
+    const fullText = p.dataset.answer || '';
+    let typing = false;
+    let typingTimeout: number;
+
+    details.addEventListener('toggle', () => {
+      if ((details as HTMLDetailsElement).open) {
+        if (prefersReducedMotion) {
+          p.textContent = fullText;
+          return;
+        }
+        // Start typewriter
+        typing = true;
+        p.textContent = '';
+        p.classList.add('typing');
+        let idx = 0;
+
+        function typeChar() {
+          if (!typing || idx >= fullText.length) {
+            typing = false;
+            p.classList.remove('typing');
+            return;
+          }
+          p.textContent = fullText.slice(0, idx + 1) + '|';
+          const char = fullText[idx];
+          const pause = (char === '.' || char === ',') ? 150 : (25 + Math.random() * 20);
+          idx++;
+          typingTimeout = window.setTimeout(typeChar, pause);
+        }
+        typeChar();
+      } else {
+        // Close — stop typing
+        typing = false;
+        clearTimeout(typingTimeout);
+        p.classList.remove('typing');
+        p.textContent = '';
+      }
+    });
+  });
+
+  // FAQ heading word stagger
+  if (!prefersReducedMotion) {
+    const faqHeading = document.querySelector('[data-faq-heading]') as HTMLElement;
+    if (faqHeading) {
+      const text = faqHeading.textContent || '';
+      const words = text.split(' ');
+      faqHeading.innerHTML = words.map((w) => `<span class="faq-word">${w}</span>`).join(' ');
+      gsap.from('.faq-word', {
+        y: 40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: faqHeading, start: 'top 80%' },
+      });
+    }
+  }
+
+  // --- CTA — Gravity Well ---
+  if (!prefersReducedMotion) {
+    const ctaHeading = document.querySelector('[data-cta-heading]') as HTMLElement;
+    if (ctaHeading) {
+      const text = ctaHeading.textContent || '';
+      const words = text.split(' ');
+      ctaHeading.innerHTML = words.map((w) => `<span class="cta-word">${w}</span>`).join(' ');
+
+      gsap.from('.cta-word', {
+        x: () => (Math.random() - 0.5) * 400,
+        y: () => (Math.random() - 0.5) * 200,
+        opacity: 0,
+        rotation: () => (Math.random() - 0.5) * 30,
+        duration: 1.2,
+        stagger: 0.06,
+        ease: 'elastic.out(1, 0.6)',
+        scrollTrigger: { trigger: '.cta-section', start: 'top 70%' },
+      });
+    }
+
+    // Sub text fade
+    gsap.from('.cta-sub', {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      delay: 0.8,
+      scrollTrigger: { trigger: '.cta-section', start: 'top 70%' },
+    });
+  }
+</script>
+
 <style>
-  /* HERO */
+  /* ========================================
+     SHARED
+     ======================================== */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-accent);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-hover);
+    color: #fff;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.2s, opacity 0.2s;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+  }
+
+  .trust-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ========================================
+     HERO
+     ======================================== */
   .hero {
-    min-height: 700px;
-    background-image: url('https://images.unsplash.com/photo-1760278041809-b157c39c30d3?w=1920&q=80');
-    background-size: cover;
-    background-position: center;
+    min-height: 100vh;
+    background: var(--color-bg);
     position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
   }
-  .hero::before {
-    content: '';
+
+  #particle-canvas {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
   }
+
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y),
+      var(--color-accent-glow),
+      transparent 60%
+    );
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     padding: 0 80px;
     display: flex;
     flex-direction: column;
     gap: 32px;
     max-width: 900px;
   }
+
   .hero-content h1 {
-    font-size: 72px;
+    font-family: var(--font-heading);
+    font-size: clamp(40px, 6vw, 72px);
     font-weight: 800;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: -2px;
     line-height: 1.05;
     max-width: 800px;
   }
+
   .hero-sub {
+    font-family: var(--font-body);
     font-size: 20px;
-    color: #ccc;
-    line-height: 1.5;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
     max-width: 680px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
+  .hero-sub.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .hero-ctas {
     display: flex;
     align-items: center;
     gap: 16px;
-  }
-  .trust-text {
-    font-size: 13px;
-    font-weight: 500;
-    color: #A1A1AA;
+    flex-wrap: wrap;
   }
 
-  /* SHARED BUTTON STYLES */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #FF3B30;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 16px 32px;
-    text-decoration: none;
-    transition: opacity 0.15s;
+  /* ========================================
+     PAIN POINTS
+     ======================================== */
+  .pain-section {
+    background: var(--color-bg);
+    padding: 120px 0;
   }
-  .btn-primary:hover { opacity: 0.85; color: #fff; }
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    background: transparent;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 16px 32px;
-    text-decoration: none;
-    border: 2px solid #fff;
-    transition: opacity 0.15s;
-  }
-  .btn-outline:hover { opacity: 0.8; color: #fff; }
 
-  /* PAIN POINTS */
-  .pain-points { background: #fff; padding: 80px 60px; }
-  .section-inner { display: flex; flex-direction: column; gap: 48px; }
-  .section-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: #FF3B30;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  .pain-points h2 {
-    font-size: 48px;
+  .pain-section h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 5vw, 48px);
     font-weight: 800;
-    color: #000;
+    color: var(--color-text);
     letter-spacing: -1px;
     line-height: 1.05;
+    margin-top: 16px;
   }
+
   .cards-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    margin-top: 48px;
+    perspective: 1000px;
   }
+
   .pain-card {
-    height: 500px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    height: 400px;
+    border-radius: 12px;
     overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: default;
   }
-  .card-overlay {
-    padding: 24px 28px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  .pain-card:nth-child(1) {
+    background: linear-gradient(135deg, #1a0533, #0a1628);
   }
-  .card-overlay h3 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
+  .pain-card:nth-child(2) {
+    background: linear-gradient(135deg, #2d1408, #1a0a0a);
   }
-  .card-overlay p {
-    font-size: 16px;
-    color: #ccc;
-    line-height: 1.4;
+  .pain-card:nth-child(3) {
+    background: linear-gradient(135deg, #081a1a, #0a1a0d);
   }
 
-  @media (max-width: 768px) {
-    .hero-content { padding: 0 24px; }
-    .hero-content h1 { font-size: 40px; }
-    .pain-points { padding: 60px 24px; }
-    .cards-row { grid-template-columns: 1fr; }
-    .hero-ctas { flex-direction: column; align-items: flex-start; }
-  }
-
-  /* SERVICES */
-  .services-section { background: #fff; padding: 80px 40px; }
-  .section-heading {
-    font-size: 48px;
-    font-weight: 800;
-    color: #000;
-    letter-spacing: -1px;
-    line-height: 1.05;
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .service-card {
-    height: 340px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-  }
-  .service-overlay {
-    padding: 0 28px 28px;
-    background: linear-gradient(to top, rgba(0,0,0,0.93) 0%, rgba(0,0,0,0.8) 45%, transparent 100%);
+  .card-inner {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    padding: 32px;
     gap: 12px;
+  }
+
+  .card-inner h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .card-inner p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ========================================
+     SERVICES
+     ======================================== */
+  .services-section {
+    background: var(--color-bg);
+  }
+
+  .services-header {
+    padding: 0 60px 48px;
+    max-width: 1200px;
+  }
+  .services-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -1px;
+    line-height: 1.05;
+    margin-top: 16px;
+  }
+
+  /* Desktop horizontal scroll */
+  .services-track {
+    display: none;
+    overflow: hidden;
+  }
+  .services-panels {
+    display: flex;
+  }
+  .service-panel {
+    min-width: 100vw;
+    height: 80vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .panel-number {
+    position: absolute;
+    font-family: var(--font-heading);
+    font-size: 20vw;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+  .panel-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 60px;
   }
   .service-tag {
     display: inline-block;
-    background: #FF3B30;
+    background: var(--color-accent);
     color: #fff;
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
-    padding: 6px 12px;
+    padding: 6px 14px;
     align-self: flex-start;
   }
-  .service-overlay h3 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #fff;
+  .panel-content h3 {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--color-text);
     line-height: 1.1;
   }
-  .service-overlay p {
-    font-size: 16px;
-    color: #ccc;
-    line-height: 1.4;
+  .panel-content p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
   }
   .service-link {
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 600;
-    color: #FF3B30;
+    color: var(--color-accent);
     text-decoration: none;
+    transition: color 0.2s;
+  }
+  .service-link:hover {
+    color: var(--color-accent-hover);
   }
 
-  /* ABOUT */
-  .about-section { background: #fff; padding: 80px 120px; }
-  .about-split {
-    display: flex;
-    gap: 40px;
-    width: 100%;
-  }
-  .about-left {
-    flex: 1;
-    min-height: 580px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-  }
-  .about-img-overlay {
+  .services-progress {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+    bottom: 40px;
+    left: 60px;
+    right: 60px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
   }
-  .stats-wrap {
-    position: relative;
-    z-index: 1;
-    padding: 40px;
+  .services-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent);
+    border-radius: 1px;
+    transition: width 0.05s linear;
+  }
+
+  /* Mobile services */
+  .services-mobile {
+    display: none;
+    padding: 120px 0;
+  }
+  .services-stack {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    padding: 0 24px;
   }
-  .stat { display: flex; flex-direction: column; }
-  .stat-num {
-    font-size: 80px;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: -3px;
-    line-height: 0.9;
+  .service-card-mobile {
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-elevated);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
-  .stat-label {
-    font-size: 11px;
+  .service-card-mobile h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
     font-weight: 700;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    color: var(--color-text);
   }
-  .about-right {
-    width: 400px;
+  .service-card-mobile p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  @media (min-width: 769px) {
+    .services-track { display: block; }
+    .services-mobile { display: none !important; }
+  }
+  @media (max-width: 768px) {
+    .services-track { display: none !important; }
+    .services-mobile { display: block; }
+  }
+
+  /* ========================================
+     ABOUT
+     ======================================== */
+  .about-section {
+    background: var(--color-bg);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(255,255,255,0.03) 49px, rgba(255,255,255,0.03) 50px),
+      repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(255,255,255,0.03) 49px, rgba(255,255,255,0.03) 50px);
+    pointer-events: none;
+  }
+
+  .about-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-split {
+    display: flex;
+    gap: 80px;
+    margin-top: 48px;
+  }
+
+  .about-left {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 32px;
-    padding: 16px 0;
   }
+
+  .about-left h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
   .about-desc {
+    font-family: var(--font-body);
     font-size: 18px;
-    color: #666;
+    color: var(--color-text-secondary);
     line-height: 1.6;
   }
+
   .tools-label {
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 700;
-    color: #FF3B30;
+    color: var(--color-accent);
     letter-spacing: 3px;
     text-transform: uppercase;
     display: block;
     margin-bottom: 14px;
   }
+
   .tools-row {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
   }
+
   .tool-pill {
+    font-family: var(--font-body);
     font-size: 13px;
     font-weight: 600;
-    color: #000;
+    color: var(--color-text);
     padding: 8px 16px;
-    border: 2px solid #000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
+    transition: border-color 0.2s;
   }
+  .tool-pill:hover {
+    border-color: var(--color-accent);
+  }
+
   .clients-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
   .clients-list span {
-    font-size: 16px;
+    font-family: var(--font-heading);
+    font-size: 18px;
     font-weight: 600;
-    color: #000;
+    color: var(--color-text-secondary);
   }
 
-  @media (max-width: 768px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .about-section { padding: 60px 24px; }
-    .about-split { flex-direction: column; }
-    .about-right { width: 100%; }
-  }
-
-  /* FAQ */
-  .faq-section { padding: 80px 72px; background: #fff; }
-  .faq-inner {
+  .about-right {
+    width: 340px;
+    flex-shrink: 0;
     display: flex;
-    gap: 48px;
+    flex-direction: column;
+    gap: 40px;
+    padding: 16px 0;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-num {
+    font-family: var(--font-heading);
+    font-size: 72px;
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -3px;
+    line-height: 0.9;
+  }
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ========================================
+     FAQ
+     ======================================== */
+  .faq-section {
+    background: var(--color-bg);
+    padding: 120px 0;
+  }
+
+  .faq-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    gap: 80px;
     align-items: flex-start;
   }
+
   .faq-left {
     width: 40%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
+    position: sticky;
+    top: 120px;
   }
-  .faq-left .section-heading {
-    font-size: 48px;
+
+  .faq-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 48px);
     font-weight: 800;
+    color: var(--color-text);
     letter-spacing: -1px;
-    line-height: 1.05;
+    line-height: 1.1;
   }
-  .faq-img {
-    height: 300px;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-  }
+
   .faq-right {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
-  .faq-divider {
-    height: 1px;
-    background: #E5E5E5;
-    width: 100%;
-  }
+
   .faq-item {
-    padding: 20px 0 20px 16px;
-    border-left: 2px solid transparent;
-    transition: border-color 0.15s;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 0;
+    transition: border-color 0.2s;
+  }
+  .faq-item:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   .faq-item[open] {
-    border-left-color: #000;
+    border-top-color: rgba(255, 255, 255, 0.15);
   }
+
   .faq-item summary {
+    font-family: var(--font-heading);
     font-size: 18px;
     font-weight: 600;
-    color: #000;
+    color: var(--color-text);
     cursor: pointer;
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
+    user-select: none;
   }
   .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after { content: '+'; font-size: 22px; font-weight: 300; color: #A1A1AA; }
-  .faq-item[open] summary::after { content: '−'; color: #000; }
-  .faq-item p {
-    font-size: 16px;
-    color: #666;
-    line-height: 1.5;
-    margin-top: 12px;
+  .faq-item summary::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .faq-item[open] summary::after {
+    content: '\2212';
+    color: var(--color-accent);
   }
 
-  /* FINAL CTA */
-  .final-cta {
-    min-height: 600px;
-    background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1920&q=80');
-    background-size: cover;
-    background-position: center;
+  .faq-item p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-top: 12px;
+    min-height: 1.6em;
+  }
+
+  .faq-item p.typing::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    animation: pulse-dot 1s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ========================================
+     CTA
+     ======================================== */
+  .cta-section {
+    min-height: 100vh;
+    background: var(--color-bg);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
-  .final-cta::before {
-    content: '';
+
+  .cta-bg {
     position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      var(--color-bg),
+      var(--color-surface-elevated),
+      var(--color-bg)
+    );
+    animation: rotate-slow 30s linear infinite;
+    opacity: 0.5;
   }
+
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
   .cta-content {
     position: relative;
     z-index: 1;
@@ -564,39 +1266,138 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     gap: 32px;
     text-align: center;
-    padding: 0 120px;
+    padding: 0 40px;
+    max-width: 900px;
   }
+
   .cta-heading {
-    font-size: 64px;
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 6vw, 64px);
     font-weight: 800;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: -1px;
     line-height: 1.05;
-    max-width: 800px;
   }
+
   .cta-sub {
+    font-family: var(--font-body);
     font-size: 20px;
-    color: #ccc;
+    color: var(--color-text-secondary);
     line-height: 1.6;
     max-width: 640px;
   }
+
   .cta-buttons {
     display: flex;
     gap: 16px;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
   .cta-btn {
     font-size: 18px;
     padding: 20px 48px;
   }
 
+  .cta-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px var(--color-accent-glow), 0 0 60px rgba(255, 59, 48, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px var(--color-accent-glow), 0 0 80px rgba(255, 59, 48, 0.2);
+    }
+  }
+
+  /* CTA word spans */
+  .cta-heading :global(span),
+  .faq-heading :global(span) {
+    display: inline-block;
+  }
+
+  /* ========================================
+     RESPONSIVE
+     ======================================== */
   @media (max-width: 768px) {
-    .faq-section { padding: 60px 24px; }
-    .faq-inner { flex-direction: column; }
-    .faq-left { width: 100%; }
-    .cta-content { padding: 0 24px; }
-    .cta-heading { font-size: 40px; }
-    .cta-buttons { flex-direction: column; width: 100%; }
-    .cta-btn { width: 100%; justify-content: center; }
+    .hero-content {
+      padding: 0 24px;
+    }
+
+    .hero-glow {
+      display: none;
+    }
+
+    .section-inner {
+      padding: 0 24px;
+    }
+
+    .cards-row {
+      grid-template-columns: 1fr;
+    }
+
+    .pain-card {
+      height: 300px;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .hero-ctas a {
+      justify-content: center;
+    }
+
+    .about-split {
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .about-right {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .stat {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .stat-num {
+      font-size: 48px;
+    }
+
+    .faq-inner {
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 24px;
+    }
+
+    .faq-left {
+      width: 100%;
+      position: static;
+    }
+
+    .cta-content {
+      padding: 0 24px;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+    .cta-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .services-mobile .services-header {
+      padding: 0 24px 32px;
+    }
   }
 </style>
