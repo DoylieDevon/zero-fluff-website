@@ -3,7 +3,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="site-header" id="site-header">
-  <a href="/" class="logo">Zero Fluff</a>
+  <a href="/" class="logo"><img src="/images/logo-horizontal-white.svg" alt="Zero Fluff" class="logo-img" /></a>
   <nav class="nav-links">
     <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>Home</a>
     <a href="/services" class:list={['nav-link', { active: currentPath.startsWith('/services') }]}>Services</a>
@@ -54,12 +54,15 @@ const currentPath = Astro.url.pathname;
 
   /* Logo */
   .logo {
-    font-family: 'Space Grotesk Variable', sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    color: #fff;
     text-decoration: none;
+    display: flex;
+    align-items: center;
     animation: logo-wiggle 0.6s ease forwards;
+  }
+
+  .logo-img {
+    height: 32px;
+    width: auto;
   }
 
   @keyframes logo-wiggle {

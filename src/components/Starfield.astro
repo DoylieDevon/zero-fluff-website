@@ -95,18 +95,33 @@
   }
 
   function randomStarColor() {
-    const roll = Math.random();
-    if (roll < 0.35) return { r: 255, g: 255, b: 255 };          // pure white
-    if (roll < 0.48) return { r: 220, g: 235, b: 255 };          // ice blue
-    if (roll < 0.58) return { r: 180, g: 200, b: 255 };          // deeper blue
-    if (roll < 0.66) return { r: 255, g: 245, b: 220 };          // warm cream
-    if (roll < 0.73) return { r: 255, g: 220, b: 180 };          // pale gold
-    if (roll < 0.79) return { r: 255, g: 200, b: 200 };          // soft pink
-    if (roll < 0.84) return { r: 255, g: 170, b: 160 };          // salmon (brand red hint)
-    if (roll < 0.89) return { r: 170, g: 240, b: 255 };          // cyan (brand)
-    if (roll < 0.93) return { r: 200, g: 255, b: 220 };          // pale green
-    if (roll < 0.96) return { r: 240, g: 200, b: 255 };          // soft lavender
-    return { r: 255, g: 255, b: 200 };                            // pale yellow
+    const colors = [
+      { r: 255, g: 255, b: 255 },   // pure white
+      { r: 255, g: 255, b: 255 },   // pure white (weighted)
+      { r: 220, g: 235, b: 255 },   // ice blue
+      { r: 180, g: 200, b: 255 },   // deeper blue
+      { r: 140, g: 170, b: 255 },   // vivid blue
+      { r: 255, g: 245, b: 220 },   // warm cream
+      { r: 255, g: 240, b: 200 },   // cream
+      { r: 255, g: 230, b: 170 },   // buttercream
+      { r: 255, g: 220, b: 100 },   // golden yellow
+      { r: 255, g: 255, b: 130 },   // bright yellow
+      { r: 255, g: 200, b: 60 },    // amber yellow
+      { r: 255, g: 180, b: 50 },    // deep gold
+      { r: 255, g: 120, b: 100 },   // warm red
+      { r: 255, g: 90, b: 80 },     // bright red
+      { r: 255, g: 60, b: 50 },     // vivid red (brand)
+      { r: 255, g: 150, b: 130 },   // salmon pink
+      { r: 255, g: 200, b: 200 },   // soft pink
+      { r: 170, g: 240, b: 255 },   // cyan (brand)
+      { r: 130, g: 220, b: 255 },   // deeper cyan
+      { r: 200, g: 255, b: 220 },   // pale green
+      { r: 240, g: 200, b: 255 },   // soft lavender
+      { r: 220, g: 170, b: 255 },   // purple
+      { r: 255, g: 200, b: 150 },   // peach
+      { r: 255, g: 170, b: 100 },   // orange
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 
   /* ── suns ────────────────────────────────────────────── */
