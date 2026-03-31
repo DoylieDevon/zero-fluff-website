@@ -1,0 +1,150 @@
+---
+/**
+ * Decorative floating geometric shapes for background ambiance.
+ * Place inside a section with position: relative and overflow: hidden.
+ */
+---
+
+<div class="floating-shapes" aria-hidden="true">
+  <!-- Hollow triangles -->
+  <svg class="shape shape-1" viewBox="0 0 60 60" fill="none" stroke="var(--color-accent)" stroke-width="1.5">
+    <polygon points="30,5 55,50 5,50" />
+  </svg>
+  <svg class="shape shape-2" viewBox="0 0 40 40" fill="none" stroke="var(--color-cyan)" stroke-width="1">
+    <polygon points="20,3 37,34 3,34" />
+  </svg>
+
+  <!-- Hollow circles -->
+  <svg class="shape shape-3" viewBox="0 0 50 50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+    <circle cx="25" cy="25" r="23" />
+  </svg>
+  <svg class="shape shape-4" viewBox="0 0 30 30" fill="none" stroke="var(--color-accent)" stroke-width="1">
+    <circle cx="15" cy="15" r="13" />
+  </svg>
+
+  <!-- Diagonal lines -->
+  <svg class="shape shape-5" viewBox="0 0 60 60" fill="none" stroke="var(--color-cyan)" stroke-width="1">
+    <line x1="0" y1="60" x2="60" y2="0" />
+  </svg>
+  <svg class="shape shape-6" viewBox="0 0 40 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5">
+    <line x1="0" y1="40" x2="40" y2="0" />
+  </svg>
+
+  <!-- More shapes for density -->
+  <svg class="shape shape-7" viewBox="0 0 50 50" fill="none" stroke="var(--color-cyan)" stroke-width="1">
+    <polygon points="25,2 48,42 2,42" />
+  </svg>
+  <svg class="shape shape-8" viewBox="0 0 70 70" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1">
+    <circle cx="35" cy="35" r="33" />
+  </svg>
+  <svg class="shape shape-9" viewBox="0 0 45 45" fill="none" stroke="var(--color-accent)" stroke-width="1">
+    <line x1="5" y1="40" x2="40" y2="5" />
+  </svg>
+  <svg class="shape shape-10" viewBox="0 0 35 35" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1">
+    <polygon points="17,2 33,28 2,28" />
+  </svg>
+</div>
+
+<style>
+  .floating-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .shape {
+    position: absolute;
+    opacity: 0.08;
+  }
+
+  .shape-1 {
+    width: 60px;
+    top: 10%;
+    left: 5%;
+    animation: float 12s ease-in-out infinite;
+    opacity: 0.1;
+  }
+
+  .shape-2 {
+    width: 40px;
+    top: 60%;
+    right: 8%;
+    animation: float-reverse 15s ease-in-out infinite;
+    animation-delay: -3s;
+    opacity: 0.07;
+  }
+
+  .shape-3 {
+    width: 50px;
+    top: 25%;
+    right: 15%;
+    animation: float 18s ease-in-out infinite;
+    animation-delay: -7s;
+    opacity: 0.06;
+  }
+
+  .shape-4 {
+    width: 30px;
+    bottom: 20%;
+    left: 12%;
+    animation: float-reverse 10s ease-in-out infinite;
+    animation-delay: -2s;
+    opacity: 0.1;
+  }
+
+  .shape-5 {
+    width: 60px;
+    top: 45%;
+    left: 30%;
+    animation: float 20s ease-in-out infinite;
+    animation-delay: -10s;
+    opacity: 0.05;
+  }
+
+  .shape-6 {
+    width: 40px;
+    bottom: 35%;
+    right: 25%;
+    animation: float-reverse 14s ease-in-out infinite;
+    animation-delay: -5s;
+    opacity: 0.06;
+  }
+
+  .shape-7 {
+    width: 50px;
+    top: 75%;
+    left: 55%;
+    animation: float 16s ease-in-out infinite;
+    animation-delay: -8s;
+    opacity: 0.05;
+  }
+
+  .shape-8 {
+    width: 70px;
+    top: 5%;
+    right: 40%;
+    animation: float-reverse 22s ease-in-out infinite;
+    animation-delay: -12s;
+    opacity: 0.04;
+  }
+
+  .shape-9 {
+    width: 45px;
+    bottom: 10%;
+    right: 50%;
+    animation: float 13s ease-in-out infinite;
+    animation-delay: -4s;
+    opacity: 0.07;
+  }
+
+  .shape-10 {
+    width: 35px;
+    top: 50%;
+    left: 75%;
+    animation: float-reverse 17s ease-in-out infinite;
+    animation-delay: -9s;
+    opacity: 0.06;
+  }
+</style>
