@@ -25,7 +25,7 @@
   const canvas = document.getElementById('starfield-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let W, H;
+  let W, H, docH;
   let stars = [];
   let suns = [];
   let shootingStars = [];
@@ -35,7 +35,9 @@
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = window.innerWidth;
-    H = document.documentElement.scrollHeight;
+    H = window.innerHeight;
+    docH = Math.max(document.documentElement.scrollHeight, H);
+    // Canvas only needs to be viewport-sized (it's position:fixed)
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + 'px';
@@ -47,7 +49,8 @@
 
   /* ── stars ───────────────────────────────────────────── */
   function createStars() {
-    const count = Math.floor((W * H) / 4500); // more stars
+    // Use full document height for star distribution
+    const count = Math.floor((W * docH) / 4500);
     stars = [];
     for (let i = 0; i < count; i++) {
       const sizeRoll = Math.random();
@@ -76,7 +79,7 @@
 
       stars.push({
         x: Math.random() * W,
-        y: Math.random() * H,
+        y: Math.random() * docH,
         r: r,
         baseAlpha: Math.random() * 0.5 + 0.2,
         phase: Math.random() * Math.PI * 2,
@@ -113,7 +116,7 @@
     for (let i = 0; i < count; i++) {
       suns.push({
         x: Math.random() * W * 0.8 + W * 0.1,
-        y: (H / (count + 1)) * (i + 1) + (Math.random() - 0.5) * 200,
+        y: (docH / (count + 1)) * (i + 1) + (Math.random() - 0.5) * 200,
         baseR: Math.random() * 2 + 1.5,
         rayLength: Math.random() * 30 + 20,
         numRays: Math.floor(Math.random() * 4) + 6,
@@ -132,8 +135,10 @@
     if (shootingStars.length >= 2) return;
     if (Math.random() > 0.003) return;
 
+    const scrollY = window.scrollY || 0;
+    // Spawn shooting stars near current viewport
     const startX = Math.random() * W * 0.8 + W * 0.1;
-    const startY = Math.random() * H * 0.6;
+    const startY = scrollY + Math.random() * H * 0.6;
     const angle = Math.random() * 0.6 + 0.3;
     const speed = Math.random() * 8 + 6;
     const life = Math.random() * 50 + 35;
@@ -157,7 +162,7 @@
 
     const scrollY = window.scrollY || 0;
     const viewTop = scrollY;
-    const viewBottom = scrollY + window.innerHeight;
+    const viewBottom = scrollY + H;
 
     /* stars */
     for (let i = 0; i < stars.length; i++) {
@@ -250,11 +255,10 @@
       // Keep trail max ~40 points
       if (ss.trail.length > 40) ss.trail.shift();
 
-      if (ss.life <= 0 || ss.x > W + 50 || ss.y > H + 50) {
+      if (ss.life <= 0 || ss.x > W + 50 || ss.y > docH + 50) {
         // Let trail fade out after head dies
         if (ss.trail.length > 0 && ss.life > -30) {
           ss.life--;
-          // Don't move head anymore, just let trail shrink
           if (ss.life <= 0) ss.trail.shift();
         }
         if (ss.trail.length <= 1 || ss.life <= -30) {
@@ -264,7 +268,7 @@
       }
 
       const headDrawY = ss.y - scrollY;
-      if (headDrawY < -150 || headDrawY > window.innerHeight + 150) continue;
+      if (headDrawY < -150 || headDrawY > H + 150) continue;
 
       const progress = 1 - Math.max(0, ss.life) / ss.maxLife;
       const headAlpha = ss.life > 0
