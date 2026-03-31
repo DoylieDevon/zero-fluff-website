@@ -11,8 +11,7 @@ import ContactForm from '../components/ContactForm.astro';
 >
 
   <!-- HERO -->
-  <section class="contact-hero" style="background-image: url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1920&q=80')">
-    <div class="contact-hero-overlay"></div>
+  <section class="contact-hero">
     <div class="contact-hero-content">
       <h1>Let's have a<br>conversation</h1>
       <p>No sales pitch. No jargon. Just a straight talk about what AI can do for your business.</p>
@@ -68,18 +67,11 @@ import ContactForm from '../components/ContactForm.astro';
   /* HERO */
   .contact-hero {
     min-height: 480px;
-    background-size: cover;
-    background-position: center;
+    background: var(--color-surface);
     position: relative;
     display: flex;
     align-items: flex-end;
     padding-bottom: 80px;
-  }
-
-  .contact-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.70);
   }
 
   .contact-hero-content {
@@ -95,20 +87,20 @@ import ContactForm from '../components/ContactForm.astro';
   .contact-hero-content h1 {
     font-size: 56px;
     font-weight: 800;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: -1.5px;
     line-height: 1.05;
   }
 
   .contact-hero-content p {
     font-size: 20px;
-    color: #ccc;
+    color: var(--color-text-secondary);
     line-height: 1.5;
   }
 
   /* BODY */
   .contact-body {
-    background: #fff;
+    background: var(--color-bg);
     padding: 80px;
   }
 
@@ -139,7 +131,7 @@ import ContactForm from '../components/ContactForm.astro';
   .contact-form-col h2 {
     font-size: 36px;
     font-weight: 800;
-    color: #000;
+    color: var(--color-text);
     letter-spacing: -0.5px;
     line-height: 1.1;
     margin-top: -8px;
@@ -147,7 +139,7 @@ import ContactForm from '../components/ContactForm.astro';
 
   /* INFO CARD */
   .contact-info-card {
-    background: #000;
+    background: var(--color-surface);
     padding: 48px;
     display: flex;
     flex-direction: column;

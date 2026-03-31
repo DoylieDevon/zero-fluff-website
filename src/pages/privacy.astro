@@ -115,7 +115,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 16px;
     color: #666;
   }
-  .privacy-content { background: #fff; padding: 60px 24px; }
+  .privacy-content { background: var(--color-bg); padding: 60px 24px; }
   .privacy-inner {
     max-width: 800px;
     margin: 0 auto;
@@ -123,19 +123,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .privacy-inner h2 {
     font-size: 24px;
     font-weight: 700;
-    color: #000;
+    color: var(--color-text);
     margin: 40px 0 16px;
   }
   .privacy-inner h3 {
     font-size: 18px;
     font-weight: 700;
-    color: #000;
+    color: var(--color-text);
     margin: 24px 0 12px;
   }
   .privacy-inner p, .privacy-inner li {
     font-size: 16px;
-    color: #444;
+    color: var(--color-text-secondary);
     line-height: 1.7;
+  }
+  .privacy-inner a {
+    color: var(--color-accent);
   }
   .privacy-inner ul {
     padding-left: 20px;

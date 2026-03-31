@@ -6,8 +6,7 @@ export const prerender = true;
 <BaseLayout title="Services — Zero Fluff" description="Practical AI implementation services for small businesses. No jargon, no fluff.">
 
   <!-- HERO -->
-  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80')">
-    <div class="page-hero-overlay"></div>
+  <section class="page-hero">
     <div class="page-hero-content">
       <h1>Practical AI solutions,<br>not buzzwords</h1>
       <p>Real implementations that save you time and money, not slide decks about the future of AI.</p>
@@ -17,7 +16,7 @@ export const prerender = true;
   <!-- SERVICES DETAIL -->
   <section class="services-detail">
     <article class="service-row">
-      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1717307908098-cec3253b45a6?w=800&q=80')"></div>
+      <div class="service-img service-img-1"></div>
       <div class="service-text">
         <span class="service-tag-label">2 HOURS</span>
         <h2>AI Quick Start</h2>
@@ -33,7 +32,7 @@ export const prerender = true;
     </article>
 
     <article class="service-row service-row-reverse">
-      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1703835916583-4be209949d72?w=800&q=80')"></div>
+      <div class="service-img service-img-2"></div>
       <div class="service-text">
         <span class="service-tag-label">HANDS-ON</span>
         <h2>Automation Setup</h2>
@@ -49,7 +48,7 @@ export const prerender = true;
     </article>
 
     <article class="service-row">
-      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1632923945657-ccd98efe59e3?w=800&q=80')"></div>
+      <div class="service-img service-img-3"></div>
       <div class="service-text">
         <span class="service-tag-label">MONTHLY</span>
         <h2>Ongoing AI Support</h2>
@@ -65,7 +64,7 @@ export const prerender = true;
     </article>
 
     <article class="service-row service-row-reverse">
-      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1729551610680-c6ea05b08937?w=800&q=80')"></div>
+      <div class="service-img service-img-4"></div>
       <div class="service-text">
         <span class="service-tag-label">STRATEGIC</span>
         <h2>Bigger Projects</h2>
@@ -96,17 +95,11 @@ export const prerender = true;
   /* PAGE HERO */
   .page-hero {
     min-height: 500px;
-    background-size: cover;
-    background-position: center;
+    background: var(--color-surface);
     position: relative;
     display: flex;
     align-items: flex-end;
     padding-bottom: 80px;
-  }
-  .page-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
   }
   .page-hero-content {
     position: relative;
@@ -120,13 +113,13 @@ export const prerender = true;
   .page-hero-content h1 {
     font-size: 56px;
     font-weight: 800;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: -1.5px;
     line-height: 1.05;
   }
   .page-hero-content p {
     font-size: 20px;
-    color: #ccc;
+    color: var(--color-text-secondary);
     line-height: 1.5;
   }
 
@@ -135,11 +128,12 @@ export const prerender = true;
     padding: 0 80px;
     display: flex;
     flex-direction: column;
+    background: var(--color-bg);
   }
   .service-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid #E4E4E7;
+    border-bottom: 1px solid var(--color-border);
     padding: 60px 0;
   }
   .service-row:first-child { padding-top: 60px; }
@@ -147,9 +141,11 @@ export const prerender = true;
   .service-row-reverse .service-text { order: 1; }
   .service-img {
     height: 400px;
-    background-size: cover;
-    background-position: center;
   }
+  .service-img-1 { background: linear-gradient(135deg, #1a0533, #0a1628); }
+  .service-img-2 { background: linear-gradient(135deg, #2d1408, #1a0a0a); }
+  .service-img-3 { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
+  .service-img-4 { background: linear-gradient(135deg, #0a1628, #1a0533); }
   .service-text {
     padding: 0 60px;
     display: flex;
@@ -167,12 +163,12 @@ export const prerender = true;
   .service-text h2 {
     font-size: 36px;
     font-weight: 800;
-    color: #000;
+    color: var(--color-text);
     letter-spacing: -0.5px;
   }
   .service-text > p {
     font-size: 18px;
-    color: #444;
+    color: var(--color-text-secondary);
     line-height: 1.6;
   }
   .service-text ul {
@@ -185,7 +181,7 @@ export const prerender = true;
   }
   .service-text li {
     font-size: 16px;
-    color: #444;
+    color: var(--color-text-secondary);
     padding-left: 20px;
     position: relative;
   }

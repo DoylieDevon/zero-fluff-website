@@ -6,8 +6,7 @@ export const prerender = true;
 <BaseLayout title="About — Zero Fluff" description="The person behind Zero Fluff. 30+ years of digital product experience.">
 
   <!-- HERO -->
-  <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1521791055366-0d553872952f?w=1920&q=80')">
-    <div class="page-hero-overlay"></div>
+  <section class="page-hero">
     <div class="page-hero-content">
       <h1>The person behind<br>Zero Fluff</h1>
       <p>30 years of building digital products. Now helping small businesses get AI working for them.</p>
@@ -15,7 +14,7 @@ export const prerender = true;
   </section>
 
   <!-- STORY SPLIT -->
-  <section class="story-section">
+  <section class="story-section reveal">
     <div class="story-inner">
       <div class="story-text">
         <p class="section-label">01 — THE STORY</p>
@@ -38,27 +37,25 @@ export const prerender = true;
           </div>
         </div>
       </div>
-      <div class="story-portrait" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=80')">
-        <div class="portrait-overlay"></div>
-      </div>
+      <div class="story-portrait"></div>
     </div>
   </section>
 
   <!-- PHOTO STRIP -->
-  <section class="photo-strip">
-    <div class="strip-card" style="background-image: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80')">
+  <section class="photo-strip reveal">
+    <div class="strip-card strip-card-1">
       <div class="strip-overlay">
         <h3>No Fluff</h3>
         <p>Direct, honest advice about what AI can and can't do for your business</p>
       </div>
     </div>
-    <div class="strip-card" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80')">
+    <div class="strip-card strip-card-2">
       <div class="strip-overlay">
         <h3>Precision</h3>
         <p>Targeted solutions that solve specific problems, not generic AI advice</p>
       </div>
     </div>
-    <div class="strip-card" style="background-image: url('https://images.unsplash.com/photo-1553484771-047a44eee27b?w=600&q=80')">
+    <div class="strip-card strip-card-3">
       <div class="strip-overlay">
         <h3>Results</h3>
         <p>Measurable outcomes — hours saved, costs reduced, capacity freed up</p>
@@ -67,7 +64,7 @@ export const prerender = true;
   </section>
 
   <!-- STATS BAR -->
-  <section class="stats-bar">
+  <section class="stats-bar reveal">
     <div class="stats-inner">
       <div class="stat-item">
         <span class="stat-big">30+</span>
@@ -92,7 +89,7 @@ export const prerender = true;
   </section>
 
   <!-- TOOLS + PREVIOUS WORK -->
-  <section class="tools-section">
+  <section class="tools-section reveal">
     <div class="tools-inner">
       <div class="tools-col">
         <span class="tools-heading">TOOLS I USE</span>
@@ -134,17 +131,11 @@ export const prerender = true;
   /* PAGE HERO */
   .page-hero {
     min-height: 500px;
-    background-size: cover;
-    background-position: center;
+    background: var(--color-surface);
     position: relative;
     display: flex;
     align-items: flex-end;
     padding-bottom: 80px;
-  }
-  .page-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
   }
   .page-hero-content {
     position: relative;
@@ -158,18 +149,18 @@ export const prerender = true;
   .page-hero-content h1 {
     font-size: 56px;
     font-weight: 800;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: -1.5px;
     line-height: 1.05;
   }
   .page-hero-content p {
     font-size: 20px;
-    color: #ccc;
+    color: var(--color-text-secondary);
     line-height: 1.5;
   }
 
   /* STORY */
-  .story-section { padding: 80px 80px; }
+  .story-section { padding: 80px 80px; background: var(--color-bg); }
   .story-inner {
     display: flex;
     gap: 60px;
@@ -191,13 +182,13 @@ export const prerender = true;
   .story-text h2 {
     font-size: 48px;
     font-weight: 800;
-    color: #000;
+    color: var(--color-text);
     letter-spacing: -1px;
     line-height: 1.05;
   }
   .story-text > p {
     font-size: 18px;
-    color: #444;
+    color: var(--color-text-secondary);
     line-height: 1.7;
   }
   .story-values {
@@ -214,25 +205,19 @@ export const prerender = true;
   .value-title {
     font-size: 16px;
     font-weight: 700;
-    color: #000;
+    color: var(--color-text);
     min-width: 100px;
   }
   .value-desc {
     font-size: 16px;
-    color: #666;
+    color: var(--color-text-muted);
   }
   .story-portrait {
     width: 480px;
     height: 580px;
     flex-shrink: 0;
-    background-size: cover;
-    background-position: center;
+    background: var(--color-surface-elevated);
     position: relative;
-  }
-  .portrait-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.1);
   }
 
   /* PHOTO STRIP */
@@ -242,13 +227,14 @@ export const prerender = true;
   }
   .strip-card {
     height: 420px;
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
   }
+  .strip-card-1 { background: linear-gradient(135deg, #1a0a0a, #2d1408); }
+  .strip-card-2 { background: linear-gradient(135deg, #0a1628, #1a0533); }
+  .strip-card-3 { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
   .strip-overlay {
     padding: 24px 28px;
     background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
@@ -305,7 +291,7 @@ export const prerender = true;
   }
 
   /* TOOLS */
-  .tools-section { padding: 80px 80px; }
+  .tools-section { padding: 80px 80px; background: var(--color-bg); }
   .tools-inner {
     display: flex;
     gap: 80px;
@@ -332,9 +318,9 @@ export const prerender = true;
   .tool-pill {
     font-size: 13px;
     font-weight: 600;
-    color: #000;
+    color: var(--color-text);
     padding: 8px 16px;
-    border: 2px solid #000;
+    border: 2px solid var(--color-text-muted);
     border-radius: 20px;
   }
   .clients-grid {
@@ -345,7 +331,7 @@ export const prerender = true;
   .clients-grid span {
     font-size: 18px;
     font-weight: 600;
-    color: #000;
+    color: var(--color-text-secondary);
   }
 
   /* CTA */
