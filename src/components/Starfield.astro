@@ -1,6 +1,6 @@
 ---
 /**
- * Starfield — twinkling stars, subtle suns with rays, and shooting stars.
+ * Starfield — twinkling stars, subtle suns with rays, and shooting stars with trails.
  * Full-page fixed canvas behind all content. Respects prefers-reduced-motion.
  */
 ---
@@ -47,18 +47,45 @@
 
   /* ── stars ───────────────────────────────────────────── */
   function createStars() {
-    const count = Math.floor((W * H) / 6000);
+    const count = Math.floor((W * H) / 4500); // more stars
     stars = [];
     for (let i = 0; i < count; i++) {
+      const sizeRoll = Math.random();
+      let r;
+      if (sizeRoll < 0.45) r = Math.random() * 0.6 + 0.2;       // tiny pinpricks
+      else if (sizeRoll < 0.75) r = Math.random() * 0.8 + 0.6;   // small
+      else if (sizeRoll < 0.92) r = Math.random() * 1.0 + 1.0;   // medium
+      else r = Math.random() * 1.5 + 1.8;                         // big bright ones
+
+      // More stars twinkle dramatically
+      const twinkleRoll = Math.random();
+      let twinkleAmp, twinkleSpeed;
+      if (twinkleRoll < 0.2) {
+        // Rapid sparklers — very noticeable twinkle
+        twinkleAmp = Math.random() * 0.5 + 0.6;
+        twinkleSpeed = Math.random() * 4 + 3;
+      } else if (twinkleRoll < 0.5) {
+        // Moderate twinklers
+        twinkleAmp = Math.random() * 0.4 + 0.3;
+        twinkleSpeed = Math.random() * 2.5 + 1.5;
+      } else {
+        // Gentle shimmer
+        twinkleAmp = Math.random() * 0.25 + 0.05;
+        twinkleSpeed = Math.random() * 1.5 + 0.5;
+      }
+
       stars.push({
         x: Math.random() * W,
         y: Math.random() * H,
-        r: Math.random() * 1.4 + 0.3,
-        baseAlpha: Math.random() * 0.5 + 0.15,
+        r: r,
+        baseAlpha: Math.random() * 0.5 + 0.2,
         phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 1.5 + 0.5,
-        // Some stars twinkle more dramatically
-        twinkleAmp: Math.random() < 0.15 ? 0.8 : Math.random() * 0.4 + 0.1,
+        // Second sine wave for more organic twinkle
+        phase2: Math.random() * Math.PI * 2,
+        speed: twinkleSpeed,
+        speed2: twinkleSpeed * (Math.random() * 0.7 + 0.3),
+        twinkleAmp: twinkleAmp,
+        twinkleAmp2: twinkleAmp * (Math.random() * 0.5 + 0.2),
         color: randomStarColor(),
       });
     }
@@ -66,16 +93,21 @@
 
   function randomStarColor() {
     const roll = Math.random();
-    if (roll < 0.6) return { r: 255, g: 255, b: 255 };         // white
-    if (roll < 0.75) return { r: 200, g: 220, b: 255 };        // blue-white
-    if (roll < 0.85) return { r: 255, g: 230, b: 200 };        // warm white
-    if (roll < 0.92) return { r: 255, g: 180, b: 180 };        // reddish (brand)
-    return { r: 180, g: 240, b: 255 };                          // cyan-ish (brand)
+    if (roll < 0.35) return { r: 255, g: 255, b: 255 };          // pure white
+    if (roll < 0.48) return { r: 220, g: 235, b: 255 };          // ice blue
+    if (roll < 0.58) return { r: 180, g: 200, b: 255 };          // deeper blue
+    if (roll < 0.66) return { r: 255, g: 245, b: 220 };          // warm cream
+    if (roll < 0.73) return { r: 255, g: 220, b: 180 };          // pale gold
+    if (roll < 0.79) return { r: 255, g: 200, b: 200 };          // soft pink
+    if (roll < 0.84) return { r: 255, g: 170, b: 160 };          // salmon (brand red hint)
+    if (roll < 0.89) return { r: 170, g: 240, b: 255 };          // cyan (brand)
+    if (roll < 0.93) return { r: 200, g: 255, b: 220 };          // pale green
+    if (roll < 0.96) return { r: 240, g: 200, b: 255 };          // soft lavender
+    return { r: 255, g: 255, b: 200 };                            // pale yellow
   }
 
   /* ── suns ────────────────────────────────────────────── */
   function createSuns() {
-    // 2-4 suns scattered down the page
     const count = Math.floor(Math.random() * 3) + 2;
     suns = [];
     for (let i = 0; i < count; i++) {
@@ -89,8 +121,8 @@
         rotSpeed: (Math.random() - 0.5) * 0.3,
         pulseSpeed: Math.random() * 0.8 + 0.3,
         color: Math.random() < 0.5
-          ? { r: 255, g: 200, b: 150 }   // warm gold
-          : { r: 200, g: 230, b: 255 },  // cool blue
+          ? { r: 255, g: 200, b: 150 }
+          : { r: 200, g: 230, b: 255 },
       });
     }
   }
@@ -98,13 +130,13 @@
   /* ── shooting stars ─────────────────────────────────── */
   function maybeSpawnShootingStar() {
     if (shootingStars.length >= 2) return;
-    if (Math.random() > 0.003) return; // ~every 5-6 seconds on average
+    if (Math.random() > 0.003) return;
 
     const startX = Math.random() * W * 0.8 + W * 0.1;
     const startY = Math.random() * H * 0.6;
-    const angle = Math.random() * 0.6 + 0.3; // 17° - 52° downward
+    const angle = Math.random() * 0.6 + 0.3;
     const speed = Math.random() * 8 + 6;
-    const life = Math.random() * 40 + 30;
+    const life = Math.random() * 50 + 35;
 
     shootingStars.push({
       x: startX,
@@ -113,17 +145,16 @@
       vy: Math.sin(angle) * speed,
       life: life,
       maxLife: life,
-      length: Math.random() * 60 + 40,
+      trail: [], // position history for fading trail
     });
   }
 
   /* ── draw loop ──────────────────────────────────────── */
   let t = 0;
   function draw() {
-    t += 0.016; // ~60fps timestep
+    t += 0.016;
     ctx.clearRect(0, 0, W, H);
 
-    // Offset for scroll — canvas is fixed but sized to doc height
     const scrollY = window.scrollY || 0;
     const viewTop = scrollY;
     const viewBottom = scrollY + window.innerHeight;
@@ -131,23 +162,39 @@
     /* stars */
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
-      // Only draw stars in viewport + margin
       if (s.y < viewTop - 20 || s.y > viewBottom + 20) continue;
 
-      const flicker = Math.sin(t * s.speed + s.phase) * s.twinkleAmp;
-      const alpha = Math.max(0, Math.min(1, s.baseAlpha + flicker));
+      // Dual-sine twinkle for more organic sparkle
+      const flicker1 = Math.sin(t * s.speed + s.phase) * s.twinkleAmp;
+      const flicker2 = Math.sin(t * s.speed2 + s.phase2) * s.twinkleAmp2;
+      const alpha = Math.max(0, Math.min(1, s.baseAlpha + flicker1 + flicker2));
+
+      const drawY = s.y - scrollY;
 
       ctx.beginPath();
-      ctx.arc(s.x, s.y - scrollY, s.r, 0, Math.PI * 2);
+      ctx.arc(s.x, drawY, s.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${s.color.r},${s.color.g},${s.color.b},${alpha})`;
       ctx.fill();
 
-      // Bright stars get a subtle glow
-      if (alpha > 0.6 && s.r > 1) {
+      // Bigger/brighter stars get a glow halo
+      if (alpha > 0.55 && s.r > 0.8) {
         ctx.beginPath();
-        ctx.arc(s.x, s.y - scrollY, s.r * 3, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${s.color.r},${s.color.g},${s.color.b},${alpha * 0.12})`;
+        ctx.arc(s.x, drawY, s.r * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.color.r},${s.color.g},${s.color.b},${alpha * 0.1})`;
         ctx.fill();
+      }
+
+      // The biggest stars get a cross-sparkle when bright
+      if (alpha > 0.7 && s.r > 1.5) {
+        const sparkLen = s.r * 5 * alpha;
+        ctx.strokeStyle = `rgba(${s.color.r},${s.color.g},${s.color.b},${alpha * 0.15})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(s.x - sparkLen, drawY);
+        ctx.lineTo(s.x + sparkLen, drawY);
+        ctx.moveTo(s.x, drawY - sparkLen);
+        ctx.lineTo(s.x, drawY + sparkLen);
+        ctx.stroke();
       }
     }
 
@@ -160,7 +207,6 @@
       const pulse = 0.6 + Math.sin(t * sun.pulseSpeed + sun.phase) * 0.4;
       const rot = t * sun.rotSpeed + sun.phase;
 
-      // Core glow
       const grad = ctx.createRadialGradient(sun.x, drawY, 0, sun.x, drawY, sun.baseR * 8);
       grad.addColorStop(0, `rgba(${sun.color.r},${sun.color.g},${sun.color.b},${0.25 * pulse})`);
       grad.addColorStop(0.4, `rgba(${sun.color.r},${sun.color.g},${sun.color.b},${0.08 * pulse})`);
@@ -170,13 +216,11 @@
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Core dot
       ctx.beginPath();
       ctx.arc(sun.x, drawY, sun.baseR, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${sun.color.r},${sun.color.g},${sun.color.b},${0.7 * pulse})`;
       ctx.fill();
 
-      // Rays
       ctx.save();
       ctx.translate(sun.x, drawY);
       ctx.rotate(rot);
@@ -185,9 +229,7 @@
         const rayLen = sun.rayLength * pulse * (0.7 + Math.sin(t * 2 + r) * 0.3);
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        const ex = Math.cos(angle) * rayLen;
-        const ey = Math.sin(angle) * rayLen;
-        ctx.lineTo(ex, ey);
+        ctx.lineTo(Math.cos(angle) * rayLen, Math.sin(angle) * rayLen);
         ctx.strokeStyle = `rgba(${sun.color.r},${sun.color.g},${sun.color.b},${0.08 * pulse})`;
         ctx.lineWidth = 1;
         ctx.stroke();
@@ -195,7 +237,7 @@
       ctx.restore();
     }
 
-    /* shooting stars */
+    /* shooting stars with fading trail */
     maybeSpawnShootingStar();
     for (let i = shootingStars.length - 1; i >= 0; i--) {
       const ss = shootingStars[i];
@@ -203,41 +245,79 @@
       ss.y += ss.vy;
       ss.life--;
 
+      // Store trail position
+      ss.trail.push({ x: ss.x, y: ss.y });
+      // Keep trail max ~40 points
+      if (ss.trail.length > 40) ss.trail.shift();
+
       if (ss.life <= 0 || ss.x > W + 50 || ss.y > H + 50) {
-        shootingStars.splice(i, 1);
-        continue;
+        // Let trail fade out after head dies
+        if (ss.trail.length > 0 && ss.life > -30) {
+          ss.life--;
+          // Don't move head anymore, just let trail shrink
+          if (ss.life <= 0) ss.trail.shift();
+        }
+        if (ss.trail.length <= 1 || ss.life <= -30) {
+          shootingStars.splice(i, 1);
+          continue;
+        }
       }
 
-      const drawY = ss.y - scrollY;
-      // Only draw if in viewport
-      if (drawY < -100 || drawY > window.innerHeight + 100) continue;
+      const headDrawY = ss.y - scrollY;
+      if (headDrawY < -150 || headDrawY > window.innerHeight + 150) continue;
 
-      const progress = 1 - (ss.life / ss.maxLife);
-      const alpha = progress < 0.3
-        ? progress / 0.3            // fade in
-        : (1 - progress) / 0.7;    // fade out
+      const progress = 1 - Math.max(0, ss.life) / ss.maxLife;
+      const headAlpha = ss.life > 0
+        ? (progress < 0.2 ? progress / 0.2 : (1 - progress) / 0.8)
+        : 0;
 
-      const tailX = ss.x - ss.vx * (ss.length / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy));
-      const tailY = drawY - ss.vy * (ss.length / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy));
+      // Draw trail as series of fading segments
+      if (ss.trail.length > 1) {
+        for (let p = 1; p < ss.trail.length; p++) {
+          const segAlpha = (p / ss.trail.length) * (ss.life > 0 ? 0.6 : 0.6 * (1 + ss.life / 30));
+          const prev = ss.trail[p - 1];
+          const curr = ss.trail[p];
+          const py = prev.y - scrollY;
+          const cy = curr.y - scrollY;
 
-      const grad = ctx.createLinearGradient(tailX, tailY, ss.x, drawY);
-      grad.addColorStop(0, `rgba(255,255,255,0)`);
-      grad.addColorStop(0.6, `rgba(255,255,255,${alpha * 0.3})`);
-      grad.addColorStop(1, `rgba(255,255,255,${alpha * 0.8})`);
+          // Trail gets thinner toward the tail
+          const thickness = (p / ss.trail.length) * 2;
 
-      ctx.beginPath();
-      ctx.moveTo(tailX, tailY);
-      ctx.lineTo(ss.x, drawY);
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.5;
-      ctx.lineCap = 'round';
-      ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(prev.x, py);
+          ctx.lineTo(curr.x, cy);
+          ctx.strokeStyle = `rgba(255,255,255,${Math.max(0, segAlpha * 0.5)})`;
+          ctx.lineWidth = thickness;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
 
-      // Bright head
-      ctx.beginPath();
-      ctx.arc(ss.x, drawY, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${alpha * 0.9})`;
-      ctx.fill();
+        // Warm glow along the trail mid-section
+        const midIdx = Math.floor(ss.trail.length * 0.7);
+        if (midIdx < ss.trail.length) {
+          const mp = ss.trail[midIdx];
+          const glowAlpha = ss.life > 0 ? 0.08 : 0.08 * Math.max(0, (1 + ss.life / 30));
+          ctx.beginPath();
+          ctx.arc(mp.x, mp.y - scrollY, 6, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,220,180,${glowAlpha})`;
+          ctx.fill();
+        }
+      }
+
+      // Bright head with glow
+      if (ss.life > 0 && headAlpha > 0) {
+        // Outer glow
+        ctx.beginPath();
+        ctx.arc(ss.x, headDrawY, 4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,240,220,${headAlpha * 0.2})`;
+        ctx.fill();
+
+        // Core
+        ctx.beginPath();
+        ctx.arc(ss.x, headDrawY, 2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${headAlpha * 0.95})`;
+        ctx.fill();
+      }
     }
 
     animId = requestAnimationFrame(draw);
@@ -254,7 +334,6 @@
   resize();
   draw();
 
-  // Cleanup on page transition
   document.addEventListener('astro:before-swap', function cleanup() {
     cancelAnimationFrame(animId);
     window.removeEventListener('resize', handleResize);
