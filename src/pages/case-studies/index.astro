@@ -585,7 +585,7 @@ const categoryColors: Record<string, string> = {
     display: flex;
     gap: 12px;
     overflow-x: auto;
-    padding: 160px 60px 40px;
+    padding: 20px 60px 40px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -714,24 +714,21 @@ const categoryColors: Record<string, string> = {
     animation: badge-pulse 1.5s ease-in-out infinite;
   }
 
-  /* Expanded preview panel — floats above the card on hover */
+  /* Preview panel — slides up over the screenshot on hover */
   .nf-card-preview {
     position: absolute;
-    bottom: calc(100% + 6px);
-    left: 0;
-    right: 0;
-    background: var(--color-surface-elevated);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 16px 18px 18px;
-    border-radius: 6px 6px 0 0;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5,5,5,0.98) 0%, rgba(13,13,13,0.95) 100%);
+    border-radius: 4px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    justify-content: flex-end;
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(100%);
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    box-shadow: 0 -8px 40px rgba(0,0,0,0.6);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nf-card--hovered .nf-card-preview {
