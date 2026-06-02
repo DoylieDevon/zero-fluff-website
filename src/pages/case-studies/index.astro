@@ -185,21 +185,22 @@ const categoryColors: Record<string, string> = {
 
     const cards = Array.from(document.querySelectorAll('[data-nf-card]')) as HTMLElement[];
 
-    // --- PILE LAYOUT: assign each card a resting rotation + small offset ---
-    // Angles readable but clearly askew: -8 to +8 deg, never near 0
-    const ANGLE_POOL = [-8, -6, -4, -3, 3, 4, 6, 8, -7, -5, 5, 7];
+    // --- PILE LAYOUT: assign each card a resting rotation + scatter offset ---
+    // Truly random angle: always 3–9 deg, random sign, never near-zero
+    function randAngle() {
+      const sign = Math.random() > 0.5 ? 1 : -1;
+      return sign * (3 + Math.random() * 6);
+    }
 
     cards.forEach((card, i) => {
-      const rot = ANGLE_POOL[i % ANGLE_POOL.length];
-      const xOff = (Math.random() - 0.5) * 18;
-      const yOff = (Math.random() - 0.5) * 10;
-      // Store pile state on the element
-      card.dataset.rot  = String(rot);
-      card.dataset.xoff = String(xOff.toFixed(2));
-      card.dataset.yoff = String(yOff.toFixed(2));
+      const rot  = randAngle();
+      const xOff = (Math.random() - 0.5) * 80;   // ±40px horizontal scatter
+      const yOff = (Math.random() - 0.5) * 50;   // ±25px vertical scatter
+      card.dataset.rot   = String(rot.toFixed(2));
+      card.dataset.xoff  = String(xOff.toFixed(2));
+      card.dataset.yoff  = String(yOff.toFixed(2));
       card.dataset.origZ = String(i + 1);
-      card.style.zIndex = String(i + 1);
-      // Set pile position immediately (fly-in will override then animate back)
+      card.style.zIndex  = String(i + 1);
       gsap.set(card, { rotation: rot, x: xOff, y: yOff });
     });
 
@@ -486,6 +487,7 @@ const categoryColors: Record<string, string> = {
     padding: 60px 60px 80px;
     position: relative;
     z-index: 3;
+    overflow: visible;
   }
 
   .nf-grid-header {
@@ -515,10 +517,10 @@ const categoryColors: Record<string, string> = {
   .nf-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 48px 32px;
+    gap: 20px 16px;
     align-items: start;
     overflow: visible;
-    padding: 20px 20px 60px;
+    padding: 40px 20px 100px;
   }
 
   /* ======================================
