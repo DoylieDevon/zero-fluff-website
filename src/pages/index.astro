@@ -167,10 +167,10 @@ const caseStudyCount = caseStudies.length;
           <div class="about-prev">
             <span class="tools-label">PREVIOUS WORK</span>
             <div class="clients-list">
-              <span data-client>Filmily</span>
-              <span data-client>SelectCommerce</span>
-              <span data-client>Shiift</span>
-              <span data-client>NiceGroup</span>
+              <span
+                id="cycling-client"
+                data-clients={JSON.stringify(caseStudies.map(s => s.data.client))}
+              >{caseStudies[0]?.data.client ?? ''}</span>
             </div>
           </div>
         </div>
@@ -580,16 +580,24 @@ const caseStudyCount = caseStudies.length;
       });
     });
 
-    // Client names — blur reveal
-    gsap.utils.toArray('[data-client]').forEach((client, i) => {
-      gsap.from(client as HTMLElement, {
-        filter: 'blur(10px)',
-        opacity: 0,
-        duration: 0.6,
-        delay: i * 0.12,
-        scrollTrigger: { trigger: '.about-prev', start: 'top 85%' },
-      });
-    });
+    // Cycling client names — scramble between case study titles
+    const cyclingEl = document.getElementById('cycling-client') as HTMLElement;
+    if (cyclingEl) {
+      const clients: string[] = JSON.parse(cyclingEl.dataset.clients || '[]');
+      if (clients.length > 1) {
+        let idx = 0;
+        async function cycleNext() {
+          idx = (idx + 1) % clients.length;
+          cyclingEl.textContent = clients[idx];
+          await scrambleText(cyclingEl, { duration: 700 });
+          setTimeout(cycleNext, 2500);
+        }
+        // Start after initial scramble on first name
+        scrambleText(cyclingEl, { duration: 700 }).then(() => {
+          setTimeout(cycleNext, 2500);
+        });
+      }
+    }
   }
 
   // --- FAQ — AI Typewriter ---
@@ -1148,15 +1156,17 @@ const caseStudyCount = caseStudies.length;
   }
 
   .clients-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: block;
   }
-  .clients-list span {
+  #cycling-client {
     font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--color-text-secondary);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    display: inline-block;
+    min-width: 12ch;
   }
 
   .about-right {
