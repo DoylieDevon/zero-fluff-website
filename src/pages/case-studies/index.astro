@@ -69,110 +69,58 @@ const categoryColors: Record<string, string> = {
     <div class="nf-hero-fade" aria-hidden="true"></div>
   </section>
 
-  <!-- NETFLIX ROWS -->
-  <section class="nf-rows" id="nf-rows">
-
-    <!-- ALL WORK ROW -->
-    <div class="nf-row" id="nf-row-all">
-      <div class="nf-row-header">
-        <h2 class="nf-row-title">All Work</h2>
-        <div class="nf-row-nav" aria-hidden="true">
-          <button class="nf-nav-btn" data-row="nf-row-all" data-dir="-1" aria-label="Scroll left">‹</button>
-          <button class="nf-nav-btn" data-row="nf-row-all" data-dir="1" aria-label="Scroll right">›</button>
-        </div>
-      </div>
-      <div class="nf-row-track" id="nf-track-all">
-        {studies.map((study, i) => (
-          <div
-            class="nf-card"
-            data-nf-card
-            data-index={i}
-            data-href={`/case-studies/${study.id}`}
-            tabindex="0"
-            role="article"
-            aria-label={`${study.data.client}: ${study.data.title}`}
-          >
-            <div class="nf-card-img-wrap">
-              {study.data.image
-                ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
-                : <div class="nf-card-img-placeholder"></div>
-              }
-              <div class="nf-card-shine" aria-hidden="true"></div>
-            </div>
-
-            <!-- Expanded preview panel -->
-            <div class="nf-card-preview">
-              <div class="nf-card-preview-header">
-                <a href={`/case-studies/${study.id}`} class="nf-card-play" aria-label={`View ${study.data.client} case study`}>▶</a>
-                {study.data.url && (
-                  <a href={study.data.url} target="_blank" rel="noopener noreferrer" class="nf-card-external" aria-label="View live site">↗</a>
-                )}
-                <span class="nf-card-result-badge">{study.data.result}</span>
-              </div>
-              <h3 class="nf-card-name">{study.data.client}</h3>
-              <p class="nf-card-desc">{study.data.subtitle ?? study.data.title}</p>
-              {study.data.tech && (
-                <div class="nf-card-tech-row">
-                  {study.data.tech.slice(0, 3).map(t => (
-                    <span class="nf-card-tech-tag" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+  <!-- WORK GRID -->
+  <section class="nf-grid-section" id="nf-grid-section">
+    <div class="nf-grid-header">
+      <h2 class="nf-grid-title">All Work</h2>
+      <p class="nf-grid-count">{studies.length} project{studies.length !== 1 ? 's' : ''}</p>
     </div>
 
-    <!-- AI BUILT ROW (studies with aiUsed) -->
-    {studies.filter(s => s.data.aiUsed && s.data.aiUsed.length > 0).length > 0 && (
-      <div class="nf-row" id="nf-row-ai">
-        <div class="nf-row-header">
-          <h2 class="nf-row-title">
-            <span class="nf-row-title-accent">AI-Powered</span> Builds
-          </h2>
-        </div>
-        <div class="nf-row-track" id="nf-track-ai">
-          {studies.filter(s => s.data.aiUsed && s.data.aiUsed.length > 0).map((study, i) => (
-            <div
-              class="nf-card nf-card--wide"
-              data-nf-card
-              data-index={i}
-              data-href={`/case-studies/${study.id}`}
-              tabindex="0"
-              role="article"
-              aria-label={`${study.data.client}: ${study.data.title}`}
-            >
-              <div class="nf-card-img-wrap">
-                {study.data.image
-                  ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
-                  : <div class="nf-card-img-placeholder nf-card-img-placeholder--ai"></div>
-                }
-                <div class="nf-card-ai-badge" aria-hidden="true">
-                  <span class="nf-ai-dot"></span>AI
-                </div>
+    <div class="nf-grid" id="nf-grid">
+      {studies.map((study, i) => (
+        <div
+          class="nf-card"
+          data-nf-card
+          data-index={i}
+          data-href={`/case-studies/${study.id}`}
+          tabindex="0"
+          role="article"
+          aria-label={`${study.data.client}: ${study.data.title}`}
+        >
+          <div class="nf-card-img-wrap">
+            {study.data.image
+              ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
+              : <div class="nf-card-img-placeholder"></div>
+            }
+            {study.data.aiUsed && study.data.aiUsed.length > 0 && (
+              <div class="nf-card-ai-badge" aria-hidden="true">
+                <span class="nf-ai-dot"></span>AI
               </div>
-              <div class="nf-card-preview">
-                <div class="nf-card-preview-header">
-                  <a href={`/case-studies/${study.id}`} class="nf-card-play">▶</a>
-                  <span class="nf-card-result-badge">{study.data.result}</span>
-                </div>
-                <h3 class="nf-card-name">{study.data.client}</h3>
-                <p class="nf-card-desc">{study.data.subtitle ?? study.data.title}</p>
-                {study.data.aiUsed && (
-                  <div class="nf-card-tech-row">
-                    {study.data.aiUsed.slice(0, 2).map(ai => (
-                      <span class="nf-card-tech-tag" style="--c:#00F0FF">{ai.split(' ')[0]}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
+            )}
+            <div class="nf-card-shine" aria-hidden="true"></div>
+          </div>
 
+          <div class="nf-card-preview">
+            <div class="nf-card-preview-header">
+              <a href={`/case-studies/${study.id}`} class="nf-card-play" aria-label={`View ${study.data.client} case study`}>▶</a>
+              {study.data.url && (
+                <a href={study.data.url} target="_blank" rel="noopener noreferrer" class="nf-card-external" aria-label="View live site">↗</a>
+              )}
+              <span class="nf-card-result-badge">{study.data.result}</span>
+            </div>
+            <h3 class="nf-card-name">{study.data.client}</h3>
+            <p class="nf-card-desc">{study.data.subtitle ?? study.data.title}</p>
+            {study.data.tech && (
+              <div class="nf-card-tech-row">
+                {study.data.tech.slice(0, 3).map(t => (
+                  <span class="nf-card-tech-tag" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
   </section>
 
   <!-- STATS BANNER -->
@@ -243,59 +191,25 @@ const categoryColors: Record<string, string> = {
     }
   }
 
-  // --- ROW SCROLL BUTTONS ---
-  document.querySelectorAll('.nf-nav-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const rowId = (btn as HTMLElement).dataset.row;
-      const dir = Number((btn as HTMLElement).dataset.dir);
-      const track = document.getElementById(`nf-track-${rowId?.replace('nf-row-', '')}`);
-      if (track) {
-        track.scrollBy({ left: dir * 420, behavior: 'smooth' });
-      }
-    });
-  });
+  // --- RANDOM FEATURED (double-width) CARD ---
+  const cards = Array.from(document.querySelectorAll('[data-nf-card]')) as HTMLElement[];
+  if (cards.length > 0) {
+    const pick = Math.floor(Math.random() * cards.length);
+    cards[pick].classList.add('nf-card--featured');
+  }
 
-  // --- NETFLIX CARD HOVER EXPAND ---
-  document.querySelectorAll('[data-nf-card]').forEach((card) => {
-    const el = card as HTMLElement;
-
+  // --- CARD HOVER ---
+  cards.forEach((el) => {
     el.addEventListener('mouseenter', () => {
-      if (prefersReducedMotion) return;
-      const track = el.closest('.nf-row-track') as HTMLElement;
-      if (!track) return;
-
-      const trackRect = track.getBoundingClientRect();
-      const cardRect = el.getBoundingClientRect();
-      const cardCenterX = cardRect.left + cardRect.width / 2;
-      const trackLeft = trackRect.left;
-      const trackRight = trackRect.right;
-      const edgeBuffer = cardRect.width * 0.8;
-
-      // Determine expand direction
-      if (cardCenterX - trackLeft < edgeBuffer) {
-        el.classList.add('nf-card--expand-right');
-        el.classList.remove('nf-card--expand-left', 'nf-card--expand-center');
-      } else if (trackRight - cardCenterX < edgeBuffer) {
-        el.classList.add('nf-card--expand-left');
-        el.classList.remove('nf-card--expand-right', 'nf-card--expand-center');
-      } else {
-        el.classList.add('nf-card--expand-center');
-        el.classList.remove('nf-card--expand-left', 'nf-card--expand-right');
-      }
-
       el.classList.add('nf-card--hovered');
     });
-
     el.addEventListener('mouseleave', () => {
-      el.classList.remove('nf-card--hovered', 'nf-card--expand-right', 'nf-card--expand-left', 'nf-card--expand-center');
+      el.classList.remove('nf-card--hovered');
     });
-
-    // Keyboard / click navigation
     el.addEventListener('click', () => {
       const href = el.dataset.href;
       if (href) window.location.href = href;
     });
-
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -305,20 +219,15 @@ const categoryColors: Record<string, string> = {
     });
   });
 
-  // --- ROW STAGGER ENTRANCE ---
+  // --- GRID STAGGER ENTRANCE ---
   if (!prefersReducedMotion) {
-    document.querySelectorAll('.nf-row').forEach((row) => {
-      gsap.from(row.querySelectorAll('[data-nf-card]'), {
-        x: 60,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: row,
-          start: 'top 80%',
-        },
-      });
+    gsap.from('[data-nf-card]', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.nf-grid', start: 'top 85%' },
     });
   }
 
@@ -526,90 +435,64 @@ const categoryColors: Record<string, string> = {
   /* ======================================
      ROWS
      ====================================== */
-  .nf-rows {
+  /* ======================================
+     GRID SECTION
+     ====================================== */
+  .nf-grid-section {
     background: var(--color-bg);
-    padding: 0 0 80px;
+    padding: 60px 60px 80px;
     position: relative;
     z-index: 3;
   }
 
-  .nf-row {
-    padding: 40px 0 16px;
-  }
-
-  .nf-row-header {
+  .nf-grid-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 60px 16px;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
   }
 
-  .nf-row-title {
+  .nf-grid-title {
     font-family: var(--font-heading);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--color-text);
     letter-spacing: -0.3px;
   }
 
-  .nf-row-title-accent {
-    color: var(--color-cyan);
+  .nf-grid-count {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
-  .nf-row-nav {
-    display: flex;
-    gap: 8px;
+  .nf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
-
-  .nf-nav-btn {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.15);
-    color: #fff;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    padding: 0 0 2px;
-  }
-  .nf-nav-btn:hover {
-    background: rgba(255,255,255,0.2);
-  }
-
-  .nf-row-track {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding: 20px 60px 40px;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    /* overflow visible so hover popup isn't clipped */
-    overflow-y: visible;
-  }
-  .nf-row-track::-webkit-scrollbar { display: none; }
 
   /* ======================================
      NETFLIX CARD
      ====================================== */
   .nf-card {
     position: relative;
-    width: 390px;
-    flex-shrink: 0;
     border-radius: 4px;
     overflow: visible;
     cursor: pointer;
-    scroll-snap-align: start;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.35s;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.35s, box-shadow 0.35s ease;
     z-index: 1;
-    transform-origin: center top;
+    transform-origin: center center;
     box-shadow: 0 0 0 1px rgba(255,59,48,0.25), 0 4px 24px rgba(0,0,0,0.5);
     animation: card-border-pulse 5s ease-in-out infinite;
+  }
+
+  /* Double-size card (set randomly by JS on load) */
+  .nf-card--featured {
+    grid-column: span 2;
   }
 
   /* Stagger the glow cycle so cards breathe out of sync */
@@ -624,27 +507,12 @@ const categoryColors: Record<string, string> = {
     50%       { box-shadow: 0 0 0 1px rgba(0,240,255,0.35), 0 4px 32px rgba(0,240,255,0.08); }
   }
 
-  .nf-card--wide {
-    width: 510px;
-  }
-
-  /* Hover state — subtle scale, preview pops above */
+  /* Hover state */
   .nf-card--hovered {
-    transform: scale(1.06);
+    transform: scale(1.03);
     z-index: 100;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0s;
-    border-radius: 4px;
-  }
-
-  /* Edge corrections */
-  .nf-card--hovered.nf-card--expand-right {
-    transform-origin: left top;
-  }
-  .nf-card--hovered.nf-card--expand-left {
-    transform-origin: right top;
-  }
-  .nf-card--hovered.nf-card--expand-center {
-    transform-origin: center top;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0s, box-shadow 0.35s ease;
+    box-shadow: 0 0 0 1px rgba(0,240,255,0.5), 0 8px 40px rgba(0,0,0,0.7);
   }
 
   .nf-card-img-wrap {
@@ -780,6 +648,7 @@ const categoryColors: Record<string, string> = {
     transform: translateY(100%);
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
   }
 
   .nf-card--hovered .nf-card-preview {
@@ -955,11 +824,14 @@ const categoryColors: Record<string, string> = {
       gap: 6px;
     }
 
-    .nf-card {
-      width: 280px;
+    .nf-grid-section {
+      padding: 40px 24px 60px;
     }
-    .nf-card--wide {
-      width: 320px;
+    .nf-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .nf-card--featured {
+      grid-column: span 2;
     }
 
     /* Disable expand on mobile — just link on click */
