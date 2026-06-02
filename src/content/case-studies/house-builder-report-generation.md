@@ -1,9 +1,9 @@
 ---
 title: "House Builder Report Generation"
-client: "Smith & White"
+client: "House Builder Report Generation"
 subtitle: "Five days of manual data gathering replaced by a six-minute report."
 result: "5 days → 6 minutes"
-image: "/images/case-study-smith-white.jpg"
+image: "/images/case-study-house-builder-report-generation.jpg"
 description: "Smith & White were screenshotting data from property websites and manually assembling PowerPoint decks. We replaced the entire process with a TypeScript engine that pulls from seven data sources and generates a polished, shareable 13-section HTML report."
 tech:
   - { name: "TypeScript", category: "Language" }
