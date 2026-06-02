@@ -7,6 +7,7 @@ const currentPath = Astro.url.pathname;
   <nav class="nav-links">
     <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>Home</a>
     <a href="/services" class:list={['nav-link', { active: currentPath.startsWith('/services') }]}>Services</a>
+    <a href="/case-studies" class:list={['nav-link', { active: currentPath.startsWith('/case-studies') }]}>Work</a>
     <a href="/about" class:list={['nav-link', { active: currentPath.startsWith('/about') }]}>About</a>
     <a href="/blog" class:list={['nav-link', { active: currentPath.startsWith('/blog') }]}>Blog</a>
     <a href="/contact" class:list={['nav-link', { active: currentPath.startsWith('/contact') }]}>Contact</a>
@@ -23,6 +24,7 @@ const currentPath = Astro.url.pathname;
   <nav class="mobile-nav">
     <a href="/" class:list={['mobile-link', { active: currentPath === '/' }]}>Home</a>
     <a href="/services" class:list={['mobile-link', { active: currentPath.startsWith('/services') }]}>Services</a>
+    <a href="/case-studies" class:list={['mobile-link', { active: currentPath.startsWith('/case-studies') }]}>Work</a>
     <a href="/about" class:list={['mobile-link', { active: currentPath.startsWith('/about') }]}>About</a>
     <a href="/blog" class:list={['mobile-link', { active: currentPath.startsWith('/blog') }]}>Blog</a>
     <a href="/contact" class:list={['mobile-link', { active: currentPath.startsWith('/contact') }]}>Contact</a>
@@ -199,10 +201,11 @@ const currentPath = Astro.url.pathname;
   }
 
   .mobile-overlay.open .mobile-link:nth-child(1) { animation-delay: 0.1s; }
-  .mobile-overlay.open .mobile-link:nth-child(2) { animation-delay: 0.2s; }
-  .mobile-overlay.open .mobile-link:nth-child(3) { animation-delay: 0.3s; }
-  .mobile-overlay.open .mobile-link:nth-child(4) { animation-delay: 0.4s; }
-  .mobile-overlay.open .mobile-link:nth-child(5) { animation-delay: 0.5s; }
+  .mobile-overlay.open .mobile-link:nth-child(2) { animation-delay: 0.18s; }
+  .mobile-overlay.open .mobile-link:nth-child(3) { animation-delay: 0.26s; }
+  .mobile-overlay.open .mobile-link:nth-child(4) { animation-delay: 0.34s; }
+  .mobile-overlay.open .mobile-link:nth-child(5) { animation-delay: 0.42s; }
+  .mobile-overlay.open .mobile-link:nth-child(6) { animation-delay: 0.5s; }
 
   .mobile-link.active {
     color: #FF3B30;
@@ -227,7 +230,7 @@ const currentPath = Astro.url.pathname;
 
   .mobile-overlay.open .mobile-cta {
     animation: fade-in-up 0.4s ease forwards;
-    animation-delay: 0.6s;
+    animation-delay: 0.58s;
   }
 
   @keyframes fade-in-up {

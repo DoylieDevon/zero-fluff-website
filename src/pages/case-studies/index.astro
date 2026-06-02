@@ -2,40 +2,928 @@
 export const prerender = true;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CaseStudyCard from '../../components/CaseStudyCard.astro';
 import { getCollection } from 'astro:content';
 
 const studies = await getCollection('case-studies');
-studies.sort((a, b) => {
-  const orderA = a.data.order ?? 999;
-  const orderB = b.data.order ?? 999;
-  return orderA - orderB;
-});
+studies.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+const featured = studies[0];
+const rest = studies.slice(1);
+
+const categoryColors: Record<string, string> = {
+  Framework: '#FF3B30',
+  Language: '#00F0FF',
+  Animation: '#FF9500',
+  Hosting: '#34C759',
+  Email: '#AF52DE',
+  Typography: '#5AC8FA',
+  CMS: '#FF2D55',
+  Styling: '#FFCC00',
+  'Browser API': '#00F0FF',
+};
 ---
 
-<BaseLayout title="Our Work | Zero Fluff" description="Real results for real businesses. See how Zero Fluff has helped companies save time and make better decisions with practical AI solutions.">
-  <section class="section reveal">
-    <div class="container stack">
-      <h1>Our Work</h1>
-      <p class="text-lg text-muted">Real results for real businesses. No buzzwords, no inflated claims -- just practical AI solutions that made a measurable difference.</p>
+<BaseLayout
+  title="Our Work | Zero Fluff"
+  description="Real results for real businesses. See how Zero Fluff has helped companies save time and make better decisions with practical AI solutions."
+>
+  <!-- FEATURED HERO -->
+  <section class="nf-hero" id="nf-hero">
+    {featured.data.image && (
+      <div class="nf-hero-bg" style={`background-image:url(${featured.data.image})`} aria-hidden="true"></div>
+    )}
+    <div class="nf-hero-vignette" aria-hidden="true"></div>
+
+    <div class="nf-hero-content" data-nf-hero-content>
+      <div class="nf-hero-badge">
+        <span class="nf-badge-dot"></span>
+        FEATURED WORK
+      </div>
+      <h1 class="nf-hero-title" data-nf-scramble>{featured.data.client}</h1>
+      <p class="nf-hero-subtitle">{featured.data.subtitle ?? featured.data.title}</p>
+
+      {featured.data.tech && (
+        <div class="nf-hero-pills">
+          {featured.data.tech.slice(0, 5).map(t => (
+            <span class="nf-hero-pill" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
+          ))}
+        </div>
+      )}
+
+      <div class="nf-hero-actions">
+        <a href={`/case-studies/${featured.id}`} class="nf-btn-primary" data-magnetic>
+          <span class="nf-play-icon" aria-hidden="true">▶</span>
+          View Case Study
+        </a>
+        {featured.data.url && (
+          <a href={featured.data.url} target="_blank" rel="noopener noreferrer" class="nf-btn-ghost">
+            Live Site ↗
+          </a>
+        )}
+      </div>
+
+      <p class="nf-hero-result">{featured.data.result}</p>
     </div>
+
+    <!-- Bottom fade to black for content below -->
+    <div class="nf-hero-fade" aria-hidden="true"></div>
   </section>
 
-  <section class="section reveal">
-    <div class="container">
-      <div class="grid-2">
-        {studies.map((study) => (
-          <CaseStudyCard
-            id={study.id}
-            title={study.data.title}
-            client={study.data.client}
-            result={study.data.result}
-            subtitle={study.data.subtitle}
-            image={study.data.image}
-            tech={study.data.tech}
-          />
+  <!-- NETFLIX ROWS -->
+  <section class="nf-rows" id="nf-rows">
+
+    <!-- ALL WORK ROW -->
+    <div class="nf-row" id="nf-row-all">
+      <div class="nf-row-header">
+        <h2 class="nf-row-title">All Work</h2>
+        <div class="nf-row-nav" aria-hidden="true">
+          <button class="nf-nav-btn" data-row="nf-row-all" data-dir="-1" aria-label="Scroll left">‹</button>
+          <button class="nf-nav-btn" data-row="nf-row-all" data-dir="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+      <div class="nf-row-track" id="nf-track-all">
+        {studies.map((study, i) => (
+          <div
+            class="nf-card"
+            data-nf-card
+            data-index={i}
+            data-href={`/case-studies/${study.id}`}
+            tabindex="0"
+            role="article"
+            aria-label={`${study.data.client}: ${study.data.title}`}
+          >
+            <div class="nf-card-img-wrap">
+              {study.data.image
+                ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
+                : <div class="nf-card-img-placeholder"></div>
+              }
+              <div class="nf-card-shine" aria-hidden="true"></div>
+            </div>
+
+            <!-- Expanded preview panel -->
+            <div class="nf-card-preview">
+              <div class="nf-card-preview-header">
+                <a href={`/case-studies/${study.id}`} class="nf-card-play" aria-label={`View ${study.data.client} case study`}>▶</a>
+                {study.data.url && (
+                  <a href={study.data.url} target="_blank" rel="noopener noreferrer" class="nf-card-external" aria-label="View live site">↗</a>
+                )}
+                <span class="nf-card-result-badge">{study.data.result}</span>
+              </div>
+              <h3 class="nf-card-name">{study.data.client}</h3>
+              <p class="nf-card-desc">{study.data.subtitle ?? study.data.title}</p>
+              {study.data.tech && (
+                <div class="nf-card-tech-row">
+                  {study.data.tech.slice(0, 3).map(t => (
+                    <span class="nf-card-tech-tag" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         ))}
       </div>
     </div>
+
+    <!-- AI BUILT ROW (studies with aiUsed) -->
+    {studies.filter(s => s.data.aiUsed && s.data.aiUsed.length > 0).length > 0 && (
+      <div class="nf-row" id="nf-row-ai">
+        <div class="nf-row-header">
+          <h2 class="nf-row-title">
+            <span class="nf-row-title-accent">AI-Powered</span> Builds
+          </h2>
+        </div>
+        <div class="nf-row-track" id="nf-track-ai">
+          {studies.filter(s => s.data.aiUsed && s.data.aiUsed.length > 0).map((study, i) => (
+            <div
+              class="nf-card nf-card--wide"
+              data-nf-card
+              data-index={i}
+              data-href={`/case-studies/${study.id}`}
+              tabindex="0"
+              role="article"
+              aria-label={`${study.data.client}: ${study.data.title}`}
+            >
+              <div class="nf-card-img-wrap">
+                {study.data.image
+                  ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
+                  : <div class="nf-card-img-placeholder nf-card-img-placeholder--ai"></div>
+                }
+                <div class="nf-card-ai-badge" aria-hidden="true">
+                  <span class="nf-ai-dot"></span>AI
+                </div>
+              </div>
+              <div class="nf-card-preview">
+                <div class="nf-card-preview-header">
+                  <a href={`/case-studies/${study.id}`} class="nf-card-play">▶</a>
+                  <span class="nf-card-result-badge">{study.data.result}</span>
+                </div>
+                <h3 class="nf-card-name">{study.data.client}</h3>
+                <p class="nf-card-desc">{study.data.subtitle ?? study.data.title}</p>
+                {study.data.aiUsed && (
+                  <div class="nf-card-tech-row">
+                    {study.data.aiUsed.slice(0, 2).map(ai => (
+                      <span class="nf-card-tech-tag" style="--c:#00F0FF">{ai.split(' ')[0]}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
   </section>
+
+  <!-- STATS BANNER -->
+  <section class="nf-stats reveal">
+    <div class="nf-stats-inner">
+      <div class="nf-stat">
+        <span class="nf-stat-n" data-count="3">0</span>
+        <span class="nf-stat-label">Case Studies</span>
+      </div>
+      <div class="nf-stat-divider" aria-hidden="true"></div>
+      <div class="nf-stat">
+        <span class="nf-stat-n">30+</span>
+        <span class="nf-stat-label">Years Experience</span>
+      </div>
+      <div class="nf-stat-divider" aria-hidden="true"></div>
+      <div class="nf-stat">
+        <span class="nf-stat-n">100%</span>
+        <span class="nf-stat-label">AI Powered</span>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { scrambleText } from '../../scripts/text-scramble.js';
+  import { initMagneticButtons } from '../../scripts/magnetic-button.js';
+
+  gsap.registerPlugin(ScrollTrigger);
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- HERO ENTRANCE ---
+  if (!prefersReducedMotion) {
+    const heroContent = document.querySelector('[data-nf-hero-content]') as HTMLElement;
+    const scrambleEl = document.querySelector('[data-nf-scramble]') as HTMLElement;
+
+    if (scrambleEl) scrambleText(scrambleEl, { duration: 1600, delay: 400 });
+
+    if (heroContent) {
+      const children = Array.from(heroContent.children) as HTMLElement[];
+      gsap.from(children, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.3,
+      });
+    }
+  }
+
+  // --- PARALLAX HERO BG ---
+  if (!prefersReducedMotion) {
+    const heroBg = document.querySelector('.nf-hero-bg') as HTMLElement;
+    if (heroBg) {
+      gsap.to(heroBg, {
+        y: '25%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.nf-hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    }
+  }
+
+  // --- ROW SCROLL BUTTONS ---
+  document.querySelectorAll('.nf-nav-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const rowId = (btn as HTMLElement).dataset.row;
+      const dir = Number((btn as HTMLElement).dataset.dir);
+      const track = document.getElementById(`nf-track-${rowId?.replace('nf-row-', '')}`);
+      if (track) {
+        track.scrollBy({ left: dir * 420, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // --- NETFLIX CARD HOVER EXPAND ---
+  document.querySelectorAll('[data-nf-card]').forEach((card) => {
+    const el = card as HTMLElement;
+
+    el.addEventListener('mouseenter', () => {
+      if (prefersReducedMotion) return;
+      const track = el.closest('.nf-row-track') as HTMLElement;
+      if (!track) return;
+
+      const trackRect = track.getBoundingClientRect();
+      const cardRect = el.getBoundingClientRect();
+      const cardCenterX = cardRect.left + cardRect.width / 2;
+      const trackLeft = trackRect.left;
+      const trackRight = trackRect.right;
+      const edgeBuffer = cardRect.width * 0.8;
+
+      // Determine expand direction
+      if (cardCenterX - trackLeft < edgeBuffer) {
+        el.classList.add('nf-card--expand-right');
+        el.classList.remove('nf-card--expand-left', 'nf-card--expand-center');
+      } else if (trackRight - cardCenterX < edgeBuffer) {
+        el.classList.add('nf-card--expand-left');
+        el.classList.remove('nf-card--expand-right', 'nf-card--expand-center');
+      } else {
+        el.classList.add('nf-card--expand-center');
+        el.classList.remove('nf-card--expand-left', 'nf-card--expand-right');
+      }
+
+      el.classList.add('nf-card--hovered');
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.classList.remove('nf-card--hovered', 'nf-card--expand-right', 'nf-card--expand-left', 'nf-card--expand-center');
+    });
+
+    // Keyboard / click navigation
+    el.addEventListener('click', () => {
+      const href = el.dataset.href;
+      if (href) window.location.href = href;
+    });
+
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const href = el.dataset.href;
+        if (href) window.location.href = href;
+      }
+    });
+  });
+
+  // --- ROW STAGGER ENTRANCE ---
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.nf-row').forEach((row) => {
+      gsap.from(row.querySelectorAll('[data-nf-card]'), {
+        x: 60,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: row,
+          start: 'top 80%',
+        },
+      });
+    });
+  }
+
+  // --- STATS COUNTER ---
+  if (!prefersReducedMotion) {
+    const countEl = document.querySelector('[data-count]') as HTMLElement;
+    if (countEl) {
+      const target = Number(countEl.dataset.count);
+      const counter = { val: 0 };
+      gsap.to(counter, {
+        val: target,
+        duration: 1.5,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.nf-stats', start: 'top 80%' },
+        onUpdate: () => { countEl.textContent = String(Math.round(counter.val)); },
+      });
+    }
+  }
+
+  initMagneticButtons();
+</script>
+
+<style>
+  /* ======================================
+     HERO
+     ====================================== */
+  .nf-hero {
+    position: relative;
+    height: 85vh;
+    min-height: 560px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .nf-hero-bg {
+    position: absolute;
+    inset: -10% 0 0;
+    background-size: cover;
+    background-position: center 20%;
+    filter: saturate(0.5) brightness(0.55);
+    transform-origin: center top;
+  }
+
+  .nf-hero-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.4) 60%, transparent 100%),
+      radial-gradient(ellipse 70% 60% at 20% 50%, rgba(255,59,48,0.12), transparent);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .nf-hero-fade {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--color-bg));
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .nf-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 680px;
+    padding-left: 60px;
+  }
+
+  .nf-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .nf-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: badge-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes badge-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,59,48,0.4); }
+    50% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 0 6px rgba(255,59,48,0); }
+  }
+
+  .nf-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -2px;
+    line-height: 0.95;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+  }
+
+  .nf-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.8vw, 19px);
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    max-width: 500px;
+  }
+
+  .nf-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .nf-hero-pill {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--c, #FF3B30);
+    padding: 4px 12px;
+    border: 1px solid var(--c, #FF3B30);
+    border-radius: 20px;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+  }
+
+  .nf-hero-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .nf-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #000;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px 28px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nf-btn-primary:hover {
+    background: rgba(255,255,255,0.85);
+    color: #000;
+    transform: scale(1.03);
+  }
+
+  .nf-play-icon {
+    font-size: 13px;
+  }
+
+  .nf-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(109, 109, 110, 0.7);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 28px;
+    text-decoration: none;
+    border-radius: 3px;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nf-btn-ghost:hover {
+    background: rgba(109, 109, 110, 0.5);
+    color: #fff;
+  }
+
+  .nf-hero-result {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.9;
+  }
+
+  /* ======================================
+     ROWS
+     ====================================== */
+  .nf-rows {
+    background: var(--color-bg);
+    padding: 0 0 80px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .nf-row {
+    padding: 40px 0 16px;
+  }
+
+  .nf-row-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px 16px;
+  }
+
+  .nf-row-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.3px;
+  }
+
+  .nf-row-title-accent {
+    color: var(--color-cyan);
+  }
+
+  .nf-row-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .nf-nav-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    padding: 0 0 2px;
+  }
+  .nf-nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .nf-row-track {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 20px 60px 40px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* overflow visible so hover expansion isn't clipped */
+    overflow-y: visible;
+  }
+  .nf-row-track::-webkit-scrollbar { display: none; }
+
+  /* ======================================
+     NETFLIX CARD
+     ====================================== */
+  .nf-card {
+    position: relative;
+    width: 260px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: visible;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.35s;
+    z-index: 1;
+    transform-origin: center bottom;
+  }
+
+  .nf-card--wide {
+    width: 340px;
+  }
+
+  /* Hover state — expand up */
+  .nf-card--hovered {
+    transform: scale(1.5) translateY(-8%);
+    z-index: 100;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0s;
+    border-radius: 4px;
+  }
+
+  /* Edge corrections */
+  .nf-card--hovered.nf-card--expand-right {
+    transform-origin: left bottom;
+  }
+  .nf-card--hovered.nf-card--expand-left {
+    transform-origin: right bottom;
+  }
+  .nf-card--hovered.nf-card--expand-center {
+    transform-origin: center bottom;
+  }
+
+  .nf-card-img-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+    background: var(--color-surface-elevated);
+  }
+
+  .nf-card--hovered .nf-card-img-wrap {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .nf-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s;
+    filter: saturate(0.8) brightness(0.85);
+    display: block;
+  }
+
+  .nf-card--hovered .nf-card-img {
+    filter: saturate(1) brightness(0.95);
+  }
+
+  .nf-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a0533 0%, #0a1628 50%, #0a1a0d 100%);
+    animation: placeholder-shimmer 3s ease-in-out infinite alternate;
+  }
+
+  .nf-card-img-placeholder--ai {
+    background: linear-gradient(135deg, #001a1a 0%, #0a1a2a 50%, #001a33 100%);
+  }
+
+  @keyframes placeholder-shimmer {
+    0% { filter: brightness(0.8); }
+    100% { filter: brightness(1.1); }
+  }
+
+  /* Shine overlay */
+  .nf-card-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .nf-card--hovered .nf-card-shine {
+    opacity: 1;
+  }
+
+  /* AI badge on card image */
+  .nf-card-ai-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0,240,255,0.15);
+    border: 1px solid rgba(0,240,255,0.4);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--color-cyan);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .nf-ai-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-cyan);
+    animation: badge-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Expanded preview panel — only visible on hover */
+  .nf-card-preview {
+    background: var(--color-surface-elevated);
+    padding: 12px 14px 14px;
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.25s 0.1s ease, max-height 0.3s ease;
+  }
+
+  .nf-card--hovered .nf-card-preview {
+    opacity: 1;
+    max-height: 200px;
+  }
+
+  .nf-card-preview-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nf-card-play {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 10px;
+    transition: background 0.2s, border-color 0.2s;
+    padding-left: 2px;
+    flex-shrink: 0;
+  }
+  .nf-card-play:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .nf-card-external {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 12px;
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .nf-card-external:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .nf-card-result-badge {
+    margin-left: auto;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+  }
+
+  .nf-card-name {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+  }
+
+  .nf-card-desc {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .nf-card-tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  .nf-card-tech-tag {
+    font-family: var(--font-body);
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--c, #FF3B30);
+    padding: 2px 6px;
+    border: 1px solid var(--c, #FF3B30);
+    border-radius: 10px;
+    opacity: 0.8;
+    letter-spacing: 0.3px;
+  }
+
+  /* ======================================
+     STATS BANNER
+     ====================================== */
+  .nf-stats {
+    padding: 60px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .nf-stats-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .nf-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .nf-stat-n {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  .nf-stat-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .nf-stat-divider {
+    width: 1px;
+    height: 60px;
+    background: var(--color-border);
+    flex-shrink: 0;
+    margin: 0 40px;
+  }
+
+  /* ======================================
+     RESPONSIVE
+     ====================================== */
+  @media (max-width: 768px) {
+    .nf-hero-content {
+      padding: 0 24px 60px;
+      max-width: 100%;
+    }
+
+    .nf-row-header {
+      padding: 0 24px 12px;
+    }
+
+    .nf-row-track {
+      padding: 16px 24px 30px;
+      gap: 6px;
+    }
+
+    .nf-card {
+      width: 200px;
+    }
+    .nf-card--wide {
+      width: 240px;
+    }
+
+    /* Disable expand on mobile — just link on click */
+    .nf-card--hovered {
+      transform: none;
+    }
+    .nf-card-preview {
+      display: none;
+    }
+
+    .nf-stats-inner {
+      padding: 0 24px;
+      gap: 0;
+    }
+
+    .nf-stat-divider {
+      margin: 0 20px;
+    }
+  }
+</style>
