@@ -403,9 +403,14 @@ const categoryColors: Record<string, string> = {
     inset: 0;
     background-size: cover;
     background-position: center top;
-    filter: saturate(0.15) brightness(0.18) blur(4px);
+    filter: saturate(0.15) blur(4px);
     transform: scale(1.05);
-    animation: cs-hero-drift 20s ease-in-out infinite alternate;
+    animation: cs-hero-drift 20s ease-in-out infinite alternate, cs-hero-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes cs-hero-pulse {
+    0%, 100% { filter: saturate(0.15) brightness(0.18) blur(4px); }
+    50%      { filter: saturate(0.15) brightness(0.28) blur(4px); }
   }
 
   @keyframes cs-hero-drift {
