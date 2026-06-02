@@ -424,38 +424,35 @@ const caseStudyCount = caseStudies.length;
 
   // --- SERVICES — Auto Carousel (zoom in, screech, hold, blast off) ---
   if (!prefersReducedMotion && !isMobile) {
+    const stage = document.querySelector('.services-stage') as HTMLElement;
     const panels = gsap.utils.toArray('.service-panel') as HTMLElement[];
     const dots = gsap.utils.toArray('.services-dot') as HTMLElement[];
 
-    if (panels.length) {
-      // Park all panels off-screen right, fully hidden — showPanel will peek the next one
-      gsap.set(panels, { x: '110vw', opacity: 0, visibility: 'hidden' });
-      // Pre-peek panel 1 so it's visible on the right before panel 0 even starts
-      gsap.set(panels[1], { x: 'calc(100% - 48px)', visibility: 'visible', opacity: 0.35 });
-
+    if (panels.length && stage) {
       let loopTimer: ReturnType<typeof setTimeout>;
+
+      function stageW() { return stage.offsetWidth; }
+
+      // Hide all panels off-screen right
+      gsap.set(panels, { x: stageW() * 1.1, opacity: 0, visibility: 'hidden' });
 
       function peekPanel(index: number) {
         const panel = panels[index];
-        // Sit just off the right edge — content barely visible as a teaser
-        gsap.set(panel, { x: 'calc(100% - 48px)', visibility: 'visible', opacity: 0.35 });
+        gsap.set(panel, { x: stageW() - 48, visibility: 'visible', opacity: 0.35 });
       }
 
       function showPanel(index: number) {
         const panel = panels[index];
         dots.forEach((d, i) => d.classList.toggle('active', i === index));
 
-        // Clear any peek state on this panel
-        gsap.set(panel, { opacity: 1 });
+        // Ensure it's visible and full-opacity at its current x (peek pos or off-screen)
+        gsap.set(panel, { visibility: 'visible', opacity: 1 });
 
-        // Peek the next panel in the queue
-        const nextIndex = (index + 1) % panels.length;
-        peekPanel(nextIndex);
+        // Peek the next one while this panel plays
+        peekPanel((index + 1) % panels.length);
 
         const tl = gsap.timeline({
-          onComplete: () => {
-            loopTimer = setTimeout(() => exitPanel(index), 3000);
-          }
+          onComplete: () => { loopTimer = setTimeout(() => exitPanel(index), 3000); }
         });
 
         tl.to(panel, { x: 0, duration: 0.45, ease: 'power4.out' })
@@ -471,7 +468,7 @@ const caseStudyCount = caseStudies.length;
         const panel = panels[index];
         const next = (index + 1) % panels.length;
         gsap.to(panel, {
-          x: '-110vw',
+          x: -stageW() * 1.1,
           duration: 0.4,
           ease: 'power4.in',
           onComplete: () => {
@@ -481,6 +478,8 @@ const caseStudyCount = caseStudies.length;
         });
       }
 
+      // Pre-peek panel 1 then start
+      peekPanel(1);
       showPanel(0);
     }
   }
