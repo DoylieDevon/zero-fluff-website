@@ -3,7 +3,7 @@ title: "Brand-to-Live Website in Days"
 client: "FANDEMiQ Website"
 subtitle: "Brand guidelines, content strategy, custom illustrations, and a full Next.js marketing site — built entirely through Claude Code."
 result: "Branding, site build in days"
-image: "/images/case-study-fandemiq.jpg"
+image: "/images/case-study-fandemiq-website.jpg"
 description: "FANDEMiQ needed a marketing website that could represent a B2B SaaS platform to sports and music rights holders. Brand guidelines, messaging, custom hand-drawn illustrations, animated backgrounds, and a full partner registration flow — all built without a single line written by hand."
 tech:
   - { name: "Next.js 15", category: "Framework" }
