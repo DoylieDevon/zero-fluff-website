@@ -1,6 +1,6 @@
 ---
 title: "AI-Built Marketing Website"
-client: "Zero Fluff"
+client: "This Website!"
 subtitle: "A fully animated, production-ready marketing site — built from scratch in 2 hours, including all content. No hand-written code."
 result: "Built in 2 hours"
 order: 0

@@ -1,6 +1,6 @@
 ---
 title: "AI Takes Over an 8-Year Platform"
-client: "FANDEMiQ"
+client: "FANDEMiQ SaaS platform"
 subtitle: "A live sports fan media platform built over 8 years by human developers — handed to Claude to understand, extend, and ship."
 result: "8 years of work understood in 1 hour"
 image: "/images/case-study-fandemiq.jpg"

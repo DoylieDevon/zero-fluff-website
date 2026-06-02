@@ -1,6 +1,6 @@
 ---
 title: "Personal Portfolio Site"
-client: "Andy Doyle"
+client: "Andy Portfolio"
 subtitle: "A personal portfolio built in an hour by scraping LinkedIn, Substack, and a CV — designed to match the Zero Fluff brand."
 result: "Full site live in 1 hour"
 image: "/images/case-study-andy-doyle-portfolio.jpg"
