@@ -359,8 +359,15 @@
   }
 
   window.addEventListener('resize', handleResize);
+
+  // Initial draw with whatever height we have now
   resize();
   draw();
+
+  // After full load, recalculate docH (CSS inflates the page) and redistribute stars
+  window.addEventListener('load', () => {
+    resize(); // recaptures correct scrollHeight → redistributes stars across full page
+  }, { once: true });
 
   // Watchdog: if rAF loop dies for any reason, restart it every 500ms
   watchdogId = setInterval(() => {
