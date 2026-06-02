@@ -95,16 +95,16 @@ const categoryColors: Record<string, string> = {
             <div class="nf-card-shine" aria-hidden="true"></div>
           </div>
 
-          <div class="nf-card-preview">
-            <div class="nf-card-preview-header">
-              <a href={`/case-studies/${study.id}`} class="nf-card-play" aria-label={`View ${study.data.client} case study`}>▶</a>
+          <div class="nf-card-info">
+            <div class="nf-card-info-top">
+              <span class="nf-card-client">{study.data.client}</span>
               <span class="nf-card-result-badge">{study.data.result}</span>
             </div>
-            <h3 class="nf-card-name">{study.data.client}</h3>
-            <p class="nf-card-desc">{study.data.subtitle ?? study.data.title}</p>
+            <h3 class="nf-card-name">{study.data.title}</h3>
+            {study.data.subtitle && <p class="nf-card-desc">{study.data.subtitle}</p>}
             {study.data.tech && (
               <div class="nf-card-tech-row">
-                {study.data.tech.slice(0, 3).map(t => (
+                {study.data.tech.slice(0, 4).map(t => (
                   <span class="nf-card-tech-tag" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
                 ))}
               </div>
@@ -465,6 +465,7 @@ const categoryColors: Record<string, string> = {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+    align-items: start;
   }
 
   /* ======================================
@@ -501,10 +502,10 @@ const categoryColors: Record<string, string> = {
 
   /* Hover state */
   .nf-card--hovered {
-    transform: scale(1.03);
-    z-index: 100;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0s, box-shadow 0.35s ease;
-    box-shadow: 0 0 0 1px rgba(0,240,255,0.5), 0 8px 40px rgba(0,0,0,0.7);
+    transform: translateY(-4px);
+    z-index: 10;
+    transition: transform 0.3s ease, z-index 0s 0s, box-shadow 0.3s ease;
+    box-shadow: 0 0 0 1px rgba(0,240,255,0.5), 0 12px 40px rgba(0,0,0,0.7);
   }
 
   .nf-card-img-wrap {
@@ -625,88 +626,45 @@ const categoryColors: Record<string, string> = {
     animation: badge-pulse 1.5s ease-in-out infinite;
   }
 
-  /* Preview panel — slides up over the screenshot on hover */
-  .nf-card-preview {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(5,5,5,0.98) 0%, rgba(13,13,13,0.95) 100%);
-    border-radius: 4px;
-    padding: 20px;
+  /* Permanent info panel below the image */
+  .nf-card-info {
+    padding: 14px 16px 18px;
+    background: var(--color-surface);
+    border-radius: 0 0 4px 4px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    justify-content: flex-end;
-    opacity: 0;
-    transform: translateY(100%);
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
+    gap: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
 
-  .nf-card--hovered .nf-card-preview {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .nf-card-preview-header {
+  .nf-card-info-top {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
   }
 
-  .nf-card-play {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-decoration: none;
+  .nf-card-client {
+    font-family: var(--font-body);
     font-size: 10px;
-    transition: background 0.2s, border-color 0.2s;
-    padding-left: 2px;
-    flex-shrink: 0;
-  }
-  .nf-card-play:hover {
-    background: #fff;
-    color: #000;
-  }
-
-  .nf-card-external {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 12px;
-    transition: border-color 0.2s, color 0.2s;
-    flex-shrink: 0;
-  }
-  .nf-card-external:hover {
-    border-color: #fff;
-    color: #fff;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
   }
 
   .nf-card-result-badge {
-    margin-left: auto;
     font-family: var(--font-heading);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
-    color: var(--color-accent);
+    color: var(--color-text-secondary);
     letter-spacing: -0.3px;
     white-space: nowrap;
   }
 
   .nf-card-name {
     font-family: var(--font-heading);
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 800;
     color: var(--color-text);
     letter-spacing: -0.3px;
@@ -715,11 +673,11 @@ const categoryColors: Record<string, string> = {
 
   .nf-card-desc {
     font-family: var(--font-body);
-    font-size: 13px;
-    color: var(--color-text-secondary);
+    font-size: 12px;
+    color: var(--color-text-muted);
     line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -727,19 +685,19 @@ const categoryColors: Record<string, string> = {
   .nf-card-tech-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
+    gap: 5px;
+    margin-top: 2px;
   }
 
   .nf-card-tech-tag {
     font-family: var(--font-body);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--c, #FF3B30);
-    padding: 3px 10px;
+    padding: 2px 8px;
     border: 1px solid var(--c, #FF3B30);
     border-radius: 10px;
-    opacity: 0.85;
+    opacity: 0.8;
     letter-spacing: 0.3px;
   }
 
