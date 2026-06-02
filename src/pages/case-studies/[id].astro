@@ -519,11 +519,13 @@ const categoryColors: Record<string, string> = {
 
   .cs-meta-value {
     font-family: var(--font-heading);
-    font-size: clamp(28px, 4vw, 48px);
+    font-size: clamp(18px, 2.5vw, 36px);
     font-weight: 900;
     color: var(--color-accent);
-    letter-spacing: -1px;
-    line-height: 1;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .cs-meta-key {
@@ -618,7 +620,7 @@ const categoryColors: Record<string, string> = {
   }
 
   .cs-overview-right {
-    width: 300px;
+    width: 280px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -627,12 +629,13 @@ const categoryColors: Record<string, string> = {
 
   .cs-big-stat {
     text-align: center;
-    padding: 40px;
+    padding: 32px 24px;
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background: var(--color-surface);
     position: relative;
     overflow: hidden;
+    width: 100%;
   }
 
   .cs-big-stat::before {
@@ -644,12 +647,14 @@ const categoryColors: Record<string, string> = {
 
   .cs-big-number {
     font-family: var(--font-heading);
-    font-size: clamp(32px, 4vw, 56px);
+    font-size: clamp(20px, 2.5vw, 36px);
     font-weight: 900;
     color: var(--color-accent);
-    letter-spacing: -2px;
-    line-height: 1.1;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
     position: relative;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   /* ==============================
