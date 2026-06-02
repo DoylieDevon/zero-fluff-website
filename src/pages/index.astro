@@ -2,6 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FloatingShapes from '../components/FloatingShapes.astro';
 import Starfield from '../components/Starfield.astro';
+import { getCollection } from 'astro:content';
+
+const caseStudies = await getCollection('case-studies');
+const caseStudyCount = caseStudies.length;
 ---
 
 <BaseLayout
@@ -54,15 +58,15 @@ import Starfield from '../components/Starfield.astro';
     </div>
   </section>
 
-  <!-- SERVICES — The Horizontal Cinema -->
+  <!-- SERVICES — Auto Carousel -->
   <section class="services-section" data-section="services">
     <div class="services-track">
       <div class="services-header">
         <p class="section-label">02 — WHAT WE DO</p>
         <h2>Practical AI solutions, not buzzwords</h2>
       </div>
-      <div class="services-panels">
-        <div class="service-panel">
+      <div class="services-stage">
+        <div class="service-panel" data-panel="0">
           <span class="panel-number" aria-hidden="true">01</span>
           <div class="panel-content">
             <span class="service-tag">2 HOURS</span>
@@ -71,7 +75,7 @@ import Starfield from '../components/Starfield.astro';
             <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
         </div>
-        <div class="service-panel">
+        <div class="service-panel" data-panel="1">
           <span class="panel-number" aria-hidden="true">02</span>
           <div class="panel-content">
             <span class="service-tag">HANDS-ON</span>
@@ -80,7 +84,7 @@ import Starfield from '../components/Starfield.astro';
             <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
         </div>
-        <div class="service-panel">
+        <div class="service-panel" data-panel="2">
           <span class="panel-number" aria-hidden="true">03</span>
           <div class="panel-content">
             <span class="service-tag">MONTHLY</span>
@@ -89,7 +93,7 @@ import Starfield from '../components/Starfield.astro';
             <a href="/services" class="service-link">Learn more &rarr;</a>
           </div>
         </div>
-        <div class="service-panel">
+        <div class="service-panel" data-panel="3">
           <span class="panel-number" aria-hidden="true">04</span>
           <div class="panel-content">
             <span class="service-tag">STRATEGIC</span>
@@ -99,8 +103,11 @@ import Starfield from '../components/Starfield.astro';
           </div>
         </div>
       </div>
-      <div class="services-progress" aria-hidden="true">
-        <div class="services-progress-bar"></div>
+      <div class="services-dots" aria-hidden="true">
+        <span class="services-dot active"></span>
+        <span class="services-dot"></span>
+        <span class="services-dot"></span>
+        <span class="services-dot"></span>
       </div>
     </div>
     <!-- Mobile fallback -->
@@ -179,6 +186,10 @@ import Starfield from '../components/Starfield.astro';
           <div class="stat" data-stat-range="1-2">
             <span class="stat-num">1-2</span>
             <span class="stat-label">WEEKS TO RESULTS</span>
+          </div>
+          <div class="stat" data-stat={caseStudyCount}>
+            <span class="stat-num">{caseStudyCount}</span>
+            <span class="stat-label">CASE STUDIES</span>
           </div>
         </div>
       </div>
@@ -336,6 +347,9 @@ import Starfield from '../components/Starfield.astro';
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // Refresh after a frame so pinned sections and dynamic content don't desync triggers
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 769;
 
@@ -408,30 +422,54 @@ import Starfield from '../components/Starfield.astro';
     }
   }
 
-  // --- SERVICES — Horizontal Cinema ---
+  // --- SERVICES — Auto Carousel (zoom in, screech, hold, blast off) ---
   if (!prefersReducedMotion && !isMobile) {
-    const track = document.querySelector('.services-track') as HTMLElement;
-    const panels = document.querySelector('.services-panels') as HTMLElement;
-    const progressBar = document.querySelector('.services-progress-bar') as HTMLElement;
+    const panels = gsap.utils.toArray('.service-panel') as HTMLElement[];
+    const dots = gsap.utils.toArray('.services-dot') as HTMLElement[];
 
-    if (track && panels) {
-      const totalWidth = panels.scrollWidth - window.innerWidth;
+    if (panels.length) {
+      // Park all panels off-screen right, fully hidden
+      gsap.set(panels, { x: '110vw', opacity: 0, visibility: 'hidden' });
 
-      gsap.to(panels, {
-        x: -totalWidth,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: track,
-          pin: true,
-          scrub: 1,
-          end: () => `+=${totalWidth}`,
-          onUpdate: (self) => {
-            if (progressBar) {
-              progressBar.style.width = `${self.progress * 100}%`;
-            }
-          },
-        },
-      });
+      let loopTimer: ReturnType<typeof setTimeout>;
+
+      function showPanel(index: number) {
+        const panel = panels[index];
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+
+        gsap.set(panel, { x: '110vw', visibility: 'visible', opacity: 1 });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            loopTimer = setTimeout(() => exitPanel(index), 3000);
+          }
+        });
+
+        tl.to(panel, { x: 0, duration: 0.45, ease: 'power4.out' })
+          .to(panel, { x: -10, duration: 0.05, ease: 'none' })
+          .to(panel, { x: 7,   duration: 0.05, ease: 'none' })
+          .to(panel, { x: -5,  duration: 0.05, ease: 'none' })
+          .to(panel, { x: 3,   duration: 0.04, ease: 'none' })
+          .to(panel, { x: -2,  duration: 0.04, ease: 'none' })
+          .to(panel, { x: 0,   duration: 0.04, ease: 'none' });
+      }
+
+      function exitPanel(index: number) {
+        const panel = panels[index];
+        const next = (index + 1) % panels.length;
+        gsap.to(panel, {
+          x: '-110vw',
+          duration: 0.4,
+          ease: 'power4.in',
+          onComplete: () => {
+            gsap.set(panel, { visibility: 'hidden', opacity: 0 });
+            showPanel(next);
+          }
+        });
+      }
+
+      // Start immediately — section is always below fold on load
+      showPanel(0);
     }
   }
 
@@ -480,6 +518,22 @@ import Starfield from '../components/Starfield.astro';
         });
       }
     }
+
+    // Stat counter: generic numeric (excludes the hand-animated [data-stat="30"] and range stats)
+    document.querySelectorAll('[data-stat]:not([data-stat-range]):not([data-stat="30"])').forEach((stat) => {
+      const target = parseInt((stat as HTMLElement).dataset.stat || '0', 10);
+      if (!target) return;
+      const numEl = stat.querySelector('.stat-num') as HTMLElement;
+      if (!numEl) return;
+      const counter = { val: 0 };
+      gsap.to(counter, {
+        val: target,
+        duration: 1.5,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: stat as HTMLElement, start: 'top 80%' },
+        onUpdate: () => { numEl.textContent = String(Math.round(counter.val)); },
+      });
+    });
 
     // Stat counters: range stats "5-15" and "1-2"
     document.querySelectorAll('[data-stat-range]').forEach((stat) => {
@@ -864,23 +918,28 @@ import Starfield from '../components/Starfield.astro';
     margin-top: 16px;
   }
 
-  /* Desktop horizontal scroll */
+  /* Desktop auto-carousel */
   .services-track {
     display: none;
+    padding-bottom: 60px;
+  }
+
+  .services-stage {
+    position: relative;
+    height: 70vh;
     overflow: hidden;
   }
-  .services-panels {
-    display: flex;
-  }
+
   .service-panel {
-    min-width: 100vw;
-    height: 80vh;
-    position: relative;
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    opacity: 0; /* GSAP takes over immediately on load */
   }
+
   .panel-number {
     position: absolute;
     font-family: var(--font-heading);
@@ -936,21 +995,22 @@ import Starfield from '../components/Starfield.astro';
     color: var(--color-accent-hover);
   }
 
-  .services-progress {
-    position: absolute;
-    bottom: 40px;
-    left: 60px;
-    right: 60px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 1px;
+  .services-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding-top: 24px;
   }
-  .services-progress-bar {
-    height: 100%;
-    width: 0%;
+  .services-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .services-dot.active {
     background: var(--color-accent);
-    border-radius: 1px;
-    transition: width 0.05s linear;
+    transform: scale(1.4);
   }
 
   /* Mobile services */

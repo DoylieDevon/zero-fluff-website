@@ -7,8 +7,8 @@ import { getCollection } from 'astro:content';
 const studies = await getCollection('case-studies');
 studies.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 
+// Default featured for SSR/no-JS — overridden client-side with a random pick
 const featured = studies[0];
-const rest = studies.slice(1);
 
 const categoryColors: Record<string, string> = {
   Framework: '#FF3B30',
@@ -27,10 +27,24 @@ const categoryColors: Record<string, string> = {
   title="Our Work | Zero Fluff"
   description="Real results for real businesses. See how Zero Fluff has helped companies save time and make better decisions with practical AI solutions."
 >
+  <!-- All study data for client-side random featured pick -->
+  <script id="studies-data" type="application/json" set:html={JSON.stringify(studies.map(s => ({
+    id: s.id,
+    client: s.data.client,
+    title: s.data.title,
+    subtitle: s.data.subtitle ?? s.data.title,
+    result: s.data.result,
+    image: s.data.image ?? null,
+    tech: (s.data.tech ?? []).slice(0, 5),
+  })))}></script>
+
   <!-- FEATURED HERO -->
   <section class="nf-hero" id="nf-hero">
     {featured.data.image && (
-      <div class="nf-hero-bg" style={`background-image:url(${featured.data.image})`} aria-hidden="true"></div>
+      <div class="nf-hero-bg" id="nf-hero-bg" style={`background-image:url(${featured.data.image})`} aria-hidden="true"></div>
+    )}
+    {!featured.data.image && (
+      <div class="nf-hero-bg" id="nf-hero-bg" aria-hidden="true"></div>
     )}
     <div class="nf-hero-vignette" aria-hidden="true"></div>
 
@@ -39,25 +53,23 @@ const categoryColors: Record<string, string> = {
         <span class="nf-badge-dot"></span>
         FEATURED WORK
       </div>
-      <h1 class="nf-hero-title" data-nf-scramble>{featured.data.client}</h1>
-      <p class="nf-hero-subtitle">{featured.data.subtitle ?? featured.data.title}</p>
+      <h1 class="nf-hero-title" id="nf-hero-title" data-nf-scramble>{featured.data.client}</h1>
+      <p class="nf-hero-subtitle" id="nf-hero-subtitle">{featured.data.subtitle ?? featured.data.title}</p>
 
-      {featured.data.tech && (
-        <div class="nf-hero-pills">
-          {featured.data.tech.slice(0, 5).map(t => (
-            <span class="nf-hero-pill" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
-          ))}
-        </div>
-      )}
+      <div class="nf-hero-pills" id="nf-hero-pills">
+        {featured.data.tech && featured.data.tech.slice(0, 5).map(t => (
+          <span class="nf-hero-pill" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
+        ))}
+      </div>
 
       <div class="nf-hero-actions">
-        <a href={`/case-studies/${featured.id}`} class="nf-btn-primary" data-magnetic>
+        <a id="nf-hero-link" href={`/case-studies/${featured.id}`} class="nf-btn-primary" data-magnetic>
           <span class="nf-play-icon" aria-hidden="true">▶</span>
           View Case Study
         </a>
       </div>
 
-      <p class="nf-hero-result">{featured.data.result}</p>
+      <p class="nf-hero-result" id="nf-hero-result">{featured.data.result}</p>
     </div>
 
     <!-- Bottom fade to black for content below -->
@@ -140,9 +152,44 @@ const categoryColors: Record<string, string> = {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const categoryColors: Record<string, string> = {
+    Framework: '#FF3B30', Language: '#00F0FF', Animation: '#FF9500',
+    Hosting: '#34C759', Email: '#AF52DE', Typography: '#5AC8FA',
+    CMS: '#FF2D55', Styling: '#FFCC00', 'Browser API': '#00F0FF',
+  };
+
+  function randomiseFeatured() {
+    const el = document.getElementById('studies-data');
+    if (!el) return;
+    const studies = JSON.parse(el.textContent || '[]');
+    if (!studies.length) return;
+
+    const pick = studies[Math.floor(Math.random() * studies.length)];
+
+    const bg = document.getElementById('nf-hero-bg') as HTMLElement;
+    const title = document.getElementById('nf-hero-title') as HTMLElement;
+    const subtitle = document.getElementById('nf-hero-subtitle') as HTMLElement;
+    const pills = document.getElementById('nf-hero-pills') as HTMLElement;
+    const link = document.getElementById('nf-hero-link') as HTMLAnchorElement;
+    const result = document.getElementById('nf-hero-result') as HTMLElement;
+
+    if (bg) bg.style.backgroundImage = pick.image ? `url(${pick.image})` : '';
+    if (title) title.textContent = pick.client;
+    if (subtitle) subtitle.textContent = pick.subtitle;
+    if (result) result.textContent = pick.result;
+    if (link) link.href = `/case-studies/${pick.id}`;
+    if (pills) {
+      pills.innerHTML = pick.tech.map((t: { name: string; category: string }) =>
+        `<span class="nf-hero-pill" style="--c:${categoryColors[t.category] ?? '#FF3B30'}">${t.name}</span>`
+      ).join('');
+    }
+  }
+
   function initPage() {
     // Kill any leftover ScrollTriggers from previous navigation
     ScrollTrigger.getAll().forEach(t => t.kill());
+
+    randomiseFeatured();
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
