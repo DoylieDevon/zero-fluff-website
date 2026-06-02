@@ -431,7 +431,7 @@ const caseStudyCount = caseStudies.length;
     if (panels.length && stage) {
       let loopTimer: ReturnType<typeof setTimeout>;
 
-      function stageW() { return stage.offsetWidth; }
+      function stageW() { return stage.offsetWidth || window.innerWidth; }
 
       // Hide all panels off-screen right
       gsap.set(panels, { x: stageW() * 1.1, opacity: 0, visibility: 'hidden' });
@@ -1168,8 +1168,7 @@ const caseStudyCount = caseStudies.length;
     color: var(--color-text);
     letter-spacing: -0.5px;
     white-space: nowrap;
-    display: inline-block;
-    min-width: 12ch;
+    display: block;
   }
 
   .about-right {
