@@ -1,5 +1,5 @@
 ---
-title: "Automated Land Report Engine"
+title: "House Builder Report Generation"
 client: "Smith & White"
 subtitle: "Five days of manual data gathering replaced by a six-minute report."
 result: "5 days → 6 minutes"
