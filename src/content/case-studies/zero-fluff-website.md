@@ -4,7 +4,7 @@ client: "Zero Fluff"
 subtitle: "A cinematic, fully animated marketing site — built 100% through agentic AI. No hand-written code."
 result: "0 lines written by hand"
 order: 0
-image: "/og-image.jpg"
+image: "/images/case-study-zerofluff.jpg"
 description: "This website — the one you're looking at right now — was built entirely through conversational AI using Claude Code in agentic mode. Every component, every animation, every line of CSS was generated through natural language prompts. No IDE. No hand-written code. Just clear thinking about what to build, and an AI that could build it."
 tech:
   - { name: "Astro", category: "Framework" }
