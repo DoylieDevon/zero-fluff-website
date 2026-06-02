@@ -468,8 +468,17 @@ const caseStudyCount = caseStudies.length;
         });
       }
 
-      // Start immediately — section is always below fold on load
-      showPanel(0);
+      // Start when the stage scrolls into view
+      const stage = document.querySelector('.services-stage') as HTMLElement;
+      if (stage) {
+        const io = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            io.disconnect();
+            showPanel(0);
+          }
+        }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+        io.observe(stage);
+      }
     }
   }
 
