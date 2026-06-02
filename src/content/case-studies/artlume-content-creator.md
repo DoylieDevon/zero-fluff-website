@@ -15,9 +15,9 @@ tech:
   - { name: "FastAPI", category: "API" }
   - { name: "Resend", category: "Email" }
   - { name: "Vercel", category: "Hosting" }
-  - { name: "AI Vision", category: "AI" }
+  - { name: "GPT-Image-2 (OpenAI)", category: "AI" }
 aiUsed:
-  - "AI Vision (image tagging backend)"
+  - "GPT-Image-2 (OpenAI)"
   - "Claude Code (Agentic CLI)"
 url: "https://artlumecontent-andy-2433s-projects.vercel.app/"
 ---
