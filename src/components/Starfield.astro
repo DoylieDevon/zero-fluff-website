@@ -172,14 +172,7 @@
   /* ── draw loop ──────────────────────────────────────── */
   let t = 0;
   let lastDrawTime = 0;
-
-  function ensureRunning() {
-    // If draw loop died (no draw in 500ms), restart it
-    if (Date.now() - lastDrawTime > 500) {
-      cancelAnimationFrame(animId);
-      draw();
-    }
-  }
+  let watchdogId;
 
   function draw() {
     try {
@@ -365,18 +358,22 @@
     resizeTimer = setTimeout(resize, 200);
   }
 
-  // Restart the loop on scroll in case rAF was killed by browser optimisations
-  function handleScroll() { ensureRunning(); }
-
   window.addEventListener('resize', handleResize);
-  window.addEventListener('scroll', handleScroll, { passive: true });
   resize();
   draw();
 
+  // Watchdog: if rAF loop dies for any reason, restart it every 500ms
+  watchdogId = setInterval(() => {
+    if (Date.now() - lastDrawTime > 500) {
+      cancelAnimationFrame(animId);
+      draw();
+    }
+  }, 500);
+
   document.addEventListener('astro:before-swap', function cleanup() {
     cancelAnimationFrame(animId);
+    clearInterval(watchdogId);
     window.removeEventListener('resize', handleResize);
-    window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('astro:before-swap', cleanup);
   });
 })();
