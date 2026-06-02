@@ -55,11 +55,6 @@ const categoryColors: Record<string, string> = {
           <span class="nf-play-icon" aria-hidden="true">▶</span>
           View Case Study
         </a>
-        {featured.data.url && (
-          <a href={featured.data.url} target="_blank" rel="noopener noreferrer" class="nf-btn-ghost">
-            Live Site ↗
-          </a>
-        )}
       </div>
 
       <p class="nf-hero-result">{featured.data.result}</p>
@@ -103,9 +98,6 @@ const categoryColors: Record<string, string> = {
           <div class="nf-card-preview">
             <div class="nf-card-preview-header">
               <a href={`/case-studies/${study.id}`} class="nf-card-play" aria-label={`View ${study.data.client} case study`}>▶</a>
-              {study.data.url && (
-                <a href={study.data.url} target="_blank" rel="noopener noreferrer" class="nf-card-external" aria-label="View live site">↗</a>
-              )}
               <span class="nf-card-result-badge">{study.data.result}</span>
             </div>
             <h3 class="nf-card-name">{study.data.client}</h3>
