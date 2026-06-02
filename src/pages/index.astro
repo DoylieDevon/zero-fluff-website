@@ -438,8 +438,10 @@ const caseStudyCount = caseStudies.length;
 
       function peekPanel(index: number) {
         const panel = panels[index];
-        // Show 200px of the next panel so the title text is actually visible
-        gsap.set(panel, { x: stageW() - 200, visibility: 'visible', opacity: 0.4 });
+        // Content is flex-centered, starts at ~461px into the panel.
+        // x must be < (stageW - 461) for text to be visible.
+        // Use 55% offset so ~164px of title text peeks from the right edge.
+        gsap.set(panel, { x: stageW() * 0.55, visibility: 'visible', opacity: 0.45 });
       }
 
       function showPanel(index: number) {
