@@ -428,16 +428,29 @@ const caseStudyCount = caseStudies.length;
     const dots = gsap.utils.toArray('.services-dot') as HTMLElement[];
 
     if (panels.length) {
-      // Park all panels off-screen right, fully hidden
+      // Park all panels off-screen right, fully hidden — showPanel will peek the next one
       gsap.set(panels, { x: '110vw', opacity: 0, visibility: 'hidden' });
+      // Pre-peek panel 1 so it's visible on the right before panel 0 even starts
+      gsap.set(panels[1], { x: 'calc(100% - 48px)', visibility: 'visible', opacity: 0.35 });
 
       let loopTimer: ReturnType<typeof setTimeout>;
+
+      function peekPanel(index: number) {
+        const panel = panels[index];
+        // Sit just off the right edge — content barely visible as a teaser
+        gsap.set(panel, { x: 'calc(100% - 48px)', visibility: 'visible', opacity: 0.35 });
+      }
 
       function showPanel(index: number) {
         const panel = panels[index];
         dots.forEach((d, i) => d.classList.toggle('active', i === index));
 
-        gsap.set(panel, { x: '110vw', visibility: 'visible', opacity: 1 });
+        // Clear any peek state on this panel
+        gsap.set(panel, { opacity: 1 });
+
+        // Peek the next panel in the queue
+        const nextIndex = (index + 1) % panels.length;
+        peekPanel(nextIndex);
 
         const tl = gsap.timeline({
           onComplete: () => {
@@ -935,15 +948,6 @@ const caseStudyCount = caseStudies.length;
     position: relative;
     height: 70vh;
     overflow: hidden;
-    opacity: 0;
-    animation: stage-reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 20%;
-  }
-
-  @keyframes stage-reveal {
-    from { opacity: 0; }
-    to   { opacity: 1; }
   }
 
   .service-panel {
