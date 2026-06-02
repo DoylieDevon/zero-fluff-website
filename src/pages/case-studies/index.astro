@@ -608,6 +608,20 @@ const categoryColors: Record<string, string> = {
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.35s;
     z-index: 1;
     transform-origin: center top;
+    box-shadow: 0 0 0 1px rgba(255,59,48,0.25), 0 4px 24px rgba(0,0,0,0.5);
+    animation: card-border-pulse 5s ease-in-out infinite;
+  }
+
+  /* Stagger the glow cycle so cards breathe out of sync */
+  .nf-card:nth-child(2) { animation-delay: -1.6s; }
+  .nf-card:nth-child(3) { animation-delay: -3.2s; }
+  .nf-card:nth-child(4) { animation-delay: -0.8s; }
+  .nf-card:nth-child(5) { animation-delay: -2.4s; }
+  .nf-card:nth-child(6) { animation-delay: -4s; }
+
+  @keyframes card-border-pulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(255,59,48,0.25), 0 4px 24px rgba(0,0,0,0.5); }
+    50%       { box-shadow: 0 0 0 1px rgba(0,240,255,0.35), 0 4px 32px rgba(0,240,255,0.08); }
   }
 
   .nf-card--wide {
@@ -637,8 +651,45 @@ const categoryColors: Record<string, string> = {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px;
     background: var(--color-surface-elevated);
+  }
+
+  /* Scan line — sweeps top to bottom, looping */
+  .nf-card-img-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0,240,255,0.0) 10%,
+      rgba(0,240,255,0.9) 40%,
+      rgba(0,240,255,1)   50%,
+      rgba(0,240,255,0.9) 60%,
+      rgba(0,240,255,0.0) 90%,
+      transparent 100%
+    );
+    top: -2%;
+    animation: card-scan 6s ease-in-out infinite;
+    z-index: 3;
+    pointer-events: none;
+    filter: blur(0.5px);
+  }
+
+  /* Stagger scan lines so they're not all in sync */
+  .nf-card:nth-child(2) .nf-card-img-wrap::after { animation-delay: -2s; }
+  .nf-card:nth-child(3) .nf-card-img-wrap::after { animation-delay: -4s; }
+  .nf-card:nth-child(4) .nf-card-img-wrap::after { animation-delay: -1s; }
+  .nf-card:nth-child(5) .nf-card-img-wrap::after { animation-delay: -3s; }
+  .nf-card:nth-child(6) .nf-card-img-wrap::after { animation-delay: -5s; }
+
+  @keyframes card-scan {
+    0%   { top: -2%;   opacity: 0; }
+    3%   { opacity: 1; }
+    97%  { opacity: 0.7; }
+    100% { top: 102%;  opacity: 0; }
   }
 
   .nf-card--hovered .nf-card-img-wrap {
