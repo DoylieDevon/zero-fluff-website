@@ -1,46 +1,50 @@
 ---
 title: "AI-Built Marketing Website"
 client: "Zero Fluff"
-subtitle: "A cinematic, fully animated marketing site — built 100% through agentic AI. No hand-written code."
-result: "0 lines written by hand"
+subtitle: "A fully animated, production-ready marketing site — built from scratch in 2 hours, including all content. No hand-written code."
+result: "Built in 2 hours"
 order: 0
 image: "/images/case-study-zerofluff.jpg"
-description: "This website — the one you're looking at right now — was built entirely through conversational AI using Claude Code in agentic mode. Every component, every animation, every line of CSS was generated through natural language prompts. No IDE. No hand-written code. Just clear thinking about what to build, and an AI that could build it."
+description: "The Zero Fluff website was built entirely through Claude Code in agentic mode — every component, animation, and line of copy generated through conversation. From blank repo to live Vercel deployment, including all content, in under two hours."
 tech:
   - { name: "Astro", category: "Framework" }
   - { name: "TypeScript", category: "Language" }
   - { name: "GSAP", category: "Animation" }
+  - { name: "ScrollTrigger", category: "Animation" }
   - { name: "Vercel", category: "Hosting" }
   - { name: "Resend", category: "Email" }
+  - { name: "Astro Content Collections", category: "CMS" }
   - { name: "Space Grotesk", category: "Typography" }
   - { name: "Inter", category: "Typography" }
-  - { name: "Astro Content Collections", category: "CMS" }
   - { name: "CSS Custom Properties", category: "Styling" }
-  - { name: "IntersectionObserver", category: "Browser API" }
 aiUsed:
   - "Claude Sonnet 4.6 (Anthropic)"
   - "Claude Code (Agentic CLI)"
+  - "frontend-design skill (UI/UX)"
+  - "ui-ux-pro-max skill (UI/UX)"
 url: "https://www.zerofluff.co.uk"
 ---
 
 ## The Brief
 
-Build a marketing website for a zero-fluff AI consultancy — which itself needed to be a showcase of what AI can do. It had to be visually ambitious, technically solid, and fast. And it had to be built the way Zero Fluff builds everything: with AI doing the work.
+Build a marketing website for a zero-fluff AI consultancy that had to be two things at once: a credible business site that converts visitors, and a live proof of concept that AI can build serious digital products. No existing site. No designs. No agency. Just a clear brief and an AI that could execute it.
 
 ## How It Was Built
 
-Every line of this site was generated through Claude Code running in agentic mode. The process looked like this: describe what you want, iterate on the output, refine through conversation. The AI handled component architecture, animation logic, responsive design, accessibility, and deployment configuration.
+The entire site was built through Claude Code running in agentic mode, with specialist UI/UX skills loaded for the visual and interaction design phases. The process was conversational — describe what you want, review the output in the browser, iterate. No IDE, no hand-written code, no Figma mockups.
 
-No Figma mockups. No separate front-end dev. No back-and-forth with an agency. Just a clear vision and an AI that could execute it.
+Dedicated skills handled the visual design system (typography, colour tokens, spacing scale) and interaction patterns (scroll reveals, hover states, animation choreography). Claude Code handled everything else: component architecture, page structure, Astro content collections, Vercel adapter config, the contact form wired to Resend, the sitemap, and the SEO metadata.
+
+Content — headlines, service descriptions, FAQs, about copy — was written in the same session. Two hours, start to finish, including a full production deploy.
 
 ## What Makes It Interesting
 
-The site deliberately pushes what's possible with pure CSS and vanilla JavaScript. The particle canvas, the horizontal scroll cinema, the text scramble effect, the gravity-well CTA — all generated through prompts, tested in the browser, and iterated in seconds rather than hours.
+The site doesn't look AI-generated. It looks like the work of a skilled front-end team with a month to spare. That's the point.
 
-The GSAP ScrollTrigger animations, the custom cursor, the starfield background, the film grain overlay — these are the kinds of touches that would normally add days to a project. Here they were shipped in a single session.
+The GSAP ScrollTrigger animations — the horizontal scroll cinema, the domino-drop pain point cards, the gravity-well CTA where words fly in from random positions — are the kind of touches that usually add days to a project. The particle canvas that repels from the cursor, the text scramble effect on the hero, the starfield that runs the full page length: all generated through prompts, tested in the browser, and shipped the same session.
+
+The Netflix-style case studies browser, the custom case study detail pages with terminal-style AI stack displays, and the automated Puppeteer screenshot pipeline were all added in subsequent sessions using the same approach.
 
 ## The Result
 
-A production-ready website, deployed on Vercel, with a perfect Lighthouse score on accessibility and a sub-second first contentful paint. Built in a fraction of the time — and cost — of a traditional agency engagement.
-
-This is what Zero Fluff means in practice.
+A production-ready site, live on Vercel, built in under two hours including all content. It ranks on Google, converts visitors to enquiries, and serves as the most honest piece of marketing Zero Fluff could publish: a website that is itself the case study.
