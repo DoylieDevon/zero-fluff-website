@@ -87,11 +87,6 @@ const categoryColors: Record<string, string> = {
               ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
               : <div class="nf-card-img-placeholder"></div>
             }
-            {study.data.aiUsed && study.data.aiUsed.length > 0 && (
-              <div class="nf-card-ai-badge" aria-hidden="true">
-                <span class="nf-ai-dot"></span>AI
-              </div>
-            )}
             <div class="nf-card-shine" aria-hidden="true"></div>
           </div>
 
@@ -500,12 +495,18 @@ const categoryColors: Record<string, string> = {
     50%       { box-shadow: 0 0 0 1px rgba(0,240,255,0.35), 0 4px 32px rgba(0,240,255,0.08); }
   }
 
-  /* Hover state */
+  /* Hover — scale 10% and lift above neighbours */
   .nf-card--hovered {
+    transform: scale(1.1);
+    z-index: 20;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0s, box-shadow 0.3s ease;
+    box-shadow: 0 0 0 1px rgba(0,240,255,0.5), 0 16px 48px rgba(0,0,0,0.8);
+  }
+
+  /* Double-size card — don't scale, just lift */
+  .nf-card--featured.nf-card--hovered {
     transform: translateY(-4px);
-    z-index: 10;
-    transition: transform 0.3s ease, z-index 0s 0s, box-shadow 0.3s ease;
-    box-shadow: 0 0 0 1px rgba(0,240,255,0.5), 0 12px 40px rgba(0,0,0,0.7);
+    box-shadow: 0 0 0 1px rgba(0,240,255,0.4), 0 12px 40px rgba(0,0,0,0.7);
   }
 
   .nf-card-img-wrap {
@@ -516,7 +517,7 @@ const categoryColors: Record<string, string> = {
     background: var(--color-surface-elevated);
   }
 
-  /* Scan line — sweeps top to bottom, looping */
+  /* Scan line — hidden by default, only runs while hovering */
   .nf-card-img-wrap::after {
     content: '';
     position: absolute;
@@ -533,23 +534,20 @@ const categoryColors: Record<string, string> = {
       transparent 100%
     );
     top: -2%;
-    animation: card-scan 6s ease-in-out infinite;
+    animation: none;
     z-index: 3;
     pointer-events: none;
     filter: blur(0.5px);
   }
 
-  /* Stagger scan lines so they're not all in sync */
-  .nf-card:nth-child(2) .nf-card-img-wrap::after { animation-delay: -2s; }
-  .nf-card:nth-child(3) .nf-card-img-wrap::after { animation-delay: -4s; }
-  .nf-card:nth-child(4) .nf-card-img-wrap::after { animation-delay: -1s; }
-  .nf-card:nth-child(5) .nf-card-img-wrap::after { animation-delay: -3s; }
-  .nf-card:nth-child(6) .nf-card-img-wrap::after { animation-delay: -5s; }
+  .nf-card--hovered .nf-card-img-wrap::after {
+    animation: card-scan 2s ease-in-out infinite;
+  }
 
   @keyframes card-scan {
     0%   { top: -2%;   opacity: 0; }
-    3%   { opacity: 1; }
-    97%  { opacity: 0.7; }
+    5%   { opacity: 1; }
+    95%  { opacity: 0.8; }
     100% { top: 102%;  opacity: 0; }
   }
 
