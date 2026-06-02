@@ -13,7 +13,6 @@
     inset: 0;
     z-index: 0;
     width: 100%;
-    will-change: transform; /* force GPU layer — prevents browser caching stale canvas on scroll */
     height: 100%;
     pointer-events: none;
   }
@@ -172,7 +171,19 @@
 
   /* ── draw loop ──────────────────────────────────────── */
   let t = 0;
+  let lastDrawTime = 0;
+
+  function ensureRunning() {
+    // If draw loop died (no draw in 500ms), restart it
+    if (Date.now() - lastDrawTime > 500) {
+      cancelAnimationFrame(animId);
+      draw();
+    }
+  }
+
   function draw() {
+    try {
+    lastDrawTime = Date.now();
     t += 0.016;
     ctx.clearRect(0, 0, W, H);
 
@@ -341,6 +352,10 @@
     }
 
     animId = requestAnimationFrame(draw);
+    } catch(e) {
+      // Loop errored — restart next frame
+      animId = requestAnimationFrame(draw);
+    }
   }
 
   /* ── init ───────────────────────────────────────────── */
@@ -350,13 +365,18 @@
     resizeTimer = setTimeout(resize, 200);
   }
 
+  // Restart the loop on scroll in case rAF was killed by browser optimisations
+  function handleScroll() { ensureRunning(); }
+
   window.addEventListener('resize', handleResize);
+  window.addEventListener('scroll', handleScroll, { passive: true });
   resize();
   draw();
 
   document.addEventListener('astro:before-swap', function cleanup() {
     cancelAnimationFrame(animId);
     window.removeEventListener('resize', handleResize);
+    window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('astro:before-swap', cleanup);
   });
 })();
