@@ -3,6 +3,7 @@ title: "Golf Accountancy Automation"
 client: "AMGL"
 subtitle: "25 reports per club, automated overnight — no early mornings, no manual downloads."
 result: "65 clubs. 22 reports each. Done before 9am."
+image: "/images/case-study-amgl.jpg"
 description: "AMGL's accountants were getting up at 5am to manually download 22 reports per client before the business day started. We automated the entire pipeline — scraping, formatting, emailing and filing to SharePoint while they sleep."
 tech:
   - { name: "Python", category: "Language" }
