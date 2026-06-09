@@ -1,5 +1,6 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import StructuredData from '../components/StructuredData.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ScrollProgress from '../components/ScrollProgress.astro';
@@ -17,6 +18,7 @@ const { title, description, image } = Astro.props;
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} image={image} />
+    <StructuredData />
     <ClientRouter />
     <slot name="head" />
   </head>

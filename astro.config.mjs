@@ -9,7 +9,15 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => page !== 'https://zerofluff.co.uk/404/',
-      customPages: ['https://zerofluff.co.uk/contact/'],
+      // The homepage and blog are server-rendered (the blog pulls fresh
+      // Substack posts on every request), so @astrojs/sitemap can't discover
+      // them at build time — list them explicitly so they get indexed.
+      // Individual blog posts live on Substack and aren't pages on this site.
+      customPages: [
+        'https://zerofluff.co.uk/',
+        'https://zerofluff.co.uk/blog/',
+        'https://zerofluff.co.uk/contact/',
+      ],
     }),
   ],
   env: {

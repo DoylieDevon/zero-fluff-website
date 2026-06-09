@@ -14,7 +14,7 @@ interface Props {
 
 const {
   title = 'Zero Fluff - AI Implementation That Works',
-  description = 'Straight-talking AI consultancy helping small businesses save time and money with AI and automation. No jargon, no fluff, just results.',
+  description = 'Straight-talking AI and automation consultancy in Totnes, Devon, helping small businesses across the South West UK save time and money. No jargon, no fluff, just results.',
   image = '/og-image.jpg',
 } = Astro.props;
 
@@ -29,6 +29,12 @@ const imageURL = new URL(image, Astro.site);
 <meta name="description" content={description} />
 <title>{title}</title>
 <link rel="canonical" href={canonicalURL} />
+
+<!-- Geo / local SEO (Totnes, Devon) -->
+<meta name="geo.region" content="GB-DEV" />
+<meta name="geo.placename" content="Totnes, Devon" />
+<meta name="geo.position" content="50.4319;-3.6863" />
+<meta name="ICBM" content="50.4319, -3.6863" />
 
 <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" sizes="32x32" />

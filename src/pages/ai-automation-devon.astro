@@ -1,0 +1,353 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+export const prerender = true;
+
+const studies = await getCollection('case-studies');
+studies.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const topStudies = studies.slice(0, 3);
+---
+
+<BaseLayout
+  title="AI Automation for Devon Businesses — Zero Fluff"
+  description="AI automation for Devon businesses. Based in Totnes, Zero Fluff helps Devon's small businesses save time and money with practical AI and automation — no jargon, no fluff."
+>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <span class="hero-eyebrow">AI AUTOMATION · DEVON</span>
+      <h1>AI automation for<br>Devon businesses</h1>
+      <p>Practical AI and automation for small businesses across Devon — from Totnes and Exeter to Plymouth, Torbay and Newton Abbot. Built and supported by someone just down the road.</p>
+      <div class="hero-ctas">
+        <a href="/contact" class="btn-red">Book a free AI chat →</a>
+        <a href="/services" class="btn-ghost">See our services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCAL INTRO -->
+  <section class="prose-section">
+    <div class="prose-inner">
+      <p class="lead">Zero Fluff is a Devon-based AI and automation consultancy, run from Totnes in the South Hams. We help small businesses across the county get real, measurable value out of AI — without the hype, the jargon, or the eye-watering agency fees.</p>
+      <p>Devon's a county of small businesses. Independent shops, holiday lets and hospitality, tradespeople, accountants and solicitors, farm businesses, agencies, charities — the backbone of the local economy. What they nearly all share is the same problem: too much repetitive admin, and not enough hours in the day. That's exactly where AI and automation earn their keep.</p>
+      <p>Being local matters. When it helps, I can come and sit down with you in person — in Totnes, Exeter, Plymouth, Torquay, or wherever you're based in Devon — rather than only ever being a name on a video call. I understand what it's like to run a business down here, and I'll always tell you straight whether AI is actually the right tool for your problem.</p>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO LOCALLY -->
+  <section class="cards-section">
+    <div class="cards-inner">
+      <span class="section-label">HOW WE HELP DEVON BUSINESSES</span>
+      <h2>Where AI saves Devon businesses time</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Drowning in admin</h3>
+          <p>Emails, quotes, invoices, scheduling, data entry. We automate the repetitive jobs that eat your week, so you and your team can get back to the actual work.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Tourism &amp; hospitality</h3>
+          <p>Devon runs on visitors. Automate booking enquiries, guest comms, reviews and reporting so the busy season doesn't bury you in admin.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Trades &amp; field businesses</h3>
+          <p>Quoting, job scheduling, follow-ups and chasing paperwork — handled automatically, so more of your day is spent on site, not at a desk.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Professional services</h3>
+          <p>Accountants, solicitors and agencies: summarise documents, draft routine correspondence, and pull reports together in minutes instead of hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES LINKS -->
+  <section class="prose-section alt">
+    <div class="prose-inner">
+      <span class="section-label">WHERE TO START</span>
+      <h2>Ways to work with us</h2>
+      <p>Most Devon businesses start with an <a href="/services" class="inline-link">AI Quick Start</a> — a two-hour review where we find the highest-value opportunities in your business and give you a clear plan. From there, we can build the <a href="/services" class="inline-link">automations</a> for you, develop <a href="/services/custom-ai-software-development" class="inline-link">custom AI software</a> when off-the-shelf won't cut it, or keep things running with <a href="/services" class="inline-link">ongoing AI support</a>. Not sure which you need? That's what the free chat is for.</p>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="cards-section">
+    <div class="cards-inner">
+      <span class="section-label">PROOF, NOT PROMISES</span>
+      <h2>Recent work</h2>
+      <div class="study-grid">
+        {topStudies.map((study) => (
+          <a href={`/case-studies/${study.id}`} class="study-card">
+            <span class="study-client">{study.data.client}</span>
+            <h3>{study.data.title}</h3>
+            <span class="study-result">{study.data.result}</span>
+          </a>
+        ))}
+      </div>
+      <a href="/case-studies" class="all-link">See all case studies →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="services-cta">
+    <div class="services-cta-content">
+      <h2>Run a business in Devon?</h2>
+      <p>Book a free 20-minute AI chat. No sales pitch, no jargon — just an honest conversation about where AI could save you time. Based in Totnes, happy to meet across Devon.</p>
+      <a href="/contact" class="btn-red cta-btn-lg">Book a free AI chat →</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* PAGE HERO */
+  .page-hero {
+    min-height: 520px;
+    background: var(--color-surface);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 80px;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .page-hero-content h1 {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+  .page-hero-content > p {
+    font-size: 20px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .btn-red {
+    display: inline-block;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-red:hover { opacity: 0.85; color: #fff; }
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255, 255, 255, 0.6); color: #fff; }
+
+  /* PROSE */
+  .prose-section {
+    background: var(--color-bg);
+    padding: 80px;
+  }
+  .prose-section.alt { background: var(--color-surface); }
+  .prose-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .prose-inner .lead {
+    font-size: 22px;
+    color: var(--color-text);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .prose-inner p {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+  .prose-inner h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .inline-link {
+    color: #FF3B30;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 59, 48, 0.4);
+    transition: border-color 0.15s;
+  }
+  .inline-link:hover { border-bottom-color: #FF3B30; }
+
+  /* CARDS */
+  .cards-section {
+    background: var(--color-bg);
+    padding: 80px;
+    border-top: 1px solid var(--color-border);
+  }
+  .cards-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cards-inner > h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    padding: 32px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .feature-card h3 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.3px;
+  }
+  .feature-card p {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* STUDY CARDS */
+  .study-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .study-card {
+    padding: 28px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .study-card:hover { border-color: #FF3B30; transform: translateY(-2px); }
+  .study-client {
+    font-size: 10px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  .study-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    flex: 1;
+  }
+  .study-result {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+  }
+  .all-link {
+    margin-top: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 2px solid #FF3B30;
+    padding-bottom: 2px;
+    align-self: flex-start;
+    transition: color 0.15s;
+  }
+  .all-link:hover { color: #FF3B30; }
+
+  /* CTA */
+  .services-cta {
+    min-height: 300px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .services-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 60px 80px;
+    max-width: 720px;
+  }
+  .services-cta-content h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .services-cta-content p {
+    font-size: 18px;
+    color: #ccc;
+    line-height: 1.6;
+  }
+  .cta-btn-lg { font-size: 18px; padding: 20px 48px; }
+
+  @media (max-width: 768px) {
+    .page-hero-content { padding: 0 24px; }
+    .page-hero-content h1 { font-size: 38px; }
+    .prose-section { padding: 60px 24px; }
+    .prose-inner .lead { font-size: 19px; }
+    .cards-section { padding: 60px 24px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .study-grid { grid-template-columns: 1fr; }
+    .services-cta-content { padding: 40px 24px; }
+    .services-cta-content h2 { font-size: 36px; }
+  }
+</style>

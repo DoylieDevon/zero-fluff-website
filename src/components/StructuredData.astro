@@ -1,0 +1,134 @@
+---
+// Site-wide structured data (JSON-LD).
+// Rendered inside <head> on every page via BaseLayout.
+// LocalBusiness (ProfessionalService) + Organization graph for Zero Fluff,
+// a Totnes-based AI & automation consultancy serving the South West UK.
+
+const site = 'https://zerofluff.co.uk';
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${site}/#business`,
+  name: 'Zero Fluff',
+  description:
+    'Hands-on AI and automation consultancy in Totnes, Devon, helping small businesses across the South West UK save time and money with practical AI — no jargon, no fluff.',
+  url: site,
+  email: 'andy@zerofluff.co.uk',
+  image: `${site}/og-image.jpg`,
+  logo: `${site}/images/logo-horizontal-white.svg`,
+  priceRange: '££',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Totnes',
+    addressRegion: 'Devon',
+    postalCode: 'TQ9',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 50.4319,
+    longitude: -3.6863,
+  },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Devon' },
+    { '@type': 'AdministrativeArea', name: 'Cornwall' },
+    { '@type': 'AdministrativeArea', name: 'Somerset' },
+    { '@type': 'AdministrativeArea', name: 'Dorset' },
+    { '@type': 'City', name: 'Bristol' },
+    { '@type': 'Place', name: 'South West England' },
+  ],
+  knowsAbout: [
+    'Artificial Intelligence',
+    'Business Automation',
+    'Custom AI Software Development',
+    'AI Implementation',
+    'Workflow Automation',
+    'AI Consultancy',
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Andy Doyle',
+    email: 'andy@zerofluff.co.uk',
+    url: 'https://andy.zerofluff.co.uk',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'AI & Automation Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'AI Quick Start',
+          description:
+            'A two-hour review of your business to find the highest-value AI and automation opportunities.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Automation Setup',
+          description:
+            'We build automated workflows for your business using N8N, Claude, ChatGPT and more.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Custom AI Software Development',
+          description:
+            'Bespoke AI-powered tools, AI integrated into your existing systems, and custom automation workflows.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Ongoing AI Support',
+          description:
+            'A monthly retainer that keeps your automations running and adds new ones as opportunities arise.',
+        },
+      },
+    ],
+  },
+};
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site}/#organization`,
+  name: 'Zero Fluff',
+  url: site,
+  logo: `${site}/images/logo-horizontal-white.svg`,
+  image: `${site}/og-image.jpg`,
+  email: 'andy@zerofluff.co.uk',
+  description:
+    'Straight-talking AI and automation consultancy for small businesses in Devon and the South West UK.',
+  founder: {
+    '@type': 'Person',
+    name: 'Andy Doyle',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Totnes',
+    addressRegion: 'Devon',
+    postalCode: 'TQ9',
+    addressCountry: 'GB',
+  },
+  sameAs: ['https://zerofluff.substack.com', 'https://andy.zerofluff.co.uk'],
+};
+---
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(localBusiness)}
+/>
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(organization)}
+/>

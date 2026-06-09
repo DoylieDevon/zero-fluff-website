@@ -3,13 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 export const prerender = true;
 ---
 
-<BaseLayout title="Services — Zero Fluff" description="Practical AI implementation services for small businesses. No jargon, no fluff.">
+<BaseLayout title="AI & Automation Services — Zero Fluff" description="AI implementation and automation services for small businesses in Devon and across the South West UK. From quick-start audits to custom AI software — practical, hands-on, no jargon.">
 
   <!-- HERO -->
   <section class="page-hero">
     <div class="page-hero-content">
-      <h1>Practical AI solutions,<br>not buzzwords</h1>
-      <p>Real implementations that save you time and money, not slide decks about the future of AI.</p>
+      <h1>Practical AI and automation,<br>not buzzwords</h1>
+      <p>Real implementations that save you time and money, not slide decks about the future of AI. Working with small businesses across Devon and the South West.</p>
     </div>
   </section>
 
@@ -19,7 +19,7 @@ export const prerender = true;
       <div class="service-img service-img-1"></div>
       <div class="service-text">
         <span class="service-tag-label">2 HOURS</span>
-        <h2>AI Quick Start</h2>
+        <h2>AI Quick Start audit</h2>
         <p>Not sure where AI can help your business? Start here. We spend 2 hours reviewing your operations, identifying the highest-value automation opportunities, and giving you a clear, prioritised action plan.</p>
         <ul>
           <li>Full business operations review</li>
@@ -35,8 +35,8 @@ export const prerender = true;
       <div class="service-img service-img-2"></div>
       <div class="service-text">
         <span class="service-tag-label">HANDS-ON</span>
-        <h2>Automation Setup</h2>
-        <p>We build the automations for you using N8N, Manus, ChatGPT, Claude and more. You describe the problem, we build the solution. Most automations are live within a week.</p>
+        <h2>Business automation setup</h2>
+        <p>We build the automations for you using N8N, Manus, ChatGPT, Claude and more. You describe the problem, we build the solution. Most automations are live within a week. See how we <a href="/case-studies/house-builder-report-generation" class="inline-link">automated report generation for a house builder</a>.</p>
         <ul>
           <li>Custom workflow design and build</li>
           <li>Integration with your existing tools</li>
@@ -51,7 +51,7 @@ export const prerender = true;
       <div class="service-img service-img-3"></div>
       <div class="service-text">
         <span class="service-tag-label">MONTHLY</span>
-        <h2>Ongoing AI Support</h2>
+        <h2>Ongoing AI support &amp; consultancy</h2>
         <p>AI is moving fast. This monthly retainer keeps you ahead — fixing what breaks, adding new automations as opportunities arise, and advising on what's worth trying.</p>
         <ul>
           <li>Monthly strategy call</li>
@@ -67,17 +67,43 @@ export const prerender = true;
       <div class="service-img service-img-4"></div>
       <div class="service-text">
         <span class="service-tag-label">STRATEGIC</span>
-        <h2>Bigger Projects</h2>
-        <p>Building an AI-powered product, or need a fractional CTO to guide your technical strategy? 30 years of building digital products, from startup to scale.</p>
+        <h2>Custom AI software &amp; bigger projects</h2>
+        <p>Building an AI-powered product, or need a fractional CTO to guide your technical strategy? We build <a href="/services/custom-ai-software-development" class="inline-link">custom AI software</a> too — 30 years of building digital products, from startup to scale. See how we <a href="/case-studies/fandemiq" class="inline-link">helped FANDEMiQ understand an 8-year platform</a>.</p>
         <ul>
-          <li>Product strategy and technical architecture</li>
+          <li>Custom AI software development and integration</li>
           <li>AI/ML integration into existing products</li>
-          <li>Team guidance and hiring support</li>
-          <li>Flexible engagement terms</li>
+          <li>Product strategy and technical architecture</li>
+          <li>Team guidance and flexible engagement terms</li>
         </ul>
         <a href="/contact" class="btn-red">Let's Talk →</a>
       </div>
     </article>
+  </section>
+
+  <!-- EXPLORE MORE -->
+  <section class="services-explore">
+    <div class="services-explore-inner">
+      <span class="section-label">EXPLORE MORE</span>
+      <h2>See it in practice</h2>
+      <div class="explore-grid">
+        <a href="/case-studies" class="explore-card">
+          <h3>Case studies →</h3>
+          <p>Real results for real businesses — see the AI and automation work we've delivered.</p>
+        </a>
+        <a href="/services/custom-ai-software-development" class="explore-card">
+          <h3>Custom AI software →</h3>
+          <p>Bespoke AI-powered tools, AI built into your existing systems, and custom workflows.</p>
+        </a>
+        <a href="/ai-automation-devon" class="explore-card">
+          <h3>AI for Devon businesses →</h3>
+          <p>How we help businesses across Devon put AI and automation to work.</p>
+        </a>
+        <a href="/ai-consultancy-south-west" class="explore-card">
+          <h3>AI consultancy in the South West →</h3>
+          <p>Practical AI consultancy for businesses across the South West UK.</p>
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- CTA -->
@@ -226,6 +252,72 @@ export const prerender = true;
     transition: opacity 0.15s;
   }
   .btn-red:hover { opacity: 0.85; color: #fff; }
+  .inline-link {
+    color: #FF3B30;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 59, 48, 0.4);
+    transition: border-color 0.15s;
+  }
+  .inline-link:hover { border-bottom-color: #FF3B30; }
+
+  /* EXPLORE MORE */
+  .services-explore {
+    background: var(--color-bg);
+    padding: 80px;
+    border-top: 1px solid var(--color-border);
+  }
+  .services-explore-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .services-explore-inner > h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .explore-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 28px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .explore-card:hover {
+    border-color: #FF3B30;
+    transform: translateY(-2px);
+  }
+  .explore-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.3px;
+  }
+  .explore-card p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
 
   /* CTA */
   .services-cta {
@@ -268,5 +360,7 @@ export const prerender = true;
     .service-text { padding: 32px 0 0; }
     .services-cta-content { padding: 40px 24px; }
     .services-cta-content h2 { font-size: 36px; }
+    .services-explore { padding: 60px 24px; }
+    .explore-grid { grid-template-columns: 1fr; }
   }
 </style>
