@@ -20,6 +20,12 @@ const { title, description, image } = Astro.props;
     <BaseHead title={title} description={description} image={image} />
     <StructuredData />
     <ClientRouter />
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script is:inline async src="https://plausible.io/js/pa-2tjnmG9acpyFa-PjdTfwT.js"></script>
+    <script is:inline>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
     <slot name="head" />
   </head>
   <body>
