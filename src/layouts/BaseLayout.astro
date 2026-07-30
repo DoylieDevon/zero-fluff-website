@@ -26,6 +26,15 @@ const { title, description, image } = Astro.props;
       window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
       plausible.init()
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GF8BRBRH59"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GF8BRBRH59');
+    </script>
     <slot name="head" />
   </head>
   <body>
