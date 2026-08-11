@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.zerofluff.co.uk)",
+      "WebFetch(domain:physical-light-947386.framer.app)",
+      "WebSearch",
+      "Skill(gsd:execute-phase)",
+      "mcp__claude_ai_Vercel__deploy_to_vercel",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__puppeteer-mcp-claude__puppeteer_launch",
+      "mcp__puppeteer-mcp-claude__puppeteer_new_page",
+      "mcp__puppeteer-mcp-claude__puppeteer_navigate",
+      "mcp__puppeteer-mcp-claude__puppeteer_screenshot",
+      "mcp__puppeteer-mcp-claude__puppeteer_evaluate",
+      "mcp__puppeteer-mcp-claude__puppeteer_close_browser",
+      "Skill(gsd:discuss-phase)",
+      "Skill(gsd:plan-phase)"
+    ]
+  }
+}
