@@ -12,7 +12,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    version: '1.7.0',
+    version: '1.8.0',
     date: '2026-09-27',
     title: 'The site finally knows how old it is',
     description:
@@ -21,6 +21,22 @@ export const CHANGELOG: ChangelogEntry[] = [
       'Footer shows a semantic version instead of a build timestamp',
       'Version number links to this changelog',
       'New /changelog page, seeded from the full git history',
+    ],
+  },
+  {
+    version: '1.7.0',
+    date: '2026-09-27',
+    title: 'Now with twice the directors',
+    description:
+      'Zero Fluff was never a one-person show, and the site finally admits it. Philippa Doyle joins Andy on the About page as an equal director, the "I" became "we" across the site, and the small print now correctly says we are a limited company rather than a sole trader. Search engines and AI assistants also got a much clearer picture of who we are.',
+    changes: [
+      'About page rewritten for two directors, Andy and Philippa Doyle',
+      'First-person copy switched from "I" to "we" across the site',
+      'Footer and privacy policy show the legal entity: The Digital Partnership Ltd, company number 09850681',
+      'Phone number added to the footer, contact page and structured data',
+      'Structured data now includes opening hours, company details, both directors and LinkedIn pages',
+      'New llms.txt so AI assistants can describe the business accurately',
+      'Case studies page gets a proper heading; meta descriptions trimmed to fit search results',
     ],
   },
   {
@@ -105,7 +121,7 @@ export const CHANGELOG: ChangelogEntry[] = [
       'V2 redesign: new design tokens, Inter font and red accent',
       'Rebuilt header, footer, homepage, Services, About, Blog and Contact pages',
       'Blog pulls images from Substack posts, including video thumbnails',
-      'Footer shows a build timestamp (since retired — see 1.7.0)',
+      'Footer shows a build timestamp (since retired — see 1.8.0)',
     ],
   },
   {
