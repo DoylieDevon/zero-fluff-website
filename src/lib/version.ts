@@ -12,6 +12,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.8.2',
+    date: '2026-09-27',
+    title: 'No terms, no pretending',
+    description:
+      'The footer had a "Terms of Service" link that quietly took you to the privacy policy, which is a bit like a door marked Kitchen that opens onto the garden. We don\'t have separate terms of service, so the link is gone rather than pretending.',
+    changes: [
+      'Removed the footer "Terms of Service" link, which pointed at the privacy policy',
+    ],
+  },
+  {
     version: '1.8.1',
     date: '2026-09-27',
     title: 'Writing the rule down',
