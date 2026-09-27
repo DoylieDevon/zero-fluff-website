@@ -38,6 +38,8 @@ const categoryColors: Record<string, string> = {
     tech: (s.data.tech ?? []).slice(0, 5),
   })))}></script>
 
+  <h1 class="nf-sr-only">AI and automation case studies</h1>
+
   <!-- FEATURED HERO -->
   <section class="nf-hero" id="nf-hero">
     {featured.data.image && (
@@ -53,7 +55,7 @@ const categoryColors: Record<string, string> = {
         <span class="nf-badge-dot"></span>
         FEATURED WORK
       </div>
-      <h1 class="nf-hero-title" id="nf-hero-title" data-nf-scramble>{featured.data.client}</h1>
+      <h2 class="nf-hero-title" id="nf-hero-title" data-nf-scramble>{featured.data.client}</h2>
       <p class="nf-hero-subtitle" id="nf-hero-subtitle">{featured.data.subtitle ?? featured.data.title}</p>
 
       <div class="nf-hero-pills" id="nf-hero-pills">
@@ -419,6 +421,15 @@ const categoryColors: Record<string, string> = {
   @keyframes badge-pulse {
     0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,59,48,0.4); }
     50% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 0 6px rgba(255,59,48,0); }
+  }
+
+  .nf-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .nf-hero-title {
