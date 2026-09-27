@@ -6,6 +6,21 @@
 
 const site = 'https://zerofluff.co.uk';
 
+const directors = [
+  {
+    '@type': 'Person',
+    name: 'Andy Doyle',
+    jobTitle: 'Director',
+    url: 'https://andy.zerofluff.co.uk',
+    sameAs: ['https://www.linkedin.com/in/doylie'],
+  },
+  {
+    '@type': 'Person',
+    name: 'Philippa Doyle',
+    sameAs: ['https://www.linkedin.com/in/philippadoyle'],
+  },
+];
+
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -15,9 +30,18 @@ const localBusiness = {
     'Hands-on AI and automation consultancy in Totnes, Devon, helping small businesses across the South West UK save time and money with practical AI — no jargon, no fluff.',
   url: site,
   email: 'andy@zerofluff.co.uk',
+  telephone: '+44 7900 241369',
   image: `${site}/og-image.jpg`,
   logo: `${site}/images/logo-horizontal-white.svg`,
   priceRange: '££',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+  ],
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Totnes',
@@ -52,6 +76,7 @@ const localBusiness = {
     email: 'andy@zerofluff.co.uk',
     url: 'https://andy.zerofluff.co.uk',
   },
+  employee: directors,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'AI & Automation Services',
@@ -101,16 +126,24 @@ const organization = {
   '@type': 'Organization',
   '@id': `${site}/#organization`,
   name: 'Zero Fluff',
+  legalName: 'The Digital Partnership Ltd',
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'Companies House company number',
+    value: '09850681',
+  },
   url: site,
   logo: `${site}/images/logo-horizontal-white.svg`,
   image: `${site}/og-image.jpg`,
   email: 'andy@zerofluff.co.uk',
+  telephone: '+44 7900 241369',
   description:
     'Straight-talking AI and automation consultancy for small businesses in Devon and the South West UK.',
   founder: {
     '@type': 'Person',
     name: 'Andy Doyle',
   },
+  employee: directors,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Totnes',
@@ -118,7 +151,11 @@ const organization = {
     postalCode: 'TQ9',
     addressCountry: 'GB',
   },
-  sameAs: ['https://zerofluff.substack.com', 'https://andy.zerofluff.co.uk'],
+  sameAs: [
+    'https://www.linkedin.com/company/zerofluff',
+    'https://zerofluff.substack.com',
+    'https://andy.zerofluff.co.uk',
+  ],
 };
 ---
 

@@ -30,7 +30,7 @@ const categoryColors: Record<string, string> = {
 ---
 
 <BaseLayout
-  title={`${study.data.client}: ${study.data.title} | Zero Fluff`}
+  title={study.data.client === study.data.title ? `${study.data.title} | Zero Fluff` : `${study.data.client}: ${study.data.title} | Zero Fluff`}
   description={study.data.subtitle ?? `${study.data.client} — ${study.data.result}. See how Zero Fluff delivered real results.`}
   image={study.data.image}
 >

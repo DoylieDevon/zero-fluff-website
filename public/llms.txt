@@ -1,0 +1,39 @@
+# Zero Fluff
+
+> Zero Fluff is a hands-on AI and automation consultancy based in Totnes, Devon, UK. It helps small businesses across Devon and the South West of England save time and money with practical AI and automation, explained in plain English. It is run by Andy Doyle and Philippa Doyle, who share the consulting and delivery work equally.
+
+- Legal entity: Zero Fluff is a trading name of The Digital Partnership Ltd, registered in England and Wales, company number 09850681
+- Location: Totnes, Devon, TQ9, United Kingdom
+- Area served: Devon, Cornwall, Somerset, Dorset, Bristol and the wider South West of England; also clients further afield
+- Clients: small businesses across all sectors, from solo consultants to teams of around 20
+- Hours: Monday to Friday, 09:00 to 17:00 (UK time)
+- Contact: andy@zerofluff.co.uk, 07900 241369, or book a free 20-minute AI chat at https://zerofluff.co.uk/contact/
+- Tools used: n8n, Claude, ChatGPT, Gemini, Perplexity, Manus
+
+## Services
+
+- [AI Quick Start audit](https://zerofluff.co.uk/services/): a 2-hour review of a business's operations, producing 3-5 specific automation recommendations and a prioritised action plan. No obligation to continue.
+- [Business automation setup](https://zerofluff.co.uk/services/): custom automated workflows built and integrated with existing tools, with testing, handover documentation and 30 days of support. Most automations are live within a week.
+- [Ongoing AI support and consultancy](https://zerofluff.co.uk/services/): a monthly retainer with a strategy call, small automation fixes, tool evaluations and priority response.
+- [Custom AI software development](https://zerofluff.co.uk/services/custom-ai-software-development/): bespoke AI-powered tools, AI integrated into existing systems, product strategy and fractional CTO support.
+
+## Areas
+
+- [AI automation for Devon businesses](https://zerofluff.co.uk/ai-automation-devon/)
+- [AI consultancy in the South West](https://zerofluff.co.uk/ai-consultancy-south-west/)
+
+## Case studies
+
+- [All case studies](https://zerofluff.co.uk/case-studies/)
+- [AMGL](https://zerofluff.co.uk/case-studies/amgl/): golf accountancy reporting automated overnight, 25 reports per club
+- [House builder report generation](https://zerofluff.co.uk/case-studies/house-builder-report-generation/): five days of manual data gathering replaced by a six-minute report
+- [Edge Studio](https://zerofluff.co.uk/case-studies/edge-studio/): leadership assessment platform with AI-generated reports
+- [FANDEMiQ](https://zerofluff.co.uk/case-studies/fandemiq/): AI taking over development of an 8-year-old sports fan media platform
+- [Founder OS](https://zerofluff.co.uk/case-studies/founder-os/): an agent-run operating system that triages a founder's inboxes and Slack
+
+## About
+
+- [About Zero Fluff](https://zerofluff.co.uk/about/)
+- [Zero Fluff on LinkedIn](https://www.linkedin.com/company/zerofluff)
+- [Andy Doyle's portfolio](https://andy.zerofluff.co.uk)
+- [Zero Fluff newsletter on Substack](https://zerofluff.substack.com)
