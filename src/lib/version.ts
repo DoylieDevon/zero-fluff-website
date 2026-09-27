@@ -12,6 +12,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.8.1',
+    date: '2026-09-27',
+    title: 'Writing the rule down',
+    description:
+      'Nothing on the site looks different. We wrote the changelog rule into the project notes our AI assistants read first, so future updates arrive with a changelog entry instead of sneaking out unannounced.',
+    changes: [
+      'Added a CLAUDE.md with the versioning and changelog rules',
+    ],
+  },
+  {
     version: '1.8.0',
     date: '2026-09-27',
     title: 'The site finally knows how old it is',
