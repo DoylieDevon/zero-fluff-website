@@ -1,0 +1,111 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CHANGELOG } from '../lib/version';
+
+const formatDate = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<BaseLayout
+  title="Changelog - Zero Fluff"
+  description="Every version of the Zero Fluff website, newest first. What changed, when, and why."
+>
+  <section class="changelog-hero">
+    <h1>Changelog</h1>
+    <p>Every version of this site, newest first. Written by humans, mostly after the fact.</p>
+  </section>
+
+  <section class="changelog-content">
+    <div class="changelog-inner">
+      {CHANGELOG.map((entry) => (
+        <article class="entry" id={`v${entry.version}`}>
+          <div class="entry-meta">
+            <span class="entry-version">v{entry.version}</span>
+            <time datetime={entry.date}>{formatDate(entry.date)}</time>
+          </div>
+          <h2>{entry.title}</h2>
+          <p>{entry.description}</p>
+          <ul>
+            {entry.changes.map((change) => <li>{change}</li>)}
+          </ul>
+        </article>
+      ))}
+
+      <p class="signoff">Built by humans. Typed by Claude.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .changelog-hero {
+    background: #0D0D0D;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .changelog-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .changelog-hero p {
+    font-size: 16px;
+    color: #666;
+  }
+  .changelog-content { background: var(--color-bg); padding: 60px 24px; }
+  .changelog-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .entry {
+    padding: 40px 0;
+    border-bottom: 1px solid #1A1A1A;
+  }
+  .entry:first-child { padding-top: 0; }
+  .entry-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+  .entry-version {
+    font-family: monospace;
+    font-weight: 700;
+    color: #FF3B30;
+  }
+  .entry h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 12px 0 16px;
+  }
+  .entry p, .entry li {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+  .entry ul {
+    padding-left: 20px;
+    margin: 12px 0 0;
+  }
+  .signoff {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+  @media (max-width: 768px) {
+    .changelog-hero { padding: 60px 24px; }
+    .changelog-hero h1 { font-size: 36px; }
+  }
+</style>
