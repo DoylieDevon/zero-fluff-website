@@ -3,6 +3,7 @@ title: "AI Chief of Staff for a Founder's Week"
 client: "Founder OS"
 subtitle: "A private, agent-run operating system that reads every inbox and Slack, then tells a founder what his next move actually is."
 result: "5 inboxes + 5 Slacks → 1 board"
+image: "/images/case-study-founder-os.jpg"
 description: "Five mailboxes, five Slack workspaces, one calendar and no single place that said what was waiting. We built a crew of scheduled Claude agents that sweep it all, decide whose move each thread really is, and compile one honest board. It runs privately, reads everything and never sends a thing without a yes."
 tech:
   - { name: "Python", category: "Language" }
