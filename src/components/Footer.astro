@@ -1,6 +1,5 @@
 ---
-const buildDate = new Date();
-const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).padStart(2, '0')}.${String(buildDate.getDate()).padStart(2, '0')}.${String(buildDate.getHours()).padStart(2, '0')}${String(buildDate.getMinutes()).padStart(2, '0')}`;
+import { APP_VERSION } from '../lib/version';
 ---
 <footer class="site-footer">
   <div class="footer-top">
@@ -45,7 +44,7 @@ const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).
   <div class="footer-bottom">
     <span>&copy; 2026 Zero Fluff. All rights reserved.</span>
     <span class="ai-badge">Built entirely by AI</span>
-    <span class="build-version">{version}</span>
+    <a href="/changelog" target="_blank" rel="noopener" class="build-version">Zero Fluff v{APP_VERSION}</a>
     <div class="footer-legal">
       <a href="/privacy">Privacy Policy</a>
       <a href="/privacy">Terms of Service</a>
@@ -171,9 +170,11 @@ const version = `v${buildDate.getFullYear()}.${String(buildDate.getMonth() + 1).
   .footer-legal a:hover { color: #fff; }
   .build-version {
     font-size: 11px;
-    color: #333;
+    color: #666;
     font-family: monospace;
+    text-decoration: none;
   }
+  .build-version:hover { color: #fff; }
   .ai-badge {
     font-size: 11px;
     font-weight: 700;
