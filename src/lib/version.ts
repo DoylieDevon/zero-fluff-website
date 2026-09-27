@@ -18,7 +18,8 @@ export const CHANGELOG: ChangelogEntry[] = [
     description:
       'Nothing on the site looks different. We wrote the changelog rule into the project notes our AI assistants read first, so future updates arrive with a changelog entry instead of sneaking out unannounced.',
     changes: [
-      'Added a CLAUDE.md with the versioning and changelog rules',
+      'Added AGENTS.md with the versioning and changelog rules, read by Codex',
+      'Added CLAUDE.md, which points Claude Code at the same rules',
     ],
   },
   {
