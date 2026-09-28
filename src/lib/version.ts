@@ -12,6 +12,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.8.3',
+    date: '2026-09-28',
+    title: 'One front door',
+    description:
+      'The site was answering at both www.zerofluff.co.uk and zerofluff.co.uk, like a shop with two front doors and a slightly confused doorman. The www address now sends everyone to the main one, so search engines stop wondering which is the real us.',
+    changes: [
+      'www.zerofluff.co.uk now permanently redirects to zerofluff.co.uk, keeping the page path',
+    ],
+  },
+  {
     version: '1.8.2',
     date: '2026-09-27',
     title: 'No terms, no pretending',
