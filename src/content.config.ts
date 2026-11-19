@@ -23,4 +23,20 @@ const caseStudies = defineCollection({
   }),
 });
 
-export const collections = { 'case-studies': caseStudies };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    /** <meta description> and RSS summary — unique across the site. */
+    description: z.string(),
+    /** 2–3 sentence answer shown first on the page. */
+    quickAnswer: z.string(),
+    date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    /** Drafts are never built, listed, in the sitemap or in the RSS feed. They preview in `npm run dev`. */
+    draft: z.boolean().default(false),
+    image: z.string().optional(),
+  }),
+});
+
+export const collections = { 'case-studies': caseStudies, blog };

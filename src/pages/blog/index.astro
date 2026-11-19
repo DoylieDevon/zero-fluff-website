@@ -1,6 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import Parser from 'rss-parser';
+import { getCollection } from 'astro:content';
+
+// On-site posts (published only), newest first. Substack posts follow underneath.
+const sitePosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 
 let posts: { title: string; excerpt: string; url: string; date: string; image: string }[] = [];
 
@@ -49,7 +55,7 @@ try {
 }
 ---
 
-<BaseLayout title="Blog — Zero Fluff" description="AI insights for small businesses. No hype, just practical advice.">
+<BaseLayout title="Blog: AI & Automation Advice — Zero Fluff" description="Straight answers on AI, automation and custom software for small businesses, from the Zero Fluff team. No hype, just practical advice.">
 
   <!-- HERO -->
   <section class="page-hero">
@@ -59,11 +65,31 @@ try {
     </div>
   </section>
 
-  <!-- FEATURED POST -->
+  <!-- ON-SITE POSTS (nothing renders until a post is published) -->
+  {sitePosts.length > 0 && (
+    <section class="posts-section site-posts">
+      <div class="posts-inner">
+        <p class="section-label">LATEST FROM ZERO FLUFF</p>
+        <div class="posts-grid">
+          {sitePosts.map((post) => (
+            <a href={`/blog/${post.id}/`} class="post-card">
+              <div class="post-card-body">
+                <h3>{post.data.title}</h3>
+                <p>{post.data.quickAnswer}</p>
+                <span class="post-link">Read the answer →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FEATURED POST (newsletter) -->
   {posts.length > 0 && (
     <section class="featured-section">
       <div class="featured-inner">
-        <p class="section-label">FEATURED</p>
+        <p class="section-label">FROM THE NEWSLETTER</p>
         <a href={posts[0].url} target="_blank" rel="noopener" class="featured-card">
           <div class="featured-card-img" style={`background-image: url(${JSON.stringify(posts[0].image)})`}></div>
           <div class="featured-card-body">
@@ -81,7 +107,7 @@ try {
   {posts.length > 1 && (
     <section class="posts-section">
       <div class="posts-inner">
-        <p class="section-label">LATEST POSTS</p>
+        <p class="section-label">MORE FROM THE NEWSLETTER</p>
         <div class="posts-grid">
           {posts.slice(1).map((post) => (
             <a href={post.url} target="_blank" rel="noopener" class="post-card">
@@ -213,6 +239,7 @@ try {
 
   /* POSTS GRID */
   .posts-section { padding: 0 80px 80px; background: var(--color-bg); }
+  .site-posts { padding-top: 80px; }
   .posts-inner {
     display: flex;
     flex-direction: column;

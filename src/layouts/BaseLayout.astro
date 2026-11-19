@@ -10,14 +10,17 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  modifiedTime?: Date;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, type, publishedTime, modifiedTime } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={title} description={description} image={image} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} />
     <StructuredData />
     <ClientRouter />
     <!-- Privacy-friendly analytics by Plausible -->
