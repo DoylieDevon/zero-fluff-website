@@ -1,5 +1,5 @@
 ---
-title: "A Searchable Teaching Gallery for a Photography Teacher"
+title: "A Searchable Teaching Gallery"
 client: "Photography Gallery"
 subtitle: "A private, searchable gallery of photographers and their work — so a teacher can pull up the perfect example the moment a student asks."
 result: "The right example in seconds"
