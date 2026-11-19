@@ -1,7 +1,7 @@
 import { siteInputs } from '../config/site-inputs';
 
 /** One line, shown next to every call to action. */
-export const REASSURANCE = '20 minutes, no sales pitch, and a reply within one working day.';
+export const REASSURANCE = '30 minutes, no sales pitch, and a reply within one working day.';
 
 /** Where a "book a chat" CTA goes: the booking page if one is set, otherwise the contact form. */
 export function booking(): { href: string; external: boolean } {

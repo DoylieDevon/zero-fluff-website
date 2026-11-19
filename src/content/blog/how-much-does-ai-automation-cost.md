@@ -44,4 +44,4 @@ If a quote does not cover those, ask. If someone quotes a number before asking a
 3. Estimate how often it happens and how long it takes. This is also how you work out what it is worth to automate.
 4. Talk to someone who will build it.
 
-If you would rather not do that alone, the [AI Quick Start](/services/ai-quick-start/) is a 2-hour review that finds the automations worth doing and gives you a prioritised plan with time estimates before you spend anything on a build. We also [build and support automations](/services/ai-automation/) ourselves, and a free 20-minute chat is the quickest way to get a rough idea of what yours would involve.
+If you would rather not do that alone, the [AI Quick Start](/services/ai-quick-start/) is a 2-hour review that finds the automations worth doing and gives you a prioritised plan with time estimates before you spend anything on a build. We also [build and support automations](/services/ai-automation/) ourselves, and a free 30-minute chat is the quickest way to get a rough idea of what yours would involve.
