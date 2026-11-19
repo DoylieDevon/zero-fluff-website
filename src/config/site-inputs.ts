@@ -39,7 +39,7 @@ export interface SiteInputs {
 }
 
 export const siteInputs: SiteInputs = {
-  bookingUrl: null,
+  bookingUrl: 'https://superhuman.com/book/11TRExG4WfIeqnJFXp/OJkeg',
   prices: {
     quickStart: null,
     automationSetup: null,

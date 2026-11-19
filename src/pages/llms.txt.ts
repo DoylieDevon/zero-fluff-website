@@ -33,7 +33,7 @@ export const GET: APIRoute = async () => {
 - Area served: the whole of the UK, mostly remotely, with in-person work across Devon, Cornwall, Somerset, Dorset, Bristol and the wider South West of England
 - Clients: small businesses across all sectors, from solo consultants to teams of around 20
 - Hours: Monday to Friday, 09:00 to 17:00 (UK time)
-- Contact: andy@zerofluff.co.uk, 07900 241369, or book a free 20-minute AI chat at ${site}/contact/ (20 minutes, no sales pitch, reply within one working day)
+- Contact: andy@zerofluff.co.uk, 07900 241369, or book a free 30-minute AI chat at ${site}/contact/ (30 minutes, no sales pitch, reply within one working day)
 - Tools used: n8n, Claude, ChatGPT, Gemini, Perplexity, Manus
 - Every build is tested, documented and handed over, with 30 days of support included and an optional monthly retainer afterwards
 

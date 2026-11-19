@@ -41,7 +41,7 @@ export interface ServiceDef {
 }
 
 const standardSteps = (extra: { title: string; text: string }) => [
-  { title: 'A free 20-minute chat', text: 'You tell us what is eating your time or what you want built. We tell you straight whether we can help, and how.' },
+  { title: 'A free 30-minute chat', text: 'You tell us what is eating your time or what you want built. We tell you straight whether we can help, and how.' },
   extra,
   { title: 'Build and test', text: 'We build it, test it properly and show you it working before you rely on it.' },
   { title: 'Handover and 30 days of support', text: 'Plain-English documentation, a proper walk-through, and 30 days of support included.' },
@@ -77,7 +77,7 @@ export const SERVICES: ServiceDef[] = [
     caseStudyIds: ['amgl', 'house-builder-report-generation', 'artlume-content-creator', 'susannah-and-the-noise'],
     faqs: [
       { q: 'What is custom AI software development?', a: 'It is building software around your specific process, with AI doing the parts that need judgement, such as reading documents, drafting text or making sense of messy data. It is different from subscribing to a generic tool and bending your business around it.' },
-      { q: 'How much does custom AI software cost?', a: 'It depends on what the software has to do, how many systems it connects to and how much judgement is involved. After a free 20-minute chat we can tell you roughly what is involved, and the 2-hour AI Quick Start gives you a prioritised plan before you commit to a build.' },
+      { q: 'How much does custom AI software cost?', a: 'It depends on what the software has to do, how many systems it connects to and how much judgement is involved. After a free 30-minute chat we can tell you roughly what is involved, and the 2-hour AI Quick Start gives you a prioritised plan before you commit to a build.' },
       { q: 'Who owns the software you build?', a: 'You do. We build it for your business, document it and hand it over.' },
       { q: 'Will it keep working after you hand it over?', a: 'Every build is tested and documented, with 30 days of support included. After that, an optional monthly retainer keeps it running and adds new features as your business changes.' },
       { q: 'Do you only work with businesses in Devon?', a: 'No. We are based in Totnes, Devon, but we work with clients across the UK, mostly remotely. We are happy to meet in person when you are nearby.' },
@@ -115,7 +115,7 @@ export const SERVICES: ServiceDef[] = [
     faqs: [
       { q: 'What is workflow automation?', a: 'It is setting up software to carry out a repeatable job for you, from start to finish or in part, on a trigger such as an email arriving, a form being filled in or a date being reached. AI adds the ability to handle the parts that need reading and judgement.' },
       { q: 'Which jobs are worth automating?', a: 'Anything frequent, repetitive and rule-based is a good candidate, such as sorting enquiries, entering data, chasing payments and producing regular reports. The 2-hour AI Quick Start exists to find the ones worth the effort in your business.' },
-      { q: 'How much does automation cost?', a: 'It depends on how many systems are involved and how much judgement the process needs. A free 20-minute chat gives you a rough idea, and the Quick Start gives you a prioritised plan with time estimates before you spend anything on a build.' },
+      { q: 'How much does automation cost?', a: 'It depends on how many systems are involved and how much judgement the process needs. A free 30-minute chat gives you a rough idea, and the Quick Start gives you a prioritised plan with time estimates before you spend anything on a build.' },
       { q: 'How long does it take?', a: 'Most automations are live within a week, and most clients see meaningful results within 1-2 weeks of the first one going live.' },
       { q: 'What if the AI gets something wrong?', a: 'It can. Where a mistake would matter, we build in a human check, so the automation drafts and a person approves. Everything is tested before you rely on it.' },
       { q: 'Do I have to change the tools I use?', a: 'Usually not. We connect to what you already use and only suggest something new when it would genuinely make things better.' },
@@ -153,7 +153,7 @@ export const SERVICES: ServiceDef[] = [
       { q: 'What is n8n?', a: 'n8n is a workflow automation tool. You connect apps, set a trigger and chain steps together so data moves and jobs get done without anyone doing them by hand. It supports custom code and AI steps, and it can be self-hosted or used as a cloud service.' },
       { q: 'Why use an n8n consultant instead of doing it myself?', a: 'You can build simple flows yourself. A consultant earns their keep when the process is business-critical, needs custom code or AI, or you would rather spend your time running the business. We also add testing, error handling and documentation, which DIY flows often skip.' },
       { q: 'Should I use n8n, Zapier or Make?', a: 'It depends on your process, your volumes and how much control you want. We use n8n a lot because of its flexibility and the option to add custom code, but we will tell you if another tool is the better fit for your job.' },
-      { q: 'How much does an n8n build cost?', a: 'It depends on the number of systems involved and how much logic the workflow needs. A free 20-minute chat gives you a rough idea of what is involved.' },
+      { q: 'How much does an n8n build cost?', a: 'It depends on the number of systems involved and how much logic the workflow needs. A free 30-minute chat gives you a rough idea of what is involved.' },
       { q: 'Can you work on n8n workflows we already have?', a: 'Yes. We can review, document, fix and extend existing workflows, and add the error handling that stops them failing silently.' },
       { q: 'Who looks after it afterwards?', a: 'You get 30 days of support with every build. After that, an optional monthly retainer covers fixes, changes and new automations.' },
     ],
@@ -192,7 +192,7 @@ export const SERVICES: ServiceDef[] = [
       { q: 'Do you only use Claude?', a: 'Claude is our usual choice for agents, and we also work with ChatGPT and other models. We pick the right model for the job and tell you why.' },
       { q: 'How is an agent different from an automation?', a: 'An automation follows fixed steps. An agent can handle messy, varied input and make judgement calls within limits you set. Many projects use both: automation for the predictable parts, an agent for the rest.' },
       { q: 'Can you add an AI assistant to our existing product?', a: 'Yes. We have added AI to an existing live platform before, after first working out how it behaves today. We scope that carefully so the product keeps working while it improves.' },
-      { q: 'What does an agent project cost?', a: 'It depends on what the agent has to read, decide and touch. A free 20-minute chat gives you a rough idea, and the AI Quick Start can map out where an agent would pay off first.' },
+      { q: 'What does an agent project cost?', a: 'It depends on what the agent has to read, decide and touch. A free 30-minute chat gives you a rough idea, and the AI Quick Start can map out where an agent would pay off first.' },
     ],
     serviceType: 'AI agent development',
     related: ['custom-ai-software-development', 'n8n-automation', 'fractional-cto'],
@@ -221,7 +221,7 @@ export const SERVICES: ServiceDef[] = [
       'You need an experienced second opinion before a big technology decision.',
     ],
     steps: [
-      { title: 'A free 20-minute chat', text: 'You tell us where you are and what is worrying you. We tell you straight whether a fractional CTO is what you need.' },
+      { title: 'A free 30-minute chat', text: 'You tell us where you are and what is worrying you. We tell you straight whether a fractional CTO is what you need.' },
       { title: 'Review', text: 'We look at what exists: the product, the team, the suppliers, the code if there is any, and what you are trying to achieve.' },
       { title: 'Roadmap', text: 'A clear plan with priorities, risks and decisions, in plain English.' },
       { title: 'Regular cadence', text: 'A regular rhythm of calls and reviews, on terms that suit you, with flexible engagement rather than a fixed block.' },
@@ -231,7 +231,7 @@ export const SERVICES: ServiceDef[] = [
     faqs: [
       { q: 'What is a fractional CTO?', a: 'A fractional CTO is an experienced technology leader who works with you part-time rather than as a full-time employee. They set technical direction, guide the people building your product and help you make good technology decisions.' },
       { q: 'When do I need a fractional CTO rather than a developer?', a: 'A developer builds what they are asked. A fractional CTO helps decide what should be built, how, in what order and by whom. If you are not sure those decisions are right, that is the gap.' },
-      { q: 'How much does a fractional CTO cost?', a: 'It depends on how much involvement you need. We offer flexible engagement terms, and a free 20-minute chat is the quickest way to work out what would suit you.' },
+      { q: 'How much does a fractional CTO cost?', a: 'It depends on how much involvement you need. We offer flexible engagement terms, and a free 30-minute chat is the quickest way to work out what would suit you.' },
       { q: 'Can you help with AI strategy specifically?', a: 'Yes. Working out where AI genuinely helps and where it is hype is a big part of what we do, and we can build the first version too.' },
       { q: 'Do you work with startups or established businesses?', a: 'Both. We work with small businesses across all sectors and with product teams building something new.' },
       { q: 'Will you take over from our existing developers?', a: 'Only if you want us to. Often the best result is working alongside them, setting direction and reviewing the work.' },
@@ -264,7 +264,7 @@ export const SERVICES: ServiceDef[] = [
       'You have been sold "AI transformation" and want a straight, practical view instead.',
     ],
     steps: [
-      { title: 'A free 20-minute chat', text: 'We find out about your business and check the Quick Start is the right next step.' },
+      { title: 'A free 30-minute chat', text: 'We find out about your business and check the Quick Start is the right next step.' },
       { title: 'The 2-hour review', text: 'We go through your operations together, looking for the highest-value opportunities.' },
       { title: 'Your recommendations', text: '3-5 specific recommendations and a prioritised action plan with time estimates.' },
       { title: 'Your decision', text: 'Do it yourself, hire us to build it, or park it. There is no obligation to continue.' },
@@ -275,7 +275,7 @@ export const SERVICES: ServiceDef[] = [
       { q: 'What do I need to prepare?', a: 'No technical preparation. Bring whoever knows how work flows through the business, and be ready to talk through a normal week.' },
       { q: 'What do I get at the end?', a: 'A set of 3-5 specific automation recommendations and a prioritised action plan with time estimates.' },
       { q: 'Do I have to hire you to build anything?', a: 'No. There is no obligation to continue. You are free to take the plan and do it yourself.' },
-      { q: 'How much does it cost?', a: 'See the price on this page when it is shown, or ask in the free 20-minute chat. It is deliberately the low-risk way in.' },
+      { q: 'How much does it cost?', a: 'See the price on this page when it is shown, or ask in the free 30-minute chat. It is deliberately the low-risk way in.' },
       { q: 'Is it only for businesses in Devon?', a: 'No. We are based in Totnes, Devon, and run Quick Starts for businesses across the UK, mostly remotely.' },
     ],
     serviceType: 'AI readiness assessment',

@@ -12,6 +12,17 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.9.3',
+    date: '2026-11-19',
+    title: 'Pick a time, any time',
+    description:
+      'Every "Book a free AI chat" button used to send people to the contact form and hope for the best. They now open our booking calendar, so a visitor can pick a slot in about ten seconds instead of writing an email and waiting. While we were in there we corrected the copy: the free chat is 30 minutes, not the 20 we had cheerfully promised, because it turns out nobody on this team can do a proper conversation in less.',
+    changes: [
+      'Every booking button now opens our booking calendar in a new tab, and the contact page gets a "Pick a time" button',
+      'The free chat is now described as 30 minutes everywhere on the site, in the llms.txt summary and in the draft blog post',
+    ],
+  },
+  {
     version: '1.9.2',
     date: '2026-11-19',
     title: 'The contact form stops fibbing',
