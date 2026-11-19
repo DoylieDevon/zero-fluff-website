@@ -1,10 +1,13 @@
 ---
 title: "House Builder Report Generation"
-client: "House Builder Report Generation"
+client: "{{smithAndWhite|House Builder Report Generation}}"
 subtitle: "Five days of manual data gathering replaced by a six-minute report."
 result: "5 days → 6 minutes"
+order: 2
+featured: true
+published: 2026-06-02
 image: "/images/case-study-house-builder-report-generation.jpg"
-description: "Smith & White were screenshotting data from property websites and manually assembling PowerPoint decks. We replaced the entire process with a TypeScript engine that pulls from seven data sources and generates a polished, shareable 13-section HTML report."
+description: "The team at {{smithAndWhite|a South West house builder}} were screenshotting data from property websites and manually assembling PowerPoint decks. We replaced the entire process with a TypeScript engine that pulls from seven data sources and generates a polished, shareable 13-section HTML report."
 tech:
   - { name: "TypeScript", category: "Language" }
   - { name: "Node.js", category: "Framework" }
@@ -26,11 +29,11 @@ url: "https://backend-production-9a32.up.railway.app/"
 
 ## The Problem
 
-Smith & White are land valuation consultants. Every time they assessed a site, someone on the team spent the best part of a week manually pulling data: screenshotting comparable sales from Rightmove, copying planning applications from the portal, finding school ratings, noting competitor schemes nearby.
+Every time the business assessed a site, someone on the team spent the best part of a week manually pulling data: screenshotting comparable sales from Rightmove, copying planning applications from the portal, finding school ratings, noting competitor schemes nearby.
 
 The resulting PowerPoint decks were inconsistent — different fonts, different layouts, figures from different dates. Clients were getting different-looking reports depending on who prepared them and when.
 
-## How It Was Built
+## What We Built
 
 We built a TypeScript engine on Railway that takes a postcode or free-text query and generates a complete land report in under six minutes.
 

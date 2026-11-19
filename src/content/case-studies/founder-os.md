@@ -3,6 +3,9 @@ title: "AI Chief of Staff for a Founder's Week"
 client: "Founder OS"
 subtitle: "A private, agent-run operating system that reads every inbox and Slack, then tells a founder what his next move actually is."
 result: "5 inboxes + 5 Slacks → 1 board"
+order: 7
+featured: false
+published: 2026-09-27
 image: "/images/case-study-founder-os.jpg"
 description: "Five mailboxes, five Slack workspaces, one calendar and no single place that said what was waiting. We built a crew of scheduled Claude agents that sweep it all, decide whose move each thread really is, and compile one honest board. It runs privately, reads everything and never sends a thing without a yes."
 tech:
@@ -30,7 +33,7 @@ A founder running several ventures doesn't have one inbox. He has five mailboxes
 
 The things that slipped weren't the loud ones. A management call moving in a private Slack channel. A production migration waiting on him to agree a window. A client thread already answered by a delivery partner — which a naive assistant would happily card up as his job and draft a reply to.
 
-## How It Was Built
+## What We Built
 
 We built Founder OS: a small, local operating system with a crew of scheduled agents, each with one job. La Forge reads mail, Slack and calendar and turns them into next moves. Data watches the engineering projects. Crusher and Uhura track the quarter — rocks, scorecard, spend and Claude token costs. Every run writes a receipt.
 

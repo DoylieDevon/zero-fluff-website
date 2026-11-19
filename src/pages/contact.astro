@@ -3,6 +3,10 @@ export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { siteInputs } from '../config/site-inputs';
+import { REASSURANCE } from '../lib/booking';
+
+const bookingUrl = siteInputs.bookingUrl;
 ---
 
 <BaseLayout
@@ -26,12 +30,18 @@ import ContactForm from '../components/ContactForm.astro';
       <div class="contact-form-col">
         <span class="section-label">DROP US A LINE</span>
         <h2>Send us a message</h2>
+        <p class="reassure">{REASSURANCE}</p>
         <ContactForm />
       </div>
 
       <!-- RIGHT: Info card -->
       <div class="contact-info-card">
         <h3>Book a free 20-min AI chat</h3>
+        {bookingUrl && (
+          <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="pick-time">
+            Pick a time →<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        )}
         <p class="card-desc">Not sure where to start with AI? Let's have a no-obligation conversation about your business. We'll give you honest, practical advice — no hard sell.</p>
 
         <div class="contact-details-list">
@@ -53,13 +63,13 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
           <div class="contact-detail-item">
             <span class="detail-label">RESPONSE TIME</span>
-            <span class="detail-value">Typically within 24 hours</span>
+            <span class="detail-value">Within one working day</span>
           </div>
         </div>
 
         <div class="card-divider"></div>
 
-        <p class="card-tagline">"I help small businesses save 5–15 hours a week with practical AI — not theory."</p>
+        <p class="card-tagline">"I help small businesses save 5–15 hours a week with practical AI — not theory."<span class="card-tagline-by">— Andy Doyle, Director</span></p>
       </div>
 
     </div>
@@ -160,6 +170,35 @@ import ContactForm from '../components/ContactForm.astro';
     line-height: 1.15;
   }
 
+  .pick-time {
+    align-self: flex-start;
+    background: #FF3B30;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 28px;
+    text-decoration: none;
+  }
+  .pick-time:hover {
+    background: var(--color-accent-hover);
+    color: #fff;
+  }
+
+  .reassure {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: -8px 0 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
   .card-desc {
     font-size: 15px;
     color: #ccc;
@@ -200,6 +239,14 @@ import ContactForm from '../components/ContactForm.astro';
     height: 1px;
     background: #333;
     width: 100%;
+  }
+
+  .card-tagline-by {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 600;
+    color: #aaa;
   }
 
   .card-tagline {

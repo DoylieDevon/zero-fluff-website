@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookCTA from '../../components/BookCTA.astro';
+import { getCollection, render } from 'astro:content';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  // Drafts preview in `npm run dev` only; they are never part of a build.
+  const posts = await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const site = 'https://zerofluff.co.uk';
+const url = `${site}/blog/${post.id}/`;
+const image = new URL(post.data.image ?? '/og-image.jpg', site).href;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  image,
+  datePublished: post.data.date.toISOString().slice(0, 10),
+  ...(post.data.updated ? { dateModified: post.data.updated.toISOString().slice(0, 10) } : {}),
+  mainEntityOfPage: url,
+  url,
+  author: [
+    { '@type': 'Person', name: 'Andy Doyle', url: 'https://andy.zerofluff.co.uk' },
+    { '@type': 'Person', name: 'Philippa Doyle' },
+  ],
+  publisher: {
+    '@type': 'Organization',
+    '@id': `${site}/#organization`,
+    name: 'Zero Fluff',
+    logo: { '@type': 'ImageObject', url: `${site}/images/logo-horizontal-white.png` },
+  },
+};
+
+const dateLabel = post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout
+  title={`${post.data.title} — Zero Fluff`}
+  description={post.data.description}
+  image={post.data.image}
+  type="article"
+  publishedTime={post.data.date}
+  modifiedTime={post.data.updated}
+>
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(articleSchema)} />
+
+  <article class="post">
+    <header class="post-header">
+      <a href="/blog" class="post-back">← Blog</a>
+      {post.data.draft && <p class="post-draft">DRAFT — not published. Visible in dev only.</p>}
+      <h1>{post.data.title}</h1>
+      <p class="post-meta">By Andy &amp; Philippa Doyle · <time datetime={post.data.date.toISOString()}>{dateLabel}</time></p>
+      <div class="post-quick">
+        <span class="post-quick-label">THE QUICK ANSWER</span>
+        <p>{post.data.quickAnswer}</p>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    <footer class="post-footer">
+      <h2>Want a straight answer for your business?</h2>
+      <BookCTA />
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 140px 24px 100px;
+  }
+  .post-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .post-back {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .post-draft {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FF9500;
+  }
+  .post-header h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--color-text);
+  }
+  .post-meta {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+  .post-quick {
+    border-left: 3px solid #FF3B30;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .post-quick-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text-muted);
+  }
+  .post-quick p {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+  .post-body :global(h2) {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 48px 0 16px;
+    color: var(--color-text);
+  }
+  .post-body :global(h3) {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    color: var(--color-text);
+  }
+  .post-body :global(p),
+  .post-body :global(li) {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+  .post-body :global(p) { margin: 0 0 20px; }
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    margin: 0 0 20px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .post-body :global(a) {
+    color: #FF3B30;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 59, 48, 0.4);
+  }
+  .post-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 24px;
+    font-size: 16px;
+  }
+  .post-body :global(th),
+  .post-body :global(td) {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    vertical-align: top;
+  }
+  .post-body :global(th) { color: var(--color-text); }
+  .post-footer {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .post-footer h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+</style>

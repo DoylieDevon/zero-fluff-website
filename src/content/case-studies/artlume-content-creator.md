@@ -3,6 +3,9 @@ title: "AI-Powered Content Pipeline"
 client: "Artlume Content Creator"
 subtitle: "A full content management platform that ingests raw client uploads and normalises, crops, and tags everything automatically using AI."
 result: "Content normalised and tagged in seconds instead of weeks"
+order: 3
+featured: true
+published: 2026-06-02
 image: "/images/case-study-artlume-content-creator.jpg"
 description: "Artlume's team was drowning in folders of client content — inconsistent sizes, missing labels, no metadata. We built a full pipeline that handles upload, normalisation, AI tagging, client review, and export in one place."
 tech:
@@ -28,7 +31,7 @@ Artlume's clients hand over content in whatever form is convenient for them — 
 
 It wasn't a skills problem. It was a volume problem. The work is tedious, repetitive, and entirely automatable.
 
-## How It Was Built
+## What We Built
 
 We built two connected systems: a Next.js front-end with a full project management layer, and a FastAPI backend that handles the heavy lifting.
 

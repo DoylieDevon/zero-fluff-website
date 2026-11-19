@@ -1,15 +1,105 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BookCTA from '../components/BookCTA.astro';
+import PriceTag from '../components/PriceTag.astro';
+import Testimonials from '../components/Testimonials.astro';
 import FloatingShapes from '../components/FloatingShapes.astro';
 import Starfield from '../components/Starfield.astro';
-import { getCollection } from 'astro:content';
+import { getCaseStudies } from '../lib/case-studies';
+import type { PriceKey } from '../lib/booking';
 
-const caseStudies = await getCollection('case-studies');
+// Prerendered so the stat numbers are in the raw HTML, not just the animation.
+export const prerender = true;
+
+const caseStudies = await getCaseStudies();
 const caseStudyCount = caseStudies.length;
+// Only arm's-length client work is shown as "previous work" on the homepage.
+const featuredStudies = caseStudies.filter((s) => s.data.featured);
 
-// FAQ content — kept in sync with the FAQ section below and emitted as
-// FAQPage structured data so it can show as rich results in search.
+// Service cards — one list drives the desktop carousel, the mobile stack and
+// the dots. Software and automation lead; the Quick Start is the way in.
+const services: {
+  tag: string;
+  title: string;
+  text: string;
+  href: string;
+  price?: PriceKey;
+}[] = [
+  {
+    tag: 'BUILD',
+    title: 'Custom AI software development',
+    text: 'Bespoke tools, integrations and AI features, built properly and supported afterwards. Thirty years of shipping software, now with AI doing the heavy lifting.',
+    href: '/services/custom-ai-software-development',
+    price: 'customSoftware',
+  },
+  {
+    tag: 'AUTOMATE',
+    title: 'Automation builds',
+    text: 'We build the workflows that stop you doing the same job twice, using n8n, Claude, ChatGPT and custom code where the tools run out.',
+    href: '/services/ai-automation',
+    price: 'automationSetup',
+  },
+  {
+    tag: 'AGENTS',
+    title: 'AI agents & assistants',
+    text: 'Claude-based assistants that read, decide and act across your inboxes, documents and systems — with a human approving anything that matters.',
+    href: '/services/ai-agents',
+  },
+  {
+    tag: 'START HERE · 2 HOURS',
+    title: 'AI Quick Start',
+    text: 'The way in. We review your business, find where AI and automation will actually pay off, and hand you a prioritised plan. No obligation to build with us.',
+    href: '/services/ai-quick-start',
+    price: 'quickStart',
+  },
+  {
+    tag: 'MONTHLY',
+    title: 'Ongoing support',
+    text: 'A monthly retainer that keeps what we build running, fixes what breaks and adds the next automation when you are ready.',
+    href: '/services#support',
+    price: 'retainer',
+  },
+];
+
+const buyers = [
+  {
+    title: 'Drowning in admin?',
+    text: 'Emails, invoices, scheduling, reports. The same jobs every week, eating hours you do not have.',
+    href: '/services/ai-automation',
+    cta: 'Automate it',
+  },
+  {
+    title: 'Need a tool that does not exist?',
+    text: 'You have outgrown spreadsheets and off-the-shelf software, and a full development team is overkill. You need something built around how you actually work.',
+    href: '/services/custom-ai-software-development',
+    cta: 'Get it built',
+  },
+  {
+    title: 'Got an AI idea, but no technical lead?',
+    text: 'You know what you want AI to do. You just need someone to scope it, build it and keep it running, or to tell you it is not worth it.',
+    href: '/services/ai-agents',
+    cta: 'Talk it through',
+  },
+];
+
+const buildSteps = [
+  { n: '01', title: 'Tested', text: 'We test before anything goes near your business, and we test again when you start relying on it.' },
+  { n: '02', title: 'Documented', text: 'You get plain-English documentation, so what we build is not a mystery to your team.' },
+  { n: '03', title: 'Handed over', text: 'A proper handover and walk-through. You know what it does, how it works and who to call.' },
+  { n: '04', title: '30 days of support', text: 'Included with every build. If something misbehaves in the first month, we fix it.' },
+  { n: '05', title: 'Ongoing retainer', text: 'Optional. We keep it running, fix what breaks and add new things as your business changes.' },
+];
+
+// FAQ content — drives the visible FAQ below and the FAQPage structured data.
 const faqs = [
+  {
+    q: 'What does Zero Fluff actually do?',
+    a: 'We build and support custom AI software and automations for small businesses, and offer AI consultancy to work out what is worth building. The 2-hour AI Quick Start is the usual first step.',
+  },
+  {
+    q: 'Do you build custom software, or just set up tools?',
+    a: 'Both. We write real, tested software where an off-the-shelf tool will not do, and use n8n, Claude and ChatGPT where they will. We will tell you which is which.',
+  },
   {
     q: 'How much time can AI really save me?',
     a: 'Most of our clients save 5-15 hours per week once their automations are running.',
@@ -19,16 +109,16 @@ const faqs = [
     a: 'Most clients see meaningful results within 1-2 weeks of their first automation going live.',
   },
   {
+    q: 'What happens after it is built?',
+    a: 'Everything we build is tested, documented and handed over properly, with 30 days of support included. After that, an optional monthly retainer keeps it running and adds new things.',
+  },
+  {
     q: 'Do I need technical experience?',
     a: 'None. We handle all the technical setup. You just tell us what takes up your time.',
   },
   {
-    q: 'What types of businesses do you work with?',
-    a: 'Small businesses across all sectors — from solo consultants to teams of 20. If you have repetitive tasks, we can help.',
-  },
-  {
-    q: 'What tools do you use?',
-    a: 'N8N, Manus, Claude, ChatGPT, Perplexity — whatever fits your workflow best.',
+    q: 'Who do you work with, and where?',
+    a: 'Small businesses across all sectors, from solo consultants to teams of 20. We are based in Totnes, Devon, and work with clients across the UK, mostly remotely.',
   },
 ];
 
@@ -47,8 +137,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Zero Fluff — AI Implementation That Works"
-  description="Practical AI and automation for small businesses in Devon and the South West. Based in Totnes. No jargon, no fluff — just hours back in your week."
+  title="AI Consultancy, Automation & Custom Software — Zero Fluff"
+  description="Zero Fluff builds custom AI software and automation for small businesses across the UK, backed by 30 years of shipping digital products. Based in Totnes, Devon."
 >
   <script
     type="application/ld+json"
@@ -64,13 +154,13 @@ const faqSchema = {
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-content">
-      <h1 data-scramble>Get AI and automation working in your business — without the jargon</h1>
-      <p class="hero-sub">We help small businesses across Devon and the South West save time and money with AI and automation. No tech overwhelm. No fluff. Just results.</p>
+      <h1 data-scramble>AI consultancy, automation and custom software, built properly</h1>
+      <p class="hero-sub">We design, build and support AI-powered software and automation for small businesses. Thirty years of shipping digital products, including live-event technology deployed at Manchester City FC, Formula E, the US Open and the BRIT Awards. Real software, not slide decks.</p>
       <div class="hero-ctas">
-        <a href="/contact" class="btn-primary" data-magnetic>Book a free AI chat &rarr;</a>
+        <BookCTA magnetic />
         <a href="/services" class="btn-outline">See our services</a>
       </div>
-      <p class="trust-text">30+ years experience&nbsp;&nbsp;&bull;&nbsp;&nbsp;Based in Totnes, serving Devon &amp; the South West</p>
+      <p class="trust-text">30+ years experience&nbsp;&nbsp;&bull;&nbsp;&nbsp;Based in Totnes, working with clients across the UK</p>
     </div>
   </section>
 
@@ -80,24 +170,15 @@ const faqSchema = {
       <p class="section-label">01 — THE PROBLEM</p>
       <h2>Sound familiar?</h2>
       <div class="cards-row">
-        <div class="pain-card" data-tilt>
-          <div class="card-inner">
-            <h3>Drowning in admin?</h3>
-            <p>Repetitive tasks eating your day? Emails, invoices, scheduling — it never ends.</p>
+        {buyers.map((b) => (
+          <div class="pain-card" data-tilt>
+            <div class="card-inner">
+              <h3>{b.title}</h3>
+              <p>{b.text}</p>
+              <a href={b.href} class="pain-link">{b.cta} &rarr;</a>
+            </div>
           </div>
-        </div>
-        <div class="pain-card" data-tilt>
-          <div class="card-inner">
-            <h3>No time to figure it out?</h3>
-            <p>You know AI could help, but who has time to learn another tool?</p>
-          </div>
-        </div>
-        <div class="pain-card" data-tilt>
-          <div class="card-inner">
-            <h3>Confused by AI hype?</h3>
-            <p>Every day there is a new AI tool. Hard to know what actually works for YOUR business.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -107,85 +188,66 @@ const faqSchema = {
     <div class="services-track">
       <div class="services-header">
         <p class="section-label">02 — WHAT WE DO</p>
-        <h2>Practical AI and automation, not buzzwords</h2>
+        <h2>Software and automation that does the job</h2>
       </div>
       <div class="services-stage">
-        <div class="service-panel" data-panel="0">
-          <span class="panel-number" aria-hidden="true">01</span>
-          <div class="panel-content">
-            <span class="service-tag">2 HOURS</span>
-            <h3>AI Quick Start</h3>
-            <p>We review your business, identify where AI saves time, and give you a clear action plan.</p>
-            <a href="/services" class="service-link">Learn more &rarr;</a>
+        {services.map((s, i) => (
+          <div class="service-panel" data-panel={i}>
+            <span class="panel-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div class="panel-content">
+              <span class="service-tag">{s.tag}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              {s.price && <PriceTag of={s.price} />}
+              <a href={s.href} class="service-link">Learn more &rarr;</a>
+            </div>
           </div>
-        </div>
-        <div class="service-panel" data-panel="1">
-          <span class="panel-number" aria-hidden="true">02</span>
-          <div class="panel-content">
-            <span class="service-tag">HANDS-ON</span>
-            <h3>Automation Setup</h3>
-            <p>We build automated workflows using N8N, Claude, ChatGPT, Gemini and more to handle your repetitive tasks.</p>
-            <a href="/services" class="service-link">Learn more &rarr;</a>
-          </div>
-        </div>
-        <div class="service-panel" data-panel="2">
-          <span class="panel-number" aria-hidden="true">03</span>
-          <div class="panel-content">
-            <span class="service-tag">MONTHLY</span>
-            <h3>Ongoing AI Support</h3>
-            <p>Monthly support for businesses who want help staying on top of AI developments.</p>
-            <a href="/services" class="service-link">Learn more &rarr;</a>
-          </div>
-        </div>
-        <div class="service-panel" data-panel="3">
-          <span class="panel-number" aria-hidden="true">04</span>
-          <div class="panel-content">
-            <span class="service-tag">STRATEGIC</span>
-            <h3>Bigger Projects</h3>
-            <p>Building a product or need strategic tech leadership? We do that too.</p>
-            <a href="/services" class="service-link">Learn more &rarr;</a>
-          </div>
-        </div>
+        ))}
       </div>
       <div class="services-dots" aria-hidden="true">
-        <span class="services-dot active"></span>
-        <span class="services-dot"></span>
-        <span class="services-dot"></span>
-        <span class="services-dot"></span>
+        {services.map((_, i) => (
+          <span class:list={['services-dot', { active: i === 0 }]}></span>
+        ))}
       </div>
     </div>
     <!-- Mobile fallback -->
     <div class="services-mobile">
       <div class="services-header">
         <p class="section-label">02 — WHAT WE DO</p>
-        <h2>Practical AI and automation, not buzzwords</h2>
+        <h2>Software and automation that does the job</h2>
       </div>
       <div class="services-stack">
-        <div class="service-card-mobile">
-          <span class="service-tag">2 HOURS</span>
-          <h3>AI Quick Start</h3>
-          <p>We review your business, identify where AI saves time, and give you a clear action plan.</p>
-          <a href="/services" class="service-link">Learn more &rarr;</a>
-        </div>
-        <div class="service-card-mobile">
-          <span class="service-tag">HANDS-ON</span>
-          <h3>Automation Setup</h3>
-          <p>We build automated workflows using N8N, Claude, ChatGPT, Gemini and more to handle your repetitive tasks.</p>
-          <a href="/services" class="service-link">Learn more &rarr;</a>
-        </div>
-        <div class="service-card-mobile">
-          <span class="service-tag">MONTHLY</span>
-          <h3>Ongoing AI Support</h3>
-          <p>Monthly support for businesses who want help staying on top of AI developments.</p>
-          <a href="/services" class="service-link">Learn more &rarr;</a>
-        </div>
-        <div class="service-card-mobile">
-          <span class="service-tag">STRATEGIC</span>
-          <h3>Bigger Projects</h3>
-          <p>Building a product or need strategic tech leadership? We do that too.</p>
-          <a href="/services" class="service-link">Learn more &rarr;</a>
-        </div>
+        {services.map((s) => (
+          <div class="service-card-mobile">
+            <span class="service-tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            {s.price && <PriceTag of={s.price} />}
+            <a href={s.href} class="service-link">Learn more &rarr;</a>
+          </div>
+        ))}
       </div>
+    </div>
+    <div class="services-all">
+      <a href="/services" class="service-link">See all services &rarr;</a>
+    </div>
+  </section>
+
+  <!-- HOW WE BUILD -->
+  <section class="build-section" id="how-we-build" data-section="build">
+    <div class="section-inner">
+      <p class="section-label">03 — HOW WE BUILD</p>
+      <h2>Reliable, not just quick</h2>
+      <p class="build-lede">Modern AI tooling means we build fast. That is a benefit, not the pitch. Software only earns its keep if it keeps working, so every build comes with the unglamorous parts done properly.</p>
+      <ol class="build-steps">
+        {buildSteps.map((s) => (
+          <li class="build-step">
+            <span class="build-num" aria-hidden="true">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -193,11 +255,11 @@ const faqSchema = {
   <section class="about-section" data-section="about">
     <div class="about-grid-bg" aria-hidden="true"></div>
     <div class="section-inner about-inner">
-      <p class="section-label">03 — WHY ZERO FLUFF</p>
+      <p class="section-label">04 — WHY ZERO FLUFF</p>
       <div class="about-split">
         <div class="about-left">
           <h2>30 years of building digital products</h2>
-          <p class="about-desc">Zero Fluff is a hands-on AI and automation consultancy for small businesses across Devon and the South West. Based in Totnes, with over 30 years of digital product experience, we deliver practical solutions without the buzzwords.</p>
+          <p class="about-desc">Zero Fluff is run by two directors, Andy and Philippa Doyle, from Totnes in Devon. We have been building digital products for over 30 years, including live-event technology deployed at Manchester City FC, Formula E, the US Open and the BRIT Awards, through Filmily, now FANDEMiQ. We build and support real software. We do not sell slide decks.</p>
           <div class="about-tools">
             <span class="tools-label">TOOLS WE USE</span>
             <div class="tools-row">
@@ -213,8 +275,8 @@ const faqSchema = {
             <div class="clients-list">
               <span
                 id="cycling-client"
-                data-clients={JSON.stringify(caseStudies.map(s => s.data.client))}
-              >{caseStudies[0]?.data.client ?? ''}</span>
+                data-clients={JSON.stringify(featuredStudies.map(s => s.data.client))}
+              >{featuredStudies[0]?.data.client ?? ''}</span>
             </div>
           </div>
         </div>
@@ -240,34 +302,22 @@ const faqSchema = {
     </div>
   </section>
 
+  <Testimonials />
+
   <!-- FAQ — The AI Typewriter -->
   <section class="faq-section" data-section="faq">
     <div class="faq-inner">
       <div class="faq-left">
-        <p class="section-label">04 — COMMON QUESTIONS</p>
+        <p class="section-label">05 — COMMON QUESTIONS</p>
         <h2 class="faq-heading" data-faq-heading>Got questions? We have answers.</h2>
       </div>
       <div class="faq-right">
-        <details class="faq-item">
-          <summary>How much time can AI really save me?</summary>
-          <p data-answer="Most of our clients save 5-15 hours per week once their automations are running."></p>
-        </details>
-        <details class="faq-item">
-          <summary>How quickly will I see results?</summary>
-          <p data-answer="Most clients see meaningful results within 1-2 weeks of their first automation going live."></p>
-        </details>
-        <details class="faq-item">
-          <summary>Do I need technical experience?</summary>
-          <p data-answer="None. We handle all the technical setup. You just tell us what takes up your time."></p>
-        </details>
-        <details class="faq-item">
-          <summary>What types of businesses do you work with?</summary>
-          <p data-answer="Small businesses across all sectors — from solo consultants to teams of 20. If you have repetitive tasks, we can help."></p>
-        </details>
-        <details class="faq-item">
-          <summary>What tools do you use?</summary>
-          <p data-answer="N8N, Manus, Claude, ChatGPT, Perplexity — whatever fits your workflow best."></p>
-        </details>
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p data-answer={f.a}></p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
@@ -276,13 +326,12 @@ const faqSchema = {
   <section class="cta-section" data-section="cta">
     <div class="cta-bg" aria-hidden="true"></div>
     <div class="cta-content">
-      <h2 class="cta-heading" data-cta-heading>Ready to get AI working for your business?</h2>
-      <p class="cta-sub">Book a free 20-minute AI chat. No sales pitch. No jargon. Just an honest conversation about how AI can help.</p>
+      <h2 class="cta-heading" data-cta-heading>Got something to build, fix or automate?</h2>
+      <p class="cta-sub">Tell us what you are stuck with. We will tell you straight whether software, automation or neither is the answer.</p>
       <div class="cta-buttons">
-        <a href="/contact" class="btn-primary cta-btn cta-glow" data-magnetic data-magnetic-strength="0.5">Book a free AI chat &rarr;</a>
+        <BookCTA large magnetic align="center" />
         <a href="mailto:andy@zerofluff.co.uk" class="btn-outline cta-btn">andy@zerofluff.co.uk</a>
       </div>
-      <p class="trust-text">Free &middot; No obligation &middot; 20 minutes &middot; Plain English</p>
     </div>
   </section>
 </BaseLayout>
@@ -821,6 +870,8 @@ const faqSchema = {
      ======================================== */
   .hero {
     min-height: 100vh;
+    /* room for the fixed header when the hero copy is taller than the screen */
+    padding: 110px 0 64px;
     background: transparent;
     position: relative;
     overflow: hidden;
@@ -890,7 +941,7 @@ const faqSchema = {
 
   .hero-ctas {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     flex-wrap: wrap;
   }
@@ -955,6 +1006,15 @@ const faqSchema = {
     color: var(--color-text);
     line-height: 1.2;
   }
+
+  .pain-link {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .pain-link:hover { color: var(--color-accent-hover); }
 
   .card-inner p {
     font-family: var(--font-body);
@@ -1420,7 +1480,7 @@ const faqSchema = {
   .cta-buttons {
     display: flex;
     gap: 16px;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -1430,7 +1490,7 @@ const faqSchema = {
     padding: 20px 48px;
   }
 
-  .cta-glow {
+  .cta-buttons :global(.book-btn) {
     animation: glow-pulse 2s ease-in-out infinite;
   }
 
@@ -1477,8 +1537,13 @@ const faqSchema = {
       flex-direction: column;
       align-items: stretch;
     }
-    .hero-ctas a {
+    .hero-ctas a,
+    .hero-ctas :global(.book-btn) {
       justify-content: center;
+    }
+    .hero-ctas :global(.book-cta) {
+      align-self: stretch;
+      align-items: stretch;
     }
 
     .about-split {
@@ -1529,5 +1594,81 @@ const faqSchema = {
     .services-mobile .services-header {
       padding: 0 24px 32px;
     }
+  }
+
+  /* ========================================
+     SERVICES — all link
+     ======================================== */
+  .services-all {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 60px 0;
+  }
+
+  /* ========================================
+     HOW WE BUILD
+     ======================================== */
+  .build-section {
+    background: transparent;
+    padding: 120px 0;
+  }
+  .build-section h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -1px;
+    line-height: 1.05;
+    margin-top: 16px;
+  }
+  .build-lede {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 680px;
+    margin-top: 20px;
+  }
+  .build-steps {
+    list-style: none;
+    padding: 0;
+    margin: 48px 0 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .build-step {
+    border-top: 2px solid var(--color-accent);
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .build-num {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-accent);
+  }
+  .build-step h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .build-step p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+  }
+  @media (max-width: 1024px) {
+    .build-steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .build-section { padding: 80px 0; }
+    .build-steps { grid-template-columns: 1fr; }
+    .services-all { padding: 24px 24px 0; }
   }
 </style>

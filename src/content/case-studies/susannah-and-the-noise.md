@@ -3,6 +3,9 @@ title: "A Cinematic Band Website for an Archive Record"
 client: "Susannah and the Noise"
 subtitle: "A dark, film-led website for The Lost Tapes of Dartmoor, a record built from century-old voices in the Dartmoor Trust archive."
 result: "4 days, concept to live"
+order: 4
+featured: true
+published: 2026-09-27
 image: "/images/case-study-susannah-and-the-noise.jpg"
 description: "Susannah and the Noise made a record from archive recordings of Dartmoor voices and needed a website that felt like it. We built it in four days: a full-screen film opening, song cards with previews you can play, and a gig list the band updates from a Google Sheet with no deploys."
 tech:
@@ -20,13 +23,13 @@ aiUsed:
 url: "https://satn.co.uk"
 ---
 
-## The Brief
+## The Problem
 
 Susannah and the Noise were given rare access to the Dartmoor Trust archive, which holds recordings of voices from across the twentieth century. The band wove those voices straight into their guitar music, and the result is *The Lost Tapes of Dartmoor*.
 
 A record like that doesn't suit a standard band template. The brief asked for a site that was dark, cinematic and rooted in the moor, and said "contemporary rather than nostalgic". It also said no glossy music-industry styling. The band already had a visual direction and a content document. They needed it built and live, and they needed to keep it up to date themselves.
 
-## How It Was Built
+## What We Built
 
 We built the site in four days with Claude Code, running Claude Opus 5.5. Version 1.0.0 went live on day one, and the other eleven releases were refinements.
 

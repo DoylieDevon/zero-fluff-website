@@ -1,5 +1,9 @@
 ---
+import { booking } from '../lib/booking';
+
 const currentPath = Astro.url.pathname;
+const book = booking();
+const bookAttrs = book.external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
 <header class="site-header" id="site-header">
@@ -12,7 +16,7 @@ const currentPath = Astro.url.pathname;
     <a href="/blog" class:list={['nav-link', { active: currentPath.startsWith('/blog') }]}>Blog</a>
     <a href="/contact" class:list={['nav-link', { active: currentPath.startsWith('/contact') }]}>Contact</a>
   </nav>
-  <a href="/contact" class="nav-cta desktop-cta">Book a Free Chat</a>
+  <a href={book.href} class="nav-cta desktop-cta" {...bookAttrs}>Book a Free Chat</a>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
@@ -28,7 +32,7 @@ const currentPath = Astro.url.pathname;
     <a href="/about" class:list={['mobile-link', { active: currentPath.startsWith('/about') }]}>About</a>
     <a href="/blog" class:list={['mobile-link', { active: currentPath.startsWith('/blog') }]}>Blog</a>
     <a href="/contact" class:list={['mobile-link', { active: currentPath.startsWith('/contact') }]}>Contact</a>
-    <a href="/contact" class="mobile-cta">Book a Free Chat</a>
+    <a href={book.href} class="mobile-cta" {...bookAttrs}>Book a Free Chat</a>
   </nav>
 </div>
 

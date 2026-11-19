@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import BookCTA from '../components/BookCTA.astro';
+import { getCaseStudies } from '../lib/case-studies';
 export const prerender = true;
 
-const studies = await getCollection('case-studies');
-studies.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const studies = await getCaseStudies();
 const topStudies = studies.slice(0, 3);
 ---
 
@@ -20,7 +20,7 @@ const topStudies = studies.slice(0, 3);
       <h1>AI consultancy for the<br>South West</h1>
       <p>Practical AI and automation for small businesses across the South West — Devon, Cornwall, Somerset, Dorset and Bristol. Plain English advice and hands-on builds from a consultancy based right here in the region.</p>
       <div class="hero-ctas">
-        <a href="/contact" class="btn-red">Book a free AI chat →</a>
+        <BookCTA label={"Book a free AI chat →"} />
         <a href="/services" class="btn-ghost">See our services</a>
       </div>
     </div>
@@ -74,7 +74,7 @@ const topStudies = studies.slice(0, 3);
     <div class="prose-inner">
       <span class="section-label">HOW IT WORKS</span>
       <h2>Local consultancy, real delivery</h2>
-      <p>Most clients start with an <a href="/services" class="inline-link">AI Quick Start</a> — a focused two-hour review that turns "we should probably do something with AI" into a clear, costed plan. From there we build the <a href="/services" class="inline-link">automations</a> for you, develop <a href="/services/custom-ai-software-development" class="inline-link">custom AI software</a> where it's needed, or provide <a href="/services" class="inline-link">ongoing support</a> to keep everything running and improving.</p>
+      <p>Most clients start with an <a href="/services/ai-quick-start" class="inline-link">AI Quick Start</a> — a focused two-hour review that turns "we should probably do something with AI" into a clear, prioritised plan. From there we build the <a href="/services/ai-automation" class="inline-link">automations</a> for you (including <a href="/services/n8n-automation" class="inline-link">n8n workflows</a>), develop <a href="/services/custom-ai-software-development" class="inline-link">custom AI software</a> and <a href="/services/ai-agents" class="inline-link">AI agents</a> where they're needed, offer <a href="/services/fractional-cto" class="inline-link">fractional CTO</a> support, or provide <a href="/services#support" class="inline-link">ongoing support</a> to keep everything running and improving.</p>
       <p>Being based in the South West means we can meet face to face when it counts, but day to day, most of the work happens remotely — so you get the same hands-on service whether you're ten minutes away or the other side of the region.</p>
     </div>
   </section>
@@ -102,7 +102,7 @@ const topStudies = studies.slice(0, 3);
     <div class="services-cta-content">
       <h2>Based in the South West?</h2>
       <p>Book a free 20-minute AI chat. No sales pitch, no jargon — just a straight conversation about where AI and automation could help your business.</p>
-      <a href="/contact" class="btn-red cta-btn-lg">Book a free AI chat →</a>
+      <BookCTA label={"Book a free AI chat →"} large align="center" />
     </div>
   </section>
 
@@ -148,6 +148,7 @@ const topStudies = studies.slice(0, 3);
   }
   .hero-ctas {
     display: flex;
+    align-items: flex-start;
     gap: 16px;
     flex-wrap: wrap;
     margin-top: 8px;

@@ -12,6 +12,29 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.9.0',
+    date: '2026-11-19',
+    title: 'We build software. Now the site says so.',
+    description:
+      'The site used to read like a gentle introduction to "AI for small business", which undersold the fact that we build and support real software. The homepage now leads with custom software and automation, there is a proper page for every way we can help, and the blog finally lives on this domain instead of only on Substack. Several behind-the-scenes switches are in place too, all politely switched off until someone with the facts fills them in.',
+    changes: [
+      'New homepage hero, problem cards for three kinds of buyer, service cards led by software and automation, and a "How we build" section (tested, documented, handed over, 30 days of support, retainer)',
+      'Six service pages: AI & workflow automation, n8n automation, custom AI software development (upgraded), AI agents, fractional CTO and the AI Quick Start, each with a quick answer, steps, case studies, FAQs and structured data',
+      '/services is now a hub linking to every service page; footer, Devon and South West pages link to them too',
+      'Case studies: client work first, our own products and experiments in their own section, consistent problem / what we built / result / tools layout, Article structured data',
+      'Blog on this domain with RSS at /rss.xml and three draft posts (not published); Substack posts now sit under "From the newsletter"',
+      'Booking link, price anchors, testimonials, AMGL report count, whether a client can be named and search-engine verification codes can be switched on from src/config/site-inputs.ts; all are off until filled in',
+      'Every call to action now says what happens next: 20 minutes, no sales pitch, a reply within one working day',
+      'Homepage stats are now written into the page itself, not just counted up by animation, so "11 case studies" no longer reads as "0" to search engines',
+      'Old /get-in-touch address now redirects to /contact',
+      'llms.txt is generated from the same data as the site; IndexNow support and an automatic duplicate title / description check added',
+      'Contact page quote is now attributed to Andy, and stray first-person form copy fixed',
+      'Toned down "built in an hour, no dev team" headlines on case studies, the stats banner and the footer badge: outcomes first, speed second',
+      'Site-wide structured data now says we serve the whole UK, and mentions custom software',
+      'Client screenshots and live links that show a client\'s branding stay hidden until that client can be named',
+    ],
+  },
+  {
     version: '1.8.3',
     date: '2026-09-28',
     title: 'One front door',

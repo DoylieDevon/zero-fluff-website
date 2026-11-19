@@ -1,8 +1,11 @@
 ---
-title: "A Teaching Library, Built in an Hour"
+title: "A Searchable Teaching Gallery"
 client: "Photography Gallery"
 subtitle: "A private, searchable gallery of photographers and their work — so a teacher can pull up the perfect example the moment a student asks."
-result: "Built in 1 hour"
+result: "The right example in seconds"
+order: 5
+featured: true
+published: 2026-06-17
 image: "/images/case-study-photography-gallery.jpg"
 description: "A photography teacher needed a fast way to show students example work mid-lesson. We built a private, searchable gallery: add a photographer, drop in images that auto-resize on upload, and let AI tag them by genre and style — then search by name, country, or tag to surface the right example in seconds."
 tech:
@@ -30,7 +33,7 @@ A friend who teaches photography had a small but constant frustration. When he w
 
 What he wanted was simple: one place. His own curated library of photographers and their work, searchable the instant a name or a genre comes up in class.
 
-## How It Was Built
+## What We Built
 
 The whole thing was built in about an hour, end to end, through Claude Code.
 
