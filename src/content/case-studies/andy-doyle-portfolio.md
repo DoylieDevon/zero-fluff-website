@@ -1,13 +1,13 @@
 ---
 title: "Personal Portfolio Site"
 client: "Andy Portfolio"
-subtitle: "A personal portfolio built in an hour by scraping LinkedIn, Substack, and a CV — designed to match the Zero Fluff brand."
-result: "Full site live in 1 hour"
+subtitle: "A personal portfolio that matches the Zero Fluff brand, built from LinkedIn, Substack posts and a CV."
+result: "A branded personal site from existing content"
 order: 10
 featured: false
 published: 2026-06-02
 image: "/images/case-study-andy-doyle-portfolio.jpg"
-description: "Andy needed a personal site that matched the Zero Fluff aesthetic. Content was pulled from LinkedIn, Substack posts, and a CV. Claude Code built the whole thing in a single session — no hand-written code."
+description: "Andy needed a personal site that matched the Zero Fluff aesthetic. Content was pulled from LinkedIn, Substack posts, and a CV. Claude Code built the whole thing in a single session."
 tech:
   - { name: "Next.js 16", category: "Framework" }
   - { name: "React 19", category: "Framework" }

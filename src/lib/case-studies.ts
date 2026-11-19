@@ -27,12 +27,19 @@ export function fill(text: string): string {
   return text.replace(/\{\{(\w+)\|([^}]*)\}\}/g, (_, key: string, fallback: string) => values[key] ?? fallback);
 }
 
+// The house builder's screenshot and live tool show the client's own branding, so
+// they stay hidden until smithAndWhiteNamed is true.
+const CLIENT_BRANDED = new Set(['house-builder-report-generation']);
+
 function resolve(study: CaseStudy): CaseStudy {
   const d = study.data;
+  const hideBranding = CLIENT_BRANDED.has(study.id) && !siteInputs.smithAndWhiteNamed;
   return {
     ...study,
     data: {
       ...d,
+      image: hideBranding ? undefined : d.image,
+      url: hideBranding ? undefined : d.url,
       title: fill(d.title),
       client: fill(d.client),
       result: fill(d.result),

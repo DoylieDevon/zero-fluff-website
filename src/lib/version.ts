@@ -29,6 +29,9 @@ export const CHANGELOG: ChangelogEntry[] = [
       'Old /get-in-touch address now redirects to /contact',
       'llms.txt is generated from the same data as the site; IndexNow support and an automatic duplicate title / description check added',
       'Contact page quote is now attributed to Andy, and stray first-person form copy fixed',
+      'Toned down "built in an hour, no dev team" headlines on case studies, the stats banner and the footer badge: outcomes first, speed second',
+      'Site-wide structured data now says we serve the whole UK, and mentions custom software',
+      'Client screenshots and live links that show a client\'s branding stay hidden until that client can be named',
     ],
   },
   {

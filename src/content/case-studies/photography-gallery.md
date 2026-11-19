@@ -1,8 +1,8 @@
 ---
-title: "A Teaching Library, Built in an Hour"
+title: "A Searchable Teaching Gallery for a Photography Teacher"
 client: "Photography Gallery"
 subtitle: "A private, searchable gallery of photographers and their work — so a teacher can pull up the perfect example the moment a student asks."
-result: "Built in 1 hour"
+result: "The right example in seconds"
 order: 5
 featured: true
 published: 2026-06-17

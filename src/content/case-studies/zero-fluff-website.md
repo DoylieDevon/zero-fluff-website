@@ -1,8 +1,8 @@
 ---
 title: "AI-Built Marketing Website"
 client: "This Website!"
-subtitle: "A fully animated, production-ready marketing site — built from scratch in 2 hours, including all content. No hand-written code."
-result: "Built in 2 hours"
+subtitle: "A fully animated, production-ready marketing site, with every component, animation and line of copy built through conversation with Claude Code."
+result: "Blank repo to live site, content included"
 order: 11
 featured: false
 published: 2026-06-02

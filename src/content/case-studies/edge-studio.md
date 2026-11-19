@@ -1,8 +1,8 @@
 ---
 title: "Leadership Assessment Platform"
 client: "Edge Studio"
-subtitle: "A full diagnostic platform for C-suite teams — 12 pillars, 48 questions, voice interviews, AI-generated reports, and a 90-day execution dashboard. No dev team."
-result: "12 pillars. 48 questions. Zero dev team."
+subtitle: "A full diagnostic platform for C-suite teams — 12 pillars, 48 questions, voice interviews, AI-generated reports, and a 90-day execution dashboard."
+result: "12 pillars. 48 questions. One platform."
 order: 6
 featured: false
 published: 2026-06-02

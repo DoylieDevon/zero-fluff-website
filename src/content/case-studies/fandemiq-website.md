@@ -7,7 +7,7 @@ order: 9
 featured: false
 published: 2026-06-02
 image: "/images/case-study-fandemiq-website.jpg"
-description: "FANDEMiQ needed a marketing website that could represent a B2B SaaS platform to sports and music rights holders. Brand guidelines, messaging, custom hand-drawn illustrations, animated backgrounds, and a full partner registration flow — all built without a single line written by hand."
+description: "FANDEMiQ needed a marketing website that could represent a B2B SaaS platform to sports and music rights holders. Brand guidelines, messaging, custom hand-drawn illustrations, animated backgrounds, and a full partner registration flow — all built through Claude Code."
 tech:
   - { name: "Next.js 15", category: "Framework" }
   - { name: "React 19", category: "Framework" }
