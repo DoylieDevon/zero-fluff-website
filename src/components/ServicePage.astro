@@ -1,0 +1,405 @@
+---
+// Template for every /services/<slug>/ page. Content comes from src/lib/services.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookCTA from './BookCTA.astro';
+import PriceTag from './PriceTag.astro';
+import Testimonials from './Testimonials.astro';
+import CaseStudyCard from './CaseStudyCard.astro';
+import { getCaseStudies } from '../lib/case-studies';
+import { SERVICES, servicePath, type ServiceDef } from '../lib/services';
+
+interface Props {
+  service: ServiceDef;
+}
+
+const { service } = Astro.props;
+const site = 'https://zerofluff.co.uk';
+const url = `${site}${servicePath(service.slug)}`;
+
+const all = await getCaseStudies();
+const studies = service.caseStudyIds
+  .map((id) => all.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+const related = service.related.map((slug) => SERVICES.find((s) => s.slug === slug)).filter(Boolean) as ServiceDef[];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name: service.name,
+  description: service.metaDescription,
+  serviceType: service.serviceType,
+  url,
+  provider: { '@id': `${site}/#business` },
+  areaServed: { '@type': 'Country', name: 'United Kingdom' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: service.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${site}/services/` },
+    { '@type': 'ListItem', position: 3, name: service.name, item: url },
+  ],
+};
+---
+
+<BaseLayout title={service.title} description={service.metaDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="sp-hero">
+    <div class="sp-hero-content">
+      <nav class="sp-crumbs" aria-label="Breadcrumb"><a href="/services">Services</a> <span aria-hidden="true">/</span> <span>{service.name}</span></nav>
+      <span class="sp-eyebrow">{service.eyebrow}</span>
+      <h1>{service.h1}</h1>
+      <div class="sp-quick">
+        <span class="sp-quick-label">THE QUICK ANSWER</span>
+        <p>{service.quickAnswer}</p>
+      </div>
+      <div class="sp-hero-cta">
+        {service.priceKey && <PriceTag of={service.priceKey} />}
+        <BookCTA />
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="sp-section">
+    <div class="sp-inner">
+      <span class="sp-label">WHAT WE DO</span>
+      <h2>What you get</h2>
+      <div class="sp-grid">
+        {service.whatWeDo.map((w) => (
+          <div class="sp-card">
+            <h3>{w.title}</h3>
+            <p>{w.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="sp-section sp-alt">
+    <div class="sp-inner">
+      <span class="sp-label">WHO IT'S FOR</span>
+      <h2>Is this you?</h2>
+      <ul class="sp-who">
+        {service.whoFor.map((w) => <li>{w}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sp-section">
+    <div class="sp-inner">
+      <span class="sp-label">HOW IT WORKS</span>
+      <h2>From first chat to finished</h2>
+      <ol class="sp-steps">
+        {service.steps.map((s, i) => (
+          <li>
+            <span class="sp-step-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  {studies.length > 0 && (
+    <section class="sp-section sp-alt">
+      <div class="sp-inner">
+        <span class="sp-label">PROOF, NOT PROMISES</span>
+        <h2>Work like this</h2>
+        <div class="sp-studies">
+          {studies.map((s) => (
+            <CaseStudyCard
+              id={s.id}
+              title={s.data.title}
+              client={s.data.client}
+              result={s.data.result}
+              subtitle={s.data.subtitle}
+              image={s.data.image}
+              tech={s.data.tech}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Testimonials caseStudyIds={service.caseStudyIds} />
+
+  <!-- FAQ -->
+  <section class="sp-section" id="faq">
+    <div class="sp-inner sp-narrow">
+      <span class="sp-label">QUESTIONS</span>
+      <h2>Frequently asked questions</h2>
+      <div class="sp-faqs">
+        {service.faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="sp-section sp-alt">
+    <div class="sp-inner">
+      <span class="sp-label">MORE WAYS WE CAN HELP</span>
+      <div class="sp-related">
+        {related.map((r) => (
+          <a href={servicePath(r.slug)} class="sp-related-card">
+            <h3>{r.name} →</h3>
+            <p>{r.summary}</p>
+          </a>
+        ))}
+        <a href="/services" class="sp-related-card">
+          <h3>All services →</h3>
+          <p>The full range, from a 2-hour Quick Start to ongoing support.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sp-cta">
+    <h2>Got something in mind?</h2>
+    <p>Tell us what you are trying to do. We will tell you straight whether we can help, and how we would go about it.</p>
+    <BookCTA large align="center" />
+  </section>
+</BaseLayout>
+
+<style>
+  .sp-hero {
+    min-height: 520px;
+    background: var(--color-surface);
+    display: flex;
+    align-items: flex-end;
+    padding: 140px 0 80px;
+  }
+  .sp-hero-content {
+    padding: 0 80px;
+    max-width: 920px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sp-crumbs {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+  .sp-crumbs a { color: var(--color-text-secondary); text-decoration: none; }
+  .sp-crumbs a:hover { color: var(--color-text); }
+  .sp-eyebrow, .sp-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3B30;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .sp-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+  .sp-quick {
+    border-left: 3px solid #FF3B30;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sp-quick-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text-muted);
+  }
+  .sp-quick p {
+    font-size: 20px;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+  }
+  .sp-hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .sp-section {
+    background: var(--color-bg);
+    padding: 80px;
+  }
+  .sp-alt { background: var(--color-surface); }
+  .sp-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .sp-narrow { max-width: 820px; }
+  .sp-inner > h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  .sp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .sp-card {
+    border: 1px solid var(--color-border);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sp-card h3, .sp-steps h3, .sp-related-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .sp-card p, .sp-steps p, .sp-related-card p {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  .sp-who {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .sp-who li {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    padding: 20px 24px;
+    border-left: 3px solid #FF3B30;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .sp-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 820px;
+  }
+  .sp-steps li {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .sp-step-n {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    color: #FF3B30;
+    min-width: 48px;
+  }
+  .sp-studies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .sp-faqs {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+  .sp-faqs details {
+    border-bottom: 1px solid var(--color-border);
+    padding: 20px 0;
+  }
+  .sp-faqs summary {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+  .sp-faqs p {
+    margin-top: 12px;
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+  .sp-related {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .sp-related-card {
+    border: 1px solid var(--color-border);
+    padding: 24px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.2s;
+  }
+  .sp-related-card:hover { border-color: #FF3B30; }
+  .sp-cta {
+    background: var(--color-bg);
+    padding: 100px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+  .sp-cta h2 {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -1px;
+  }
+  .sp-cta p {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .sp-hero-content { padding: 0 24px; }
+    .sp-section { padding: 60px 24px; }
+    .sp-grid, .sp-who { grid-template-columns: 1fr; }
+    .sp-quick p { font-size: 18px; }
+  }
+</style>

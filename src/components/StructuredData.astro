@@ -4,6 +4,8 @@
 // LocalBusiness (ProfessionalService) + Organization graph for Zero Fluff,
 // a Totnes-based AI & automation consultancy serving the South West UK.
 
+import { SERVICES, servicePath } from '../lib/services';
+
 const site = 'https://zerofluff.co.uk';
 
 const directors = [
@@ -69,6 +71,9 @@ const localBusiness = {
     'Custom AI Software Development',
     'AI Implementation',
     'Workflow Automation',
+    'n8n',
+    'AI Agents',
+    'Fractional CTO',
     'AI Consultancy',
   ],
   founder: {
@@ -82,33 +87,15 @@ const localBusiness = {
     '@type': 'OfferCatalog',
     name: 'AI & Automation Services',
     itemListElement: [
-      {
+      ...SERVICES.map((svc) => ({
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'AI Quick Start',
-          description:
-            'A two-hour review of your business to find the highest-value AI and automation opportunities.',
+          name: svc.name,
+          description: svc.summary,
+          url: `${site}${servicePath(svc.slug)}`,
         },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Automation Setup',
-          description:
-            'We build automated workflows for your business using N8N, Claude, ChatGPT and more.',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Custom AI Software Development',
-          description:
-            'Bespoke AI-powered tools, AI integrated into your existing systems, and custom automation workflows.',
-        },
-      },
+      })),
       {
         '@type': 'Offer',
         itemOffered: {
@@ -116,6 +103,7 @@ const localBusiness = {
           name: 'Ongoing AI Support',
           description:
             'A monthly retainer that keeps your automations running and adds new ones as opportunities arise.',
+          url: `${site}/services/#support`,
         },
       },
     ],

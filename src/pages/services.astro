@@ -1,367 +1,245 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BookCTA from '../components/BookCTA.astro';
+import PriceTag from '../components/PriceTag.astro';
+import Testimonials from '../components/Testimonials.astro';
+import { SERVICES, servicePath } from '../lib/services';
 export const prerender = true;
+
+const site = 'https://zerofluff.co.uk';
+const listSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Zero Fluff services',
+  itemListElement: SERVICES.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: s.name,
+    url: `${site}${servicePath(s.slug)}`,
+  })),
+};
 ---
 
-<BaseLayout title="AI & Automation Services — Zero Fluff" description="AI and automation services for small businesses in Devon and the South West: a 2-hour Quick Start audit, automation builds, ongoing support, custom AI.">
+<BaseLayout
+  title="AI, Automation & Software Services — Zero Fluff"
+  description="Custom AI software, automation, n8n builds, AI agents, fractional CTO and a 2-hour AI Quick Start. Practical services for UK small businesses, built and supported."
+>
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(listSchema)} />
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="page-hero-content">
-      <h1>Practical AI and automation,<br>not buzzwords</h1>
-      <p>Real implementations that save you time and money, not slide decks about the future of AI. Working with small businesses across Devon and the South West.</p>
+  <section class="hub-hero">
+    <div class="hub-hero-content">
+      <h1>Software and automation,<br>built and supported</h1>
+      <p>Real implementations that save you time and money, not slide decks about the future of AI. We build custom AI software and automation for small businesses across the UK, from our base in Totnes, Devon.</p>
+      <BookCTA />
     </div>
   </section>
 
-  <!-- SERVICES DETAIL -->
-  <section class="services-detail">
-    <article class="service-row">
-      <div class="service-img service-img-1"></div>
-      <div class="service-text">
-        <span class="service-tag-label">2 HOURS</span>
-        <h2>AI Quick Start audit</h2>
-        <p>Not sure where AI can help your business? Start here. We spend 2 hours reviewing your operations, identifying the highest-value automation opportunities, and giving you a clear, prioritised action plan.</p>
-        <ul>
-          <li>Full business operations review</li>
-          <li>3-5 specific automation recommendations</li>
-          <li>Prioritised action plan with time estimates</li>
-          <li>No obligation to continue</li>
-        </ul>
-        <BookCTA label={"Book a Quick Start →"} />
+  <section class="hub-section">
+    <div class="hub-inner">
+      <span class="hub-label">WHAT WE DO</span>
+      <h2>Pick the one that sounds like your problem</h2>
+      <div class="hub-grid">
+        {SERVICES.map((s) => (
+          <a href={servicePath(s.slug)} class="hub-card">
+            <h3>{s.name}</h3>
+            <p>{s.summary}</p>
+            {s.priceKey && <PriceTag of={s.priceKey} />}
+            <span class="hub-more">Learn more →</span>
+          </a>
+        ))}
       </div>
-    </article>
-
-    <article class="service-row service-row-reverse">
-      <div class="service-img service-img-2"></div>
-      <div class="service-text">
-        <span class="service-tag-label">HANDS-ON</span>
-        <h2>Business automation setup</h2>
-        <p>We build the automations for you using N8N, Manus, ChatGPT, Claude and more. You describe the problem, we build the solution. Most automations are live within a week. See how we <a href="/case-studies/house-builder-report-generation" class="inline-link">automated report generation for a house builder</a>.</p>
-        <ul>
-          <li>Custom workflow design and build</li>
-          <li>Integration with your existing tools</li>
-          <li>Testing and handover documentation</li>
-          <li>30-day support included</li>
-        </ul>
-        <BookCTA label={"Get a Quote →"} />
-      </div>
-    </article>
-
-    <article class="service-row">
-      <div class="service-img service-img-3"></div>
-      <div class="service-text">
-        <span class="service-tag-label">MONTHLY</span>
-        <h2>Ongoing AI support &amp; consultancy</h2>
-        <p>AI is moving fast. This monthly retainer keeps you ahead — fixing what breaks, adding new automations as opportunities arise, and advising on what's worth trying.</p>
-        <ul>
-          <li>Monthly strategy call</li>
-          <li>Unlimited small automation fixes</li>
-          <li>New tool evaluations and recommendations</li>
-          <li>Priority response to issues</li>
-        </ul>
-        <BookCTA label={"Learn More →"} />
-      </div>
-    </article>
-
-    <article class="service-row service-row-reverse">
-      <div class="service-img service-img-4"></div>
-      <div class="service-text">
-        <span class="service-tag-label">STRATEGIC</span>
-        <h2>Custom AI software &amp; bigger projects</h2>
-        <p>Building an AI-powered product, or need a fractional CTO to guide your technical strategy? We build <a href="/services/custom-ai-software-development" class="inline-link">custom AI software</a> too — 30 years of building digital products, from startup to scale. See how we <a href="/case-studies/fandemiq" class="inline-link">helped FANDEMiQ understand an 8-year platform</a>.</p>
-        <ul>
-          <li>Custom AI software development and integration</li>
-          <li>AI/ML integration into existing products</li>
-          <li>Product strategy and technical architecture</li>
-          <li>Team guidance and flexible engagement terms</li>
-        </ul>
-        <BookCTA label={"Let's Talk →"} />
-      </div>
-    </article>
+    </div>
   </section>
 
-  <!-- EXPLORE MORE -->
-  <section class="services-explore">
-    <div class="services-explore-inner">
-      <span class="section-label">EXPLORE MORE</span>
+  <section class="hub-section hub-alt" id="support">
+    <div class="hub-inner hub-narrow">
+      <span class="hub-label">MONTHLY</span>
+      <h2>Ongoing AI support &amp; consultancy</h2>
+      <p class="hub-lede">AI moves fast and businesses change. This monthly retainer keeps what we build running, fixes what breaks, adds new automations as opportunities arise and advises on what is worth trying.</p>
+      <ul class="hub-list">
+        <li>Monthly strategy call</li>
+        <li>Unlimited small automation fixes</li>
+        <li>New tool evaluations and recommendations</li>
+        <li>Priority response to issues</li>
+      </ul>
+      <PriceTag of="retainer" />
+      <BookCTA label="Ask about support →" />
+    </div>
+  </section>
+
+  <section class="hub-section">
+    <div class="hub-inner hub-narrow">
+      <span class="hub-label">HOW WE BUILD</span>
+      <h2>Reliable, not just quick</h2>
+      <p class="hub-lede">Every build is tested, documented and handed over properly, with 30 days of support included. <a href="/#how-we-build" class="hub-link">See how we build →</a></p>
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <section class="hub-section hub-alt">
+    <div class="hub-inner">
+      <span class="hub-label">EXPLORE MORE</span>
       <h2>See it in practice</h2>
-      <div class="explore-grid">
-        <a href="/case-studies" class="explore-card">
-          <h3>Case studies →</h3>
-          <p>Real results for real businesses — see the AI and automation work we've delivered.</p>
-        </a>
-        <a href="/services/custom-ai-software-development" class="explore-card">
-          <h3>Custom AI software →</h3>
-          <p>Bespoke AI-powered tools, AI built into your existing systems, and custom workflows.</p>
-        </a>
-        <a href="/ai-automation-devon" class="explore-card">
-          <h3>AI for Devon businesses →</h3>
-          <p>How we help businesses across Devon put AI and automation to work.</p>
-        </a>
-        <a href="/ai-consultancy-south-west" class="explore-card">
-          <h3>AI consultancy in the South West →</h3>
-          <p>Practical AI consultancy for businesses across the South West UK.</p>
-        </a>
+      <div class="hub-grid hub-grid-3">
+        <a href="/case-studies" class="hub-card"><h3>Case studies →</h3><p>Real results for real businesses.</p></a>
+        <a href="/ai-automation-devon" class="hub-card"><h3>AI for Devon businesses →</h3><p>How we help businesses across Devon.</p></a>
+        <a href="/ai-consultancy-south-west" class="hub-card"><h3>AI consultancy in the South West →</h3><p>Practical AI consultancy across the region.</p></a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="services-cta">
-    <div class="services-cta-content">
-      <h2>Ready to get started?</h2>
-      <p>Book a free 20-minute AI chat. No sales pitch.</p>
-      <BookCTA label={"Book a free AI chat →"} large align="center" />
-    </div>
+  <section class="hub-cta">
+    <h2>Ready to get started?</h2>
+    <p>Tell us what you are stuck with. We will tell you straight whether we can help.</p>
+    <BookCTA large align="center" />
   </section>
-
 </BaseLayout>
 
 <style>
-  /* PAGE HERO */
-  .page-hero {
+  .hub-hero {
     min-height: 500px;
     background: var(--color-surface);
-    position: relative;
     display: flex;
     align-items: flex-end;
-    padding-bottom: 80px;
+    padding: 140px 0 80px;
   }
-  .page-hero-content {
-    position: relative;
-    z-index: 1;
+  .hub-hero-content {
     padding: 0 80px;
-    max-width: 800px;
+    max-width: 880px;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-  .page-hero-content h1 {
-    font-size: 56px;
+  .hub-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
     font-weight: 800;
     color: var(--color-text);
     letter-spacing: -1.5px;
     line-height: 1.05;
   }
-  .page-hero-content p {
+  .hub-hero p {
     font-size: 20px;
     color: var(--color-text-secondary);
     line-height: 1.5;
   }
-
-  /* SERVICES DETAIL */
-  .services-detail {
-    padding: 0 80px;
-    display: flex;
-    flex-direction: column;
-    background: var(--color-bg);
-  }
-  .service-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--color-border);
-    padding: 60px 0;
-  }
-  .service-row:first-child { padding-top: 60px; }
-  .service-row-reverse .service-img { order: 2; }
-  .service-row-reverse .service-text { order: 1; }
-  .service-img {
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  .service-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    mix-blend-mode: multiply;
-    opacity: 0.6;
-  }
-  .service-img-1 {
-    background-image: url('/images/service-quickstart.png');
-  }
-  .service-img-1::after { background: linear-gradient(135deg, #1a0533, #0a1628); }
-  .service-img-2 {
-    background-image: url('/images/service-automation.png');
-  }
-  .service-img-2::after { background: linear-gradient(135deg, #2d1408, #1a0a0a); }
-  .service-img-3 {
-    background-image: url('/images/service-support.png');
-  }
-  .service-img-3::after { background: linear-gradient(135deg, #081a1a, #0a1a0d); }
-  .service-img-4 {
-    background-image: url('/images/service-projects.png');
-  }
-  .service-img-4::after { background: linear-gradient(135deg, #0a1628, #1a0533); }
-  .service-text {
-    padding: 0 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-  }
-  .service-tag-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #FF3B30;
-    text-transform: uppercase;
-  }
-  .service-text h2 {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--color-text);
-    letter-spacing: -0.5px;
-  }
-  .service-text > p {
-    font-size: 18px;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-  }
-  .service-text ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 0;
-    margin: 0;
-  }
-  .service-text li {
-    font-size: 16px;
-    color: var(--color-text-secondary);
-    padding-left: 20px;
-    position: relative;
-  }
-  .service-text li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: #FF3B30;
-    font-weight: 600;
-  }
-  .btn-red {
-    display: inline-block;
-    background: #FF3B30;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 16px 32px;
-    text-decoration: none;
-    align-self: flex-start;
-    transition: opacity 0.15s;
-  }
-  .btn-red:hover { opacity: 0.85; color: #fff; }
-  .inline-link {
-    color: #FF3B30;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(255, 59, 48, 0.4);
-    transition: border-color 0.15s;
-  }
-  .inline-link:hover { border-bottom-color: #FF3B30; }
-
-  /* EXPLORE MORE */
-  .services-explore {
+  .hub-section {
     background: var(--color-bg);
     padding: 80px;
-    border-top: 1px solid var(--color-border);
   }
-  .services-explore-inner {
+  .hub-alt { background: var(--color-surface); }
+  .hub-inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
-  .section-label {
+  .hub-narrow { max-width: 820px; }
+  .hub-label {
     font-size: 12px;
     font-weight: 700;
     color: #FF3B30;
     letter-spacing: 3px;
     text-transform: uppercase;
   }
-  .services-explore-inner > h2 {
+  .hub-inner > h2 {
     font-size: 36px;
     font-weight: 800;
     color: var(--color-text);
     letter-spacing: -0.5px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
-  .explore-grid {
+  .hub-lede {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  .hub-link {
+    color: #FF3B30;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .hub-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
-  .explore-card {
+  .hub-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .hub-card {
+    border: 1px solid var(--color-border);
+    padding: 28px;
+    text-decoration: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 28px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    text-decoration: none;
+    gap: 12px;
     transition: border-color 0.2s, transform 0.2s;
   }
-  .explore-card:hover {
-    border-color: #FF3B30;
-    transform: translateY(-2px);
-  }
-  .explore-card h3 {
-    font-size: 19px;
+  .hub-card:hover { border-color: #FF3B30; transform: translateY(-2px); }
+  .hub-card h3 {
+    font-size: 22px;
     font-weight: 700;
     color: var(--color-text);
-    letter-spacing: -0.3px;
+    line-height: 1.2;
   }
-  .explore-card p {
-    font-size: 15px;
+  .hub-card p {
+    font-size: 16px;
     color: var(--color-text-secondary);
-    line-height: 1.5;
+    line-height: 1.55;
   }
-
-  /* CTA */
-  .services-cta {
-    min-height: 300px;
-    background: #000;
+  .hub-more {
+    margin-top: auto;
+    font-size: 15px;
+    font-weight: 600;
+    color: #FF3B30;
+  }
+  .hub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
   }
-  .services-cta-content {
+  .hub-list li {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    padding-left: 22px;
+    position: relative;
+  }
+  .hub-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #FF3B30;
+    font-weight: 600;
+  }
+  .hub-cta {
+    background: var(--color-bg);
+    padding: 100px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     text-align: center;
-    padding: 60px 80px;
   }
-  .services-cta-content h2 {
-    font-size: 48px;
+  .hub-cta h2 {
+    font-size: 40px;
     font-weight: 800;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: -1px;
   }
-  .services-cta-content p {
+  .hub-cta p {
     font-size: 18px;
-    color: #ccc;
+    color: var(--color-text-secondary);
+    max-width: 520px;
   }
-  .cta-btn-lg {
-    font-size: 18px;
-    padding: 20px 48px;
+  @media (max-width: 1000px) {
+    .hub-grid, .hub-grid-3 { grid-template-columns: repeat(2, 1fr); }
   }
-
   @media (max-width: 768px) {
-    .page-hero-content { padding: 0 24px; }
-    .page-hero-content h1 { font-size: 40px; }
-    .services-detail { padding: 0 24px; }
-    .service-row { grid-template-columns: 1fr; padding: 40px 0; }
-    .service-row-reverse .service-img { order: 0; }
-    .service-row-reverse .service-text { order: 0; }
-    .service-text { padding: 32px 0 0; }
-    .services-cta-content { padding: 40px 24px; }
-    .services-cta-content h2 { font-size: 36px; }
-    .services-explore { padding: 60px 24px; }
-    .explore-grid { grid-template-columns: 1fr; }
+    .hub-hero-content { padding: 0 24px; }
+    .hub-section { padding: 60px 24px; }
+    .hub-grid, .hub-grid-3 { grid-template-columns: 1fr; }
   }
 </style>
