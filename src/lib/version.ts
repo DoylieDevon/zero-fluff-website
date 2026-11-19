@@ -12,6 +12,17 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.9.1',
+    date: '2026-11-19',
+    title: 'The contact form finds its voice',
+    description:
+      'We sent a test enquiry through the contact form and discovered it had been politely refusing everyone: it rejected the empty "spam trap" field it sends itself, then showed no error at all. A form that says nothing and delivers nothing is the worst kind of contact page. It now accepts empty optional fields, and if anything else ever goes wrong it says so out loud.',
+    changes: [
+      'Contact form no longer fails when the business name or the hidden spam-trap field is left empty',
+      'The form now shows an error message instead of failing silently when the server rejects a field it does not display',
+    ],
+  },
+  {
     version: '1.9.0',
     date: '2026-11-19',
     title: 'We build software. Now the site says so.',
