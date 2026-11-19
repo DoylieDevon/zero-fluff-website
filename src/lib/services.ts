@@ -202,7 +202,7 @@ export const SERVICES: ServiceDef[] = [
     name: 'Fractional CTO',
     title: 'Fractional CTO & Product Leadership — Zero Fluff',
     metaDescription:
-      'Fractional CTO and product leadership for UK small businesses and startups: technical strategy, AI direction and delivery oversight from people who have shipped for 30 years.',
+      'Fractional CTO and product leadership for UK small businesses and startups: technical strategy, AI direction and delivery oversight, from 30 years of experience.',
     eyebrow: 'FRACTIONAL CTO',
     h1: 'Fractional CTO and product leadership',
     quickAnswer:
