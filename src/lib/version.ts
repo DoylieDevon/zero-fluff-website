@@ -12,6 +12,17 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.9.2',
+    date: '2026-11-19',
+    title: 'The contact form stops fibbing',
+    description:
+      'It turns out the contact form had a second bad habit: if the email service refused to send our message, the form would still cheerfully tell the visitor "Thanks, sent!". Optimism is lovely in a person and a liability in a contact form. It now checks what the email service actually said, shows an honest error when a send fails, and writes the real reason to the server logs so we can find out why without guesswork.',
+    changes: [
+      'A rejected email send now shows an error instead of a false "message sent" confirmation',
+      'The real cause of a failed send is now written to the server logs (the enquiry text itself is not)',
+    ],
+  },
+  {
     version: '1.9.1',
     date: '2026-11-19',
     title: 'The contact form finds its voice',

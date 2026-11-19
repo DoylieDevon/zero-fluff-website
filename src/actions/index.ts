@@ -30,7 +30,9 @@ export const server = {
       }
 
       try {
-        await getResend().emails.send({
+        // Resend reports API failures in the returned `error` rather than throwing,
+        // so it has to be checked or a rejected send looks like a success.
+        const { error } = await getResend().emails.send({
           from: 'Zero Fluff <andy@zerofluff.co.uk>',
           to: 'andy@zerofluff.co.uk',
           replyTo: input.email,
@@ -44,7 +46,10 @@ export const server = {
             <p>${input.message.replace(/\n/g, '<br>')}</p>
           `,
         });
+        if (error) throw new Error(`Resend rejected the send: ${error.name}: ${error.message}`);
       } catch (error) {
+        // Log the cause (never the enquiry itself) so a failure shows up in Vercel runtime logs.
+        console.error('[contact] failed to send enquiry email:', error instanceof Error ? error.message : error);
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'Failed to send email. Please try again later.',
