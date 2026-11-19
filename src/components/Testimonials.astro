@@ -9,14 +9,19 @@ import { siteInputs } from '../config/site-inputs';
 interface Props {
   /** Show only testimonials for these case studies (plus general ones with no case study). Leave out to show all. */
   caseStudyIds?: string[];
+  /** With caseStudyIds: show only testimonials for those case studies, not general ones. */
+  strict?: boolean;
   heading?: string;
   limit?: number;
 }
 
-const { caseStudyIds, heading = 'What clients say', limit = 3 } = Astro.props;
+const { caseStudyIds, strict = false, heading = 'What clients say', limit = 3 } = Astro.props;
 
 const items = siteInputs.testimonials
-  .filter((t) => !caseStudyIds || t.caseStudyId === null || caseStudyIds.includes(t.caseStudyId))
+  .filter((t) =>
+    !caseStudyIds ||
+    (t.caseStudyId === null ? !strict : caseStudyIds.includes(t.caseStudyId)),
+  )
   .slice(0, limit);
 
 const reviewSchema = items.map((t) => ({

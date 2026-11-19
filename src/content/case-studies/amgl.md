@@ -3,6 +3,9 @@ title: "Golf Accountancy Automation"
 client: "AMGL"
 subtitle: "{{reportsPerClub|Monthly reports for every club}}, automated overnight — no early mornings, no manual downloads."
 result: "65 clubs. {{reportsEach|Every report.}} Done before 9am."
+order: 1
+featured: true
+published: 2026-06-03
 image: "/images/case-study-amgl.jpg"
 description: "AMGL's accountants were getting up at 5am to manually download {{reportsPerClient|a full set of reports per client}} before the business day started. We automated the entire pipeline — scraping, formatting, emailing and filing to SharePoint while they sleep."
 tech:
@@ -28,7 +31,7 @@ AMGL's accountants were setting alarms for 5am. Every month, before the business
 
 It was repetitive, error-prone, and entirely unnecessary.
 
-## How It Was Built
+## What We Built
 
 We built two things: a bot and a portal.
 

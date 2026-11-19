@@ -3,7 +3,9 @@ title: "AI-Built Marketing Website"
 client: "This Website!"
 subtitle: "A fully animated, production-ready marketing site — built from scratch in 2 hours, including all content. No hand-written code."
 result: "Built in 2 hours"
-order: 0
+order: 11
+featured: false
+published: 2026-06-02
 image: "/images/case-study-zerofluff.jpg"
 description: "The Zero Fluff website was built entirely through Claude Code in agentic mode — every component, animation, and line of copy generated through conversation. From blank repo to live Vercel deployment, including all content, in under two hours."
 tech:
@@ -25,11 +27,11 @@ aiUsed:
 url: "https://www.zerofluff.co.uk"
 ---
 
-## The Brief
+## The Problem
 
 Build a marketing website for a zero-fluff AI consultancy that had to be two things at once: a credible business site that converts visitors, and a live proof of concept that AI can build serious digital products. No existing site. No designs. No agency. Just a clear brief and an AI that could execute it.
 
-## How It Was Built
+## What We Built
 
 The entire site was built through Claude Code running in agentic mode, with specialist UI/UX skills loaded for the visual and interaction design phases. The process was conversational — describe what you want, review the output in the browser, iterate. No IDE, no hand-written code, no Figma mockups.
 

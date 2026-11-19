@@ -3,6 +3,9 @@ title: "AI Takes Over an 8-Year Platform"
 client: "FANDEMiQ SaaS platform"
 subtitle: "A live sports fan media platform built over 8 years by human developers — handed to Claude to understand, extend, and ship."
 result: "8 years of work understood in 1 hour"
+order: 8
+featured: false
+published: 2026-06-02
 image: "/images/case-study-fandemiq.jpg"
 description: "FANDEMiQ is a B2B SaaS platform that ingests mass fan-uploaded content at live events, runs it through an AI pipeline, and delivers personalised branded content back to each fan. Built since 2018 by human developers — now developed entirely through Claude Code."
 tech:
@@ -30,13 +33,13 @@ aiUsed:
 url: "https://manager.fandemiq.net"
 ---
 
-## The Brief
+## The Problem
 
 FANDEMiQ has been in development since 2018. Eight years of decisions, migrations, and accumulated complexity across three .NET services, a Vue camera PWA, Azure infrastructure, and an AI-assisted media processing pipeline. The human development team handed the codebase to Claude Code to take over ongoing development.
 
 No handover document. No walkthrough. Just the code and the git history.
 
-## How It Works
+## What We Built
 
 Claude Code was given the repository and asked to get up to speed. Within an hour it had mapped the full architecture: three ASP.NET Core services (admin dashboard, mobile API, video processing), the Hangfire job chain that stitches fan media and runs it through Azure Computer Vision and Video Indexer, the FanMoment AI feature that composites or generatively transforms fan photos, and the Azure Container Apps deployment pipeline.
 

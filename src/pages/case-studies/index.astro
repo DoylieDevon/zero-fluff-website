@@ -6,8 +6,23 @@ import { getCaseStudies } from '../../lib/case-studies';
 
 const studies = await getCaseStudies();
 
-// Default featured for SSR/no-JS — overridden client-side with a random pick
-const featured = studies[0];
+// Arm's-length client work leads; our own products and experiments sit lower down.
+const clientWork = studies.filter((s) => s.data.featured);
+const ownWork = studies.filter((s) => !s.data.featured);
+const groups = [
+  { id: 'nf-grid-section', title: 'Client work', intro: '', items: clientWork, offset: 0 },
+  {
+    id: 'nf-grid-own',
+    title: 'Our own products & experiments',
+    intro: 'Things we built for ourselves, or to find out what is possible. Not client work, but built to the same standard.',
+    items: ownWork,
+    offset: clientWork.length,
+  },
+].filter((g) => g.items.length > 0);
+
+// The hero only ever features client work. Default for SSR/no-JS; overridden client-side with a random pick.
+const heroPool = clientWork.length > 0 ? clientWork : studies;
+const featured = heroPool[0];
 
 const categoryColors: Record<string, string> = {
   Framework: '#FF3B30',
@@ -27,7 +42,7 @@ const categoryColors: Record<string, string> = {
   description="Real AI and automation case studies from Zero Fluff — see how businesses across Devon and the South West have saved time and made better decisions with practical AI."
 >
   <!-- All study data for client-side random featured pick -->
-  <script id="studies-data" type="application/json" set:html={JSON.stringify(studies.map(s => ({
+  <script id="studies-data" type="application/json" set:html={JSON.stringify(heroPool.map(s => ({
     id: s.id,
     client: s.data.client,
     title: s.data.title,
@@ -77,51 +92,56 @@ const categoryColors: Record<string, string> = {
     <div class="nf-hero-fade" aria-hidden="true"></div>
   </section>
 
-  <!-- WORK GRID -->
-  <section class="nf-grid-section" id="nf-grid-section">
-    <div class="nf-grid-header">
-      <h2 class="nf-grid-title">All Work</h2>
-      <p class="nf-grid-count">{studies.length} project{studies.length !== 1 ? 's' : ''}</p>
-    </div>
-
-    <div class="nf-grid" id="nf-grid">
-      {studies.map((study, i) => (
-        <div
-          class="nf-card"
-          data-nf-card
-          data-index={i}
-          data-href={`/case-studies/${study.id}`}
-          tabindex="0"
-          role="article"
-          aria-label={`${study.data.client}: ${study.data.title}`}
-        >
-          <div class="nf-card-img-wrap">
-            {study.data.image
-              ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
-              : <div class="nf-card-img-placeholder"></div>
-            }
-            <div class="nf-card-shine" aria-hidden="true"></div>
-          </div>
-
-          <div class="nf-card-info">
-            <div class="nf-card-info-top">
-              <span class="nf-card-client">{study.data.client}</span>
-              <span class="nf-card-result-badge">{study.data.result}</span>
-            </div>
-            <h3 class="nf-card-name">{study.data.title}</h3>
-            {study.data.subtitle && <p class="nf-card-desc">{study.data.subtitle}</p>}
-            {study.data.tech && (
-              <div class="nf-card-tech-row">
-                {study.data.tech.slice(0, 4).map(t => (
-                  <span class="nf-card-tech-tag" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
-                ))}
-              </div>
-            )}
-          </div>
+  <!-- WORK GRIDS: client work first, then our own products and experiments -->
+  {groups.map((group) => (
+    <section class="nf-grid-section" id={group.id}>
+      <div class="nf-grid-header">
+        <div>
+          <h2 class="nf-grid-title">{group.title}</h2>
+          {group.intro && <p class="nf-grid-intro">{group.intro}</p>}
         </div>
-      ))}
-    </div>
-  </section>
+        <p class="nf-grid-count">{group.items.length} project{group.items.length !== 1 ? 's' : ''}</p>
+      </div>
+
+      <div class="nf-grid">
+        {group.items.map((study, i) => (
+          <div
+            class="nf-card"
+            data-nf-card
+            data-index={group.offset + i}
+            data-href={`/case-studies/${study.id}`}
+            tabindex="0"
+            role="article"
+            aria-label={`${study.data.client}: ${study.data.title}`}
+          >
+            <div class="nf-card-img-wrap">
+              {study.data.image
+                ? <img src={study.data.image} alt="" class="nf-card-img" loading="lazy" />
+                : <div class="nf-card-img-placeholder"></div>
+              }
+              <div class="nf-card-shine" aria-hidden="true"></div>
+            </div>
+
+            <div class="nf-card-info">
+              <div class="nf-card-info-top">
+                <span class="nf-card-client">{study.data.client}</span>
+                <span class="nf-card-result-badge">{study.data.result}</span>
+              </div>
+              <h3 class="nf-card-name">{study.data.title}</h3>
+              {study.data.subtitle && <p class="nf-card-desc">{study.data.subtitle}</p>}
+              {study.data.tech && (
+                <div class="nf-card-tech-row">
+                  {study.data.tech.slice(0, 4).map(t => (
+                    <span class="nf-card-tech-tag" style={`--c:${categoryColors[t.category] ?? '#FF3B30'}`}>{t.name}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
 
   <!-- STATS BANNER -->
   <section class="nf-stats reveal">
@@ -551,6 +571,7 @@ const categoryColors: Record<string, string> = {
 
   .nf-grid-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: 16px;
     margin-bottom: 32px;
@@ -562,6 +583,13 @@ const categoryColors: Record<string, string> = {
     font-weight: 700;
     color: var(--color-text);
     letter-spacing: -0.3px;
+  }
+
+  .nf-grid-intro {
+    margin-top: 6px;
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    max-width: 560px;
   }
 
   .nf-grid-count {

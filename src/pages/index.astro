@@ -13,6 +13,8 @@ export const prerender = true;
 
 const caseStudies = await getCaseStudies();
 const caseStudyCount = caseStudies.length;
+// Only arm's-length client work is shown as "previous work" on the homepage.
+const featuredStudies = caseStudies.filter((s) => s.data.featured);
 
 // Service cards — one list drives the desktop carousel, the mobile stack and
 // the dots. Software and automation lead; the Quick Start is the way in.
@@ -273,8 +275,8 @@ const faqSchema = {
             <div class="clients-list">
               <span
                 id="cycling-client"
-                data-clients={JSON.stringify(caseStudies.map(s => s.data.client))}
-              >{caseStudies[0]?.data.client ?? ''}</span>
+                data-clients={JSON.stringify(featuredStudies.map(s => s.data.client))}
+              >{featuredStudies[0]?.data.client ?? ''}</span>
             </div>
           </div>
         </div>

@@ -3,6 +3,9 @@ title: "Brand-to-Live Website in Days"
 client: "FANDEMiQ Website"
 subtitle: "Brand guidelines, content strategy, custom illustrations, and a full Next.js marketing site — built entirely through Claude Code."
 result: "Branding, site build in days"
+order: 9
+featured: false
+published: 2026-06-02
 image: "/images/case-study-fandemiq-website.jpg"
 description: "FANDEMiQ needed a marketing website that could represent a B2B SaaS platform to sports and music rights holders. Brand guidelines, messaging, custom hand-drawn illustrations, animated backgrounds, and a full partner registration flow — all built without a single line written by hand."
 tech:
@@ -22,13 +25,13 @@ aiUsed:
 url: "https://fandemiq.net"
 ---
 
-## The Brief
+## The Problem
 
 FANDEMiQ is a fan engagement and consumer intelligence platform serving sports and music rights holders. They had a product and a pitch, but no marketing presence that matched where the company was heading. The ask: brand guidelines, messaging, and a website — fast.
 
 No design agency. No copywriter. No developer. Just Claude Code.
 
-## How It Was Built
+## What We Built
 
 We started with the brand: colour palette anchored to FANDEMiQ's existing blue-magenta gradient, typography using Bricolage Grotesque for headings, and a visual language built around hand-drawn coloured pencil illustrations — warm paper texture, visible pencil strokes, diverse fans and data flow diagrams. The illustrations were generated to specification and refined until they matched the tone: approachable but data-forward.
 
