@@ -3,10 +3,11 @@ export const prerender = true;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../../components/CTA.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getCaseStudies } from '../../lib/case-studies';
 
 export async function getStaticPaths() {
-  const studies = await getCollection('case-studies');
+  const studies = await getCaseStudies();
   return studies.map((study) => ({
     params: { id: study.id },
     props: { study },

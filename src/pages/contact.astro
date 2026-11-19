@@ -53,13 +53,13 @@ import ContactForm from '../components/ContactForm.astro';
           </div>
           <div class="contact-detail-item">
             <span class="detail-label">RESPONSE TIME</span>
-            <span class="detail-value">Typically within 24 hours</span>
+            <span class="detail-value">Within one working day</span>
           </div>
         </div>
 
         <div class="card-divider"></div>
 
-        <p class="card-tagline">"I help small businesses save 5–15 hours a week with practical AI — not theory."</p>
+        <p class="card-tagline">"I help small businesses save 5–15 hours a week with practical AI — not theory."<span class="card-tagline-by">— Andy Doyle, Director</span></p>
       </div>
 
     </div>
@@ -200,6 +200,14 @@ import ContactForm from '../components/ContactForm.astro';
     height: 1px;
     background: #333;
     width: 100%;
+  }
+
+  .card-tagline-by {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 600;
+    color: #aaa;
   }
 
   .card-tagline {

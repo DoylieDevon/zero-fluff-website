@@ -1,10 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCaseStudies } from '../lib/case-studies';
 export const prerender = true;
 
-const studies = await getCollection('case-studies');
-studies.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const studies = await getCaseStudies();
 const topStudies = studies.slice(0, 3);
 ---
 

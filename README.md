@@ -44,3 +44,13 @@ public/           # Static assets (images, favicons)
 ## Deployment
 
 Pushes to `main` deploy automatically via Vercel.
+
+## Redirects for old URLs
+
+`vercel.json` is strict JSON (no comments), so the recipe lives here. Old-site URLs that now 404 — pull them from Search Console → Pages → "Not found (404)" — get a permanent redirect in `redirects`:
+
+```json
+{ "source": "/old-path", "destination": "/new-path", "permanent": true }
+```
+
+Add one object per URL, keep `/get-in-touch` and the `www` rule where they are, then check the file still parses: `node -e "JSON.parse(require('fs').readFileSync('vercel.json'))"`.

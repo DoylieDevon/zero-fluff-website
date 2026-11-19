@@ -2,9 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FloatingShapes from '../components/FloatingShapes.astro';
 import Starfield from '../components/Starfield.astro';
-import { getCollection } from 'astro:content';
+import { getCaseStudies } from '../lib/case-studies';
 
-const caseStudies = await getCollection('case-studies');
+// Prerendered so the stat numbers are in the raw HTML, not just the animation.
+export const prerender = true;
+
+const caseStudies = await getCaseStudies();
 const caseStudyCount = caseStudies.length;
 
 // FAQ content — kept in sync with the FAQ section below and emitted as

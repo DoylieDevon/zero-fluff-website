@@ -1,10 +1,10 @@
 ---
 title: "Golf Accountancy Automation"
 client: "AMGL"
-subtitle: "25 reports per club, automated overnight — no early mornings, no manual downloads."
-result: "65 clubs. 22 reports each. Done before 9am."
+subtitle: "{{reportsPerClub|Monthly reports for every club}}, automated overnight — no early mornings, no manual downloads."
+result: "65 clubs. {{reportsEach|Every report.}} Done before 9am."
 image: "/images/case-study-amgl.jpg"
-description: "AMGL's accountants were getting up at 5am to manually download 22 reports per client before the business day started. We automated the entire pipeline — scraping, formatting, emailing and filing to SharePoint while they sleep."
+description: "AMGL's accountants were getting up at 5am to manually download {{reportsPerClient|a full set of reports per client}} before the business day started. We automated the entire pipeline — scraping, formatting, emailing and filing to SharePoint while they sleep."
 tech:
   - { name: "Python", category: "Language" }
   - { name: "FastAPI", category: "Framework" }
@@ -24,7 +24,7 @@ aiUsed:
 
 ## The Problem
 
-AMGL's accountants were setting alarms for 5am. Every month, before the business day started, someone had to log in to the golf management system and manually download 22 reports — per client. Across 65 clubs, that's over 1,400 individual downloads, each needing to land in the right spreadsheet, formatted correctly, ready for the accountants to actually do their job.
+AMGL's accountants were setting alarms for 5am. Every month, before the business day started, someone had to log in to the golf management system and manually download a full set of reports — per client. Across 65 clubs, that's a mountain of individual downloads, each needing to land in the right spreadsheet, formatted correctly, ready for the accountants to actually do their job.
 
 It was repetitive, error-prone, and entirely unnecessary.
 
@@ -40,10 +40,10 @@ The two halves talk to each other via a FastAPI layer — the portal triggers ru
 
 ## What Makes It Interesting
 
-The golf management system wasn't built to be automated. There's no API — just a browser interface. The bot navigates it the way a human would, handling login flows, session timeouts, and report-by-report variation across all 25 report types.
+The golf management system wasn't built to be automated. There's no API — just a browser interface. The bot navigates it the way a human would, handling login flows, session timeouts, and report-by-report variation across every report type.
 
 The portal went through 24 major versions. Real-world use surfaced edge cases the spec never anticipated: reports that change format mid-season, clubs that need runs in a specific order, network failures mid-batch that need clean recovery. The bot now handles all of it — retrying gracefully, flagging errors clearly, and posting back a full summary of what succeeded and what didn't.
 
 ## The Result
 
-AMGL's team no longer sets an alarm. The bot runs, the reports land in SharePoint, and by the time anyone logs in for the day the work is done. 65 clubs, 22+ reports each, formatted and filed — automatically, every month.
+AMGL's team no longer sets an alarm. The bot runs, the reports land in SharePoint, and by the time anyone logs in for the day the work is done. 65 clubs, every report formatted and filed — automatically, every month.
