@@ -19,8 +19,9 @@ export const server = {
       name: z.string().min(1, 'Name is required'),
       email: z.string().email('Please enter a valid email'),
       message: z.string().min(10, 'Message must be at least 10 characters'),
-      businessName: z.string().optional().default(''),
-      website: z.string().max(0, 'Bot detected').optional().default(''),
+      // Astro turns empty form fields into null, so accept null as well as a missing value.
+      businessName: z.string().nullish().transform((v) => v ?? ''),
+      website: z.string().max(0, 'Bot detected').nullish().transform((v) => v ?? ''),
     }),
     handler: async (input) => {
       // Honeypot check -- silently succeed if bot filled it in

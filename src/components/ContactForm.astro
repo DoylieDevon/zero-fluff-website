@@ -231,12 +231,21 @@
 
         if (isInputError(error)) {
           // Show field-level validation errors
+          let shown = false;
           for (const field of fields) {
             const fieldErrors = error.fields[field];
             if (fieldErrors && fieldErrors.length > 0) {
               const errorEl = document.getElementById(`${field}-error`);
-              if (errorEl) errorEl.textContent = fieldErrors[0];
+              if (errorEl) {
+                errorEl.textContent = fieldErrors[0];
+                shown = true;
+              }
             }
+          }
+          // An error on a field we don't display must never fail silently.
+          if (!shown) {
+            statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
+            statusEl.className = 'error';
           }
         } else {
           statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
