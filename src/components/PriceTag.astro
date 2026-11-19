@@ -1,0 +1,23 @@
+---
+// A price anchor ("from £495"). Renders nothing until the price is set in
+// src/config/site-inputs.ts.
+import { price, type PriceKey } from '../lib/booking';
+
+interface Props {
+  of: PriceKey;
+}
+
+const value = price(Astro.props.of);
+---
+
+{value && <p class="price-anchor">{value}</p>}
+
+<style>
+  .price-anchor {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+</style>

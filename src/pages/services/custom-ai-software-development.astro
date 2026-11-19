@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookCTA from '../../components/BookCTA.astro';
 export const prerender = true;
 ---
 
@@ -38,7 +39,7 @@ export const prerender = true;
           <li>Document and data processing pipelines</li>
           <li>Built on Claude, ChatGPT and the right model for the job</li>
         </ul>
-        <a href="/contact" class="btn-red">Discuss your idea →</a>
+        <BookCTA label={"Discuss your idea →"} />
       </div>
     </article>
 
@@ -54,7 +55,7 @@ export const prerender = true;
           <li>Connecting AI to the tools your team already uses</li>
           <li>Migrations and modernisation of older systems</li>
         </ul>
-        <a href="/contact" class="btn-red">Talk integrations →</a>
+        <BookCTA label={"Talk integrations →"} />
       </div>
     </article>
 
@@ -70,7 +71,7 @@ export const prerender = true;
           <li>Triggered actions across multiple systems</li>
           <li>Monitoring so you know it's working</li>
         </ul>
-        <a href="/contact" class="btn-red">Get a Quote →</a>
+        <BookCTA label={"Get a Quote →"} />
       </div>
     </article>
   </section>
@@ -128,7 +129,7 @@ export const prerender = true;
     <div class="services-cta-content">
       <h2>Got something in mind?</h2>
       <p>Book a free 20-minute chat. Tell us what you're trying to build — we'll tell you straight whether AI is the right tool, and how we'd approach it.</p>
-      <a href="/contact" class="btn-red cta-btn-lg">Book a free AI chat →</a>
+      <BookCTA label={"Book a free AI chat →"} large align="center" />
     </div>
   </section>
 
